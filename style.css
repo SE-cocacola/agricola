@@ -1,0 +1,259 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+#container {
+  background-image: url('image/board/background.jpg');
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+}
+
+.action_board_container {
+  width: 45%;
+}
+
+.action_board {
+  width: 100%;
+  height: 100vh;
+  background-image: url('image/board/central.png');
+  background-size: 100% 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Left Box */
+
+.left_box_container {
+  width: 40%;
+  height: 78%;
+}
+
+.left_box {
+  margin: 16px 4px;
+  width: 95%;
+  height: 95%;
+  display: grid;
+  grid-template-areas: 'a b' 'a b' 'a b' 'a b' 'c d' 'c d' 'e d' 'e d' 'f g' 'f g' 'f g' 'h i' 'h i' 'h i' 'j k' 'j k' 'j k';
+  justify-items: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.grid-item {
+  background-color: #ccc;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.a {
+  grid-area: a;
+}
+
+.b {
+  grid-area: b;
+}
+
+.c {
+  grid-area: c;
+}
+
+.d {
+  grid-area: d;
+}
+
+.e {
+  grid-area: e;
+}
+
+.f {
+  grid-area: f;
+}
+
+.g {
+  grid-area: g;
+}
+
+.h {
+  grid-area: h;
+}
+
+.i {
+  grid-area: i;
+}
+
+.j {
+  grid-area: j;
+}
+
+.k {
+  grid-area: k;
+}
+
+/* Right Box */
+
+.right_box_container {
+  width: 60%;
+  height: 78%;
+  margin: auto;
+}
+
+.right_box {
+  margin: 4px;
+  width: 95%;
+  height: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.right_box div {
+  width: 32%;
+  height: 25%;
+}
+
+.right_box div img {
+  transform: translate(50%, 50%);
+  width: 50%;
+  height: 50%;
+}
+
+/* Bottom Box */
+
+.bottom_box_container {
+  width: 100%;
+  height: 22%;
+}
+
+.bottom_box {
+  width: 95%;
+  height: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.bottom_box div {
+  width: 20%;
+  height: 100%;
+}
+
+.bottom_box div img {
+  transform: translate(50%, 50%);
+  width: 50%;
+  height: 50%;
+}
+
+/* top farm board */
+
+.farm_board {
+  width: 35%;
+  background-image: url('image/board/background.jpg');
+  background-size: 100% 100%;
+}
+
+.farm_board_top {
+  margin-top: 10px;
+  width: 100%;
+  height: 40%;
+}
+
+.farm_board_bottom {
+  width: 100%;
+  height: 50%;
+}
+
+.farm_board_top div {
+}
+
+.farm_board_bottom div {
+}
+
+.row {
+  display: flex;
+}
+
+.square {
+  position: relative;
+  width: 3.8%;
+  background-color: inherit;
+}
+
+.square::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+  /* 1:1 Aspect Ratio */
+}
+
+.row_bar {
+  position: relative;
+  width: 15.2%;
+  /* background-color: #f0f0f0; */
+}
+
+.farmboard {
+  position: relative;
+  width: 15.2%;
+}
+
+.farmboard::before {
+  content: '';
+  display: block;
+}
+
+.farm_board img {
+  width: 100%;
+  height: 100%;
+}
+
+.col_bar {
+  position: relative;
+  width: 3.8%;
+  /* background-color: #f0f0f0; */
+}
+
+/* score board */
+
+.score_board {
+  width: 20%;
+  height: 100vh;
+}
+
+.setting_board {
+  margin: 12px auto;
+  border-radius: 12px;
+  width: 90%;
+  height: 19%;
+  background-image: url('image/board/Cards/action_frame_bg.jpg');
+}
+
+.score_board_bottom {
+  margin: auto;
+  border-radius: 12px;
+  width: 90%;
+  height: 38%;
+  background-image: url('image/board/Cards/action_frame_bg.jpg');
+}
+
+.score_board_top {
+  margin: auto;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  width: 90%;
+  height: 38%;
+  background-image: url('image/board/Cards/action_frame_bg.jpg');
+}
