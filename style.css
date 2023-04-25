@@ -172,10 +172,22 @@ body {
   height: 50%;
 }
 
-/* top farm board */
+/* farm board */
+
+.farm_board_container {
+  width: 40vw;
+  margin: 0 10px;
+  height: 0;
+  max-height: 100%;
+  padding-bottom: min(40vw, 100vh);
+  position: relative;
+  background-image: url('image/board/background.jpg');
+  background-size: 100% 100%;
+}
 
 .farm_board {
   width: 40vw;
+  margin: 0 2px;
   background-image: url('image/board/background.jpg');
   background-size: 100% 100%;
 }
@@ -184,11 +196,16 @@ body {
   margin-top: 10px;
   width: 100%;
   height: 40%;
+  border: 2px solid black;
+  box-sizing: border-box;
 }
 
 .farm_board_bottom {
+  margin-top: 10px;
   width: 100%;
-  height: 50%;
+  height: 40%;
+  border: 2px solid black;
+  box-sizing: border-box;
 }
 
 .row {
