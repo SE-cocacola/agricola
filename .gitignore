@@ -3,3 +3,9 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Image Asset
+image
+
+# Idea
+.idea
