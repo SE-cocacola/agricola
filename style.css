@@ -160,7 +160,7 @@ body {
 /* top farm board */
 
 .farm_board {
-  width: 35%;
+  width: 42%;
   background-image: url('image/board/background.jpg');
   background-size: 100% 100%;
 }
@@ -202,7 +202,7 @@ body {
 .row_bar {
   position: relative;
   width: 15.2%;
-  /* background-color: #f0f0f0; */
+  background-color: #f0f0f0;
 }
 
 .farmboard {
@@ -223,10 +223,10 @@ body {
 .col_bar {
   position: relative;
   width: 3.8%;
-  /* background-color: #f0f0f0; */
+  background-color: #f0f0f0;
 }
 
-/* score board */
+/* score board
 
 .score_board {
   width: 20%;
@@ -256,4 +256,108 @@ body {
   width: 90%;
   height: 38%;
   background-image: url('image/board/Cards/action_frame_bg.jpg');
+} */
+.score_board{
+  width: 18%; 
+  height: 773px;
+}
+
+.setting_board{
+  background-image: url("/image/board/action_frame_bg.jpg");
+}
+
+.info{
+  display: flex;
+  justify-content: space-around;
+
+  margin-top: 16px;
+}
+
+.util_btn{
+  width: 40px;
+  height: 40px;
+}
+
+.player{
+  background-image: url("/image/board/action_frame_bg.jpg");
+}
+
+.front{
+  width: 100%;
+  height: 15%;
+  
+  display: flex;
+  flex-wrap: nowrap;
+  /* justify-content: space-around; */
+  /* float: left; */
+
+  margin-top: 10px;
+
+}
+
+.picture_box{
+  margin-left: 30px;
+}
+
+.picture{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+
+}
+
+.profile{
+  width: 30%;
+  margin-left: 20px;
+}
+
+.score_util{
+  width: 40px;
+  height: 40px;
+}
+
+.resources{
+  width: 100%;
+  height: 40%;
+
+  margin-top: 10px;
+  padding-bottom: 10px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  border-bottom: 2px solid;
+  
+}
+
+.rename_{
+  margin-left: 20px;
+}
+
+.resource_img{
+  width: 30px;
+  height: 30px;
+}
+
+.animals{
+  width: 100%;
+  height: 15%;
+
+  margin-top: 10px;
+  padding-bottom: 10px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  border-bottom: 2px solid;
+}
+
+.etc{
+  width: 100%;
+  height: 30%;
+
+  margin-top: 10px;
+
+  display: flex;
+  flex-wrap: wrap;
 }
