@@ -131,6 +131,17 @@ body {
   height: 50%;
 }
 
+.action_util{
+  width: 80%;
+  height: 80%;
+
+  background-image: url("/image/board/action_frame_bg.jpg");
+  /* background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-left: 6px; */
+}
+
 /* Bottom Box */
 
 .bottom_box_container {
