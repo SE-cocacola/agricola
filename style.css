@@ -16,10 +16,11 @@ body {
 }
 
 .action_board_container {
-  width: 40vw;
+  width: 0;
   height: 0;
   max-height: 100%;
-  padding-bottom: min(60vw, 100vh);
+  padding-bottom: min(50vw, 100vh);
+  padding-right: min(40vw, 80vh);
   position: relative;
 }
 
@@ -175,27 +176,42 @@ body {
 /* farm board */
 
 .farm_board_container {
-  width: 40vw;
-  margin: 0 10px;
+  width: 0;
   height: 0;
   max-height: 100%;
-  padding-bottom: min(40vw, 100vh);
+  margin-right: 10px;
+  padding-bottom: min(50vw, 100vh);
+  padding-right: min(40vw, 80vh);
   position: relative;
   background-image: url('image/board/background.jpg');
   background-size: 100% 100%;
 }
 
 .farm_board {
-  width: 40vw;
-  margin: 0 2px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-image: url('image/board/background.jpg');
   background-size: 100% 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.farm_player_top, .farm_player_bottom {
+  margin-top: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 5px;
+  border: 3px solid darkgreen;
 }
 
 .farm_board_top {
   margin-top: 10px;
   width: 100%;
-  height: 40%;
+  height: 50%;
   border: 2px solid black;
   box-sizing: border-box;
 }
@@ -203,7 +219,7 @@ body {
 .farm_board_bottom {
   margin-top: 10px;
   width: 100%;
-  height: 40%;
+  height: 50%;
   border: 2px solid black;
   box-sizing: border-box;
 }
