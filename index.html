@@ -359,8 +359,29 @@
         <div class="util_board">
             <div class="setting_board">
                 <div class="icons">
-                    <div class="icon"></div>
-                    <div class="icon"></div>
+                    <!-- <div class="icon"> -->
+                        <!-- <button class="icon" id="score-button"><img src="image/board/Cards/score.png" style="width: 120%; height: 100%;"></button> -->
+                        <a class ="icon btn_open" href="#pop_info_1"><img src="image/board/Cards/score.png" style="width: 120%; height: 100%;"></a>
+                        <div id="pop_info_1" class="pop_wrap" style="display:none;">
+                            <div class="pop_inner">
+                              <p class="dsc">팝업 안내문구 입니다.</p>
+                              <button type="button" class="btn_close">닫기</button>
+                              <div sytle = "display: flex">
+                                <img style = "width: 240px;" src ="image/rule1.jpeg">
+                                <img style = "width: 240px;" src ="image/rule2.jpeg">
+                                <img style = "width: 240px;" src ="image/rule3.jpeg">
+                                <img style = "width: 240px;" src ="image/rule4.jpeg">
+                                <img style = "width: 240px;" src ="image/rule5.jpeg">
+                                <img style = "width: 240px;" src ="image/rule6.jpeg">
+                                <img style = "width: 240px;" src ="image/rule7.jpeg">
+                                <img style = "width: 240px;" src ="image/rule8.jpeg">
+                              </div>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                    <!-- <div class="icon"> -->
+                        <button class ="icon" id="book-button"><img src="image/board/Cards/book.png" style="width: 120%; height: 100%;" ></button>
+                    <!-- </div> -->
                     <div class="icon"></div>
                 </div>
             </div>
@@ -502,6 +523,31 @@
         const uiManager = new UIManager();
         const div = document.getElementById('test');
         uiManager.addHoverEffectToDiv(div);
+
+        // const scoreButton = document.querySelector("#score-button");
+        // const bookButton = document.querySelector("#book-button");
+
+        // uiManager.addButtonEventListener(scoreButton, "click", uiManager.openPopup);
+        // uiManager.addButtonEventListener(bookButton, "click", uiManager.openPopup);
+        // uiManager.addButtonEventListeners();
+        var target = document.querySelectorAll('.btn_open');
+        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+        var targetID;
+
+        // 팝업 열기
+        for(var i = 0; i < target.length; i++){
+            target[i].addEventListener('click', function(){
+                targetID = this.getAttribute('href');
+                document.querySelector(targetID).style.display = 'block';
+            });
+        }
+
+        // 팝업 닫기
+        for(var j = 0; j < target.length; j++){
+            btnPopClose[j].addEventListener('click', function(){
+                this.parentNode.parentNode.style.display = 'none';
+            });
+        }
     </script>
 </body>
 
