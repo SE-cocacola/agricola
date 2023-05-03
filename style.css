@@ -354,3 +354,10 @@ h3 {
     width: 40px;
     height: 40px;
 }
+
+/* js */
+.hover-red {
+    background-color: skyblue;
+    opacity: 0.4;
+    z-index: 1;
+}

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agricola</title>
     <link rel="stylesheet" href="/style.css" />
+    <script src="js/UIManager.js" type="module"></script>
 </head>
 
 <body>
@@ -106,7 +107,7 @@
                     <!-- 2 row -->
                     <div class="row">
                         <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="farmboard" id = "test" onmouseover="addHoverEffectToDiv(this)" onmouseout="removeHoverEffectFromDiv(this)">
                             <img src="image/board/FarmBoard/farmboard1.png" />
                         </div>
                         <div class="col_bar"></div>
@@ -493,6 +494,15 @@
             </div>
         </div>
     </div>
+
+    <!-- js 코드 -->
+    <script type="module">
+        import { UIManager } from './js/UIManager.js';
+    
+        const uiManager = new UIManager();
+        const div = document.getElementById('test');
+        uiManager.addHoverEffectToDiv(div);
+    </script>
 </body>
 
 </html>
