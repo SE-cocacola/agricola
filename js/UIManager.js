@@ -7,7 +7,7 @@ export class UIManager extends UIInterface {
       this.popup = null;
       const scoreboard1 = document.querySelector('.score_board:nth-of-type(1)');
       const scoreboard2 = document.querySelector('.score_board:nth-of-type(2)');
-      let isPlayer1Turn = true;
+      this.isPlayer1Turn = true;
     }
     
     initUI() {
@@ -35,21 +35,37 @@ export class UIManager extends UIInterface {
           });
         });
       }
-    
-      // 선 정하기
-    selectOrder(player1, player2) {
-      const randomPlayerIndex = Math.floor(Math.random() * 2);
-    
-      const firstPlayer = (randomPlayerIndex === 0) ? player1 : player2;
-      const secondPlayer = (randomPlayerIndex === 0) ? player2 : player1;
-      
-      if (firstPlayer === player1) {
-        isPlayer1Turn = true;
+
+    // 선 정하기
+
+    selectOrder() {
+        document.getElementById("start-order-btn").insertAdjacentHTML('afterend', `<p>선이 정해졌습니다. 확인해주세요</p>`);
+        
+        
+      const orderToken = Math.floor(Math.random() * 2) + 1;
+
+      // 선 정한 뒤 Manager에 반영
+      this.isPlayer1Turn = (orderToken === 1);
+      if (orderToken === 1) {
+          document.getElementById("player1text").textContent = "선";
+          document.getElementById("player2text").textContent = "X";
       } else {
-        isPlayer1Turn = false;
+          document.getElementById("player1text").textContent = "X";
+          document.getElementById("player2text").textContent = "선";
       }
-    
-      return [firstPlayer, secondPlayer];
+
+      // 뒤집는 효과
+      const flipBtns = document.querySelectorAll(".flip-button");
+
+      flipBtns.forEach(btn => {
+          btn.addEventListener("click", function() {
+              const cardBody = btn.parentElement;
+              const flipCard = cardBody.querySelector(".flip-card-inner");
+              flipCard.classList.toggle("flipped");
+          });
+          btn.style.display = "block";
+      });
+
     }
     
     // 턴 바꾸기
@@ -61,11 +77,6 @@ export class UIManager extends UIInterface {
         scoreboard1.style.borderColor = 'black';
         scoreboard2.style.borderColor = 'red';
       }
-      isPlayer1Turn = !isPlayer1Turn;
+      this.isPlayer1Turn = !this.isPlayer1Turn;
     }
-    
-    // Example usage:
-    switchTurns(); // Changes border color to red for player 1
-    switchTurns(); // Changes border color back to black for player 2
-      
 }
