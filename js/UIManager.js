@@ -5,6 +5,9 @@ export class UIManager extends UIInterface {
       super();
       // add any additional initialization code here
       this.popup = null;
+      const scoreboard1 = document.querySelector('.score_board:nth-of-type(1)');
+      const scoreboard2 = document.querySelector('.score_board:nth-of-type(2)');
+      this.isPlayer1Turn = true;
     }
     
     initUI() {
@@ -15,7 +18,7 @@ export class UIManager extends UIInterface {
       // implementation code for updating the UI
     }
     
-    // add any other required methods here
+    // 마우스 오버 효과
     addHoverEffectToDiv(div) {
         div.addEventListener("mouseover", function() {
           div.classList.add("hover-red");
@@ -24,42 +27,6 @@ export class UIManager extends UIInterface {
           div.classList.remove("hover-red");
         });
     }
-      
-    // removeHoverEffectFromDiv(div) {
-    //     div.removeEventListener("mouseover", function() {
-    //       div.classList.add("hover-red");
-    //     });
-    //     div.removeEventListener("mouseout", function() {
-    //       div.classList.remove("hover-red");
-    //     });
-    // }
-
-    // Function to create and show the popup window
-    openPopup() {
-        if (!this.popup) {
-          this.popup = document.createElement("div");
-          this.popup.classList.add("popup");
-          const popupContent = document.createElement("div");
-          popupContent.classList.add("popup-content");
-          popupContent.innerHTML = "<p>This is the popup content.</p>";
-          const closeButton = document.createElement("button");
-          closeButton.innerHTML = "Close";
-          closeButton.addEventListener("click", () => {
-            this.closePopup();
-          });
-          this.popup.appendChild(popupContent);
-          this.popup.appendChild(closeButton);
-          document.body.appendChild(this.popup);
-        }
-      }
-    
-      closePopup() {
-        if (this.popup) {
-          document.body.removeChild(this.popup);
-          this.popup = null;
-        }
-      }
-    
       addButtonEventListeners() {
         const buttons = document.querySelectorAll(".icon");
         buttons.forEach((button) => {
@@ -68,4 +35,48 @@ export class UIManager extends UIInterface {
           });
         });
       }
+
+    // 선 정하기
+
+    selectOrder() {
+        document.getElementById("start-order-btn").insertAdjacentHTML('afterend', `<p>선이 정해졌습니다. 확인해주세요</p>`);
+        
+        
+      const orderToken = Math.floor(Math.random() * 2) + 1;
+
+      // 선 정한 뒤 Manager에 반영
+      this.isPlayer1Turn = (orderToken === 1);
+      if (orderToken === 1) {
+          document.getElementById("player1text").textContent = "선";
+          document.getElementById("player2text").textContent = "X";
+      } else {
+          document.getElementById("player1text").textContent = "X";
+          document.getElementById("player2text").textContent = "선";
+      }
+
+      // 뒤집는 효과
+      const flipBtns = document.querySelectorAll(".flip-button");
+
+      flipBtns.forEach(btn => {
+          btn.addEventListener("click", function() {
+              const cardBody = btn.parentElement;
+              const flipCard = cardBody.querySelector(".flip-card-inner");
+              flipCard.classList.toggle("flipped");
+          });
+          btn.style.display = "block";
+      });
+
+    }
+    
+    // 턴 바꾸기
+    switchTurns() {
+      if (isPlayer1Turn) {
+        scoreboard1.style.borderColor = 'red';
+        scoreboard2.style.borderColor = 'black';
+      } else {
+        scoreboard1.style.borderColor = 'black';
+        scoreboard2.style.borderColor = 'red';
+      }
+      this.isPlayer1Turn = !this.isPlayer1Turn;
+    }
 }
