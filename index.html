@@ -60,7 +60,7 @@
                             <img src="image/board/background_numbers/number3.png" class="number-card" alt="" />
                         </div>
                         <div>
-                            <img src="image/board/Cards/majors_icon.png" class="right_box-card" />
+                            <img src="image/board/Cards/majors_icon.png" class="right_box-card" onclick="window.open('./majors.html', '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"/>
                         </div>
                         <div>
                             <img src="image/board/background_numbers/number4.png" class="number-card" alt="" />
@@ -367,7 +367,7 @@
                     <!-- <div class="icon"> -->
                         <!-- <button class="icon" id="score-button"><img src="image/board/Cards/score.png" style="width: 120%; height: 100%;"></button> -->
                         <!-- <a class ="icon btn_open" href="#pop_info_1"><img src="image/board/Cards/score.png" style="width: 120%; height: 100%;"></a> -->
-                        <a href = "./rule.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 600, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/score.png" style="width: 80%; height: 100%;"></a>
+                        <a href = "./score.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 600, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/score.png" style="width: 80%; height: 100%;"></a>
                     <!-- </div> -->
                     <!-- <div class="icon"> -->
                         <!-- <button class ="icon" id="book-button"><img src="image/board/Cards/book.png" style="width: 120%; height: 100%;" ></button> -->
@@ -505,6 +505,8 @@
                     </div>
                 </div>
             </div>
+            <!--  선 정하기 Test, 추후 게임 시작시 실행되도록 수정  -->
+            <button id="select-order-button" class="btn btn-primary d-block" onclick="window.open('./selectorder.html', '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;">선 정하기(Test)</button>
         </div>
     </div>
 
@@ -516,30 +518,6 @@
         const div = document.getElementById('test');
         uiManager.addHoverEffectToDiv(div);
 
-        // const scoreButton = document.querySelector("#score-button");
-        // const bookButton = document.querySelector("#book-button");
-
-        // uiManager.addButtonEventListener(scoreButton, "click", uiManager.openPopup);
-        // uiManager.addButtonEventListener(bookButton, "click", uiManager.openPopup);
-        // uiManager.addButtonEventListeners();
-        var target = document.querySelectorAll('.btn_open');
-        var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
-        var targetID;
-
-        // 팝업 열기
-        for(var i = 0; i < target.length; i++){
-            target[i].addEventListener('click', function(){
-                targetID = this.getAttribute('href');
-                document.querySelector(targetID).style.display = 'block';
-            });
-        }
-
-        // 팝업 닫기
-        for(var j = 0; j < target.length; j++){
-            btnPopClose[j].addEventListener('click', function(){
-                this.parentNode.parentNode.style.display = 'none';
-            });
-        }
     </script>
 </body>
 
