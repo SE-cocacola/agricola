@@ -79,4 +79,9 @@ export class UIManager extends UIInterface {
       }
       this.isPlayer1Turn = !this.isPlayer1Turn;
     }
+
+    // 점수 계산 > 나중에 scoreManager.js 등으로 따로 구현
+    calcurateScore() {
+      document.getElementById("score").insertAdjacentHTML('beforeend', `<p>10점</p>`);
+    }
 }
