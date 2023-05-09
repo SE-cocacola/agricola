@@ -474,7 +474,7 @@
                         <a href = "#" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/gear.png" style="width: 80%; height: 100%;"></a>
                 </div>
             </div>
-            <div class="score_board">
+            <div class="score_board" id = "score1">
                 <div class="score_board_top">
                     <img src="/image/board/Cards/hand_icon.png" alt="" class="avatar" />
                     <div>
@@ -484,7 +484,7 @@
                         </div>
                     </div>
                     <div class="ex">
-                        <img src="image/board/Cards/first.png" alt="" />
+                        <img src="image/board/Cards/first.png" id = "player1_first" alt="" />
                     </div>
                     <div class="ex">
                         <img src="image/board/Cards/majors_icon.png" alt="" />
@@ -538,7 +538,7 @@
                     </div>
                 </div>
             </div>
-            <div class="score_board">
+            <div class="score_board" id = "score2">
                 <div class="score_board_top">
                     <img src="/image/board/Cards/hand_icon.png" alt="" class="avatar" />
                     <div>
@@ -548,7 +548,7 @@
                         </div>
                     </div>
                     <div class="ex">
-                        <img src="image/board/Cards/first.png" alt="" />
+                        <img src="image/board/Cards/first.png" id = "player2_first" alt="" />
                     </div>
                     <div class="ex">
                         <img src="image/board/Cards/majors_icon.png" alt="" />
@@ -605,6 +605,7 @@
             <!--  선 정하기 Test, 추후 게임 시작시 실행되도록 수정  -->
             <!-- <button id="select-order-button" class="btn btn-primary d-block" onclick="window.open('./selectorder.html', '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;">선 정하기(Test)</button> -->
             <button id="select-order-button" class="btn btn-primary d-block">선 정하기(Test)</button>
+            <button id="switch-button" class="btn btn-primary d-block">선 df(Test)</button>
         </div>
     </div>
 
@@ -625,6 +626,10 @@
         startBtn.addEventListener("click", function() {
             uiManager.selectOrder();
             startBtn.disabled = true;
+        });
+        const switchBtn = document.getElementById("switch-button");
+        switchBtn.addEventListener("click", function() {
+            uiManager.switchTurns();
         });
     </script>
 </body>

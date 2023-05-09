@@ -5,9 +5,13 @@ export class UIManager extends UIInterface {
       super();
       // add any additional initialization code here
       this.popup = null;
-      const scoreboard1 = document.querySelector('.score_board:nth-of-type(1)');
-      const scoreboard2 = document.querySelector('.score_board:nth-of-type(2)');
+      this.scoreboard1 = document.getElementById("score1");
+      this.scoreboard2 = document.getElementById("score2");
       this.isPlayer1Turn = true;
+
+      this.imgPlayer1 = document.getElementById("player1_first");
+      this.imgPlayer2 = document.getElementById("player2_first");
+
     }
     
     initUI() {
@@ -66,16 +70,29 @@ export class UIManager extends UIInterface {
           btn.style.display = "block";
       });
 
+      
+
+      if(this.isPlayer1Turn){
+        this.scoreboard1.style.borderColor = 'red';
+        this.imgPlayer2.style.display = "none";
+      }else{
+        this.scoreboard2.style.borderColor = 'red';
+        this.imgPlayer1.style.display = "none";
+      }
     }
     
     // 턴 바꾸기
     switchTurns() {
-      if (isPlayer1Turn) {
-        scoreboard1.style.borderColor = 'red';
-        scoreboard2.style.borderColor = 'black';
+      if (this.isPlayer1Turn) {
+        this.scoreboard1.style.borderColor = 'black';
+        this.scoreboard2.style.borderColor = 'red';
+        this.imgPlayer1.style.display = "none";
+        this.imgPlayer2.style.display = "block";
       } else {
-        scoreboard1.style.borderColor = 'black';
-        scoreboard2.style.borderColor = 'red';
+        this.scoreboard1.style.borderColor = 'red';
+        this.scoreboard2.style.borderColor = 'black';
+        this.imgPlayer1.style.display = "block";
+        this.imgPlayer2.style.display = "none";
       }
       this.isPlayer1Turn = !this.isPlayer1Turn;
     }
