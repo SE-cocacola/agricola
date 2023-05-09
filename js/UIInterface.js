@@ -13,8 +13,23 @@ class UIInterface {
       throw new Error("updateUI() method not implemented");
     }
     
-    // add any other required methods here
+  addHoverEffectToDiv(div) {
+    throw new Error("addHoverEffectToDiv() method not implemented");
+  }
+    addButtonEventListeners() {
+      throw new Error("addButtonEventListeners() method not implemented");
+    }
+  
+    // 선 정하기
+  selectOrder(player1, player2) {
+    throw new Error("selectOrder() method not implemented");
   }
   
-  export default UIInterface;
+  // 턴 바꾸기
+  switchTurns() {
+    throw new Error("switchTurns() method not implemented");
+  }
+}
+  
+export default UIInterface;
   
