@@ -1,16 +1,15 @@
 import { RT } from "../Resource/ResourceType.js";
 import { MCM } from "../MajorCard/MajorCardManager.js";
-import { Brazier1, Brazier2, FirePot1, FirePot2, EarthenKiln, StoneKiln, FurnitureFactory, BowlFactory, BasketFactory, Well} from '../MajorCard/MajorCardInterface';
+import { Brazier1, Brazier2, FirePot1, FirePot2, EarthenKiln, StoneKiln, FurnitureFactory, BowlFactory, BasketFactory, Well} from '../MajorCard/MajorCard.js';
 
+// 각 플레이어마다 생성되어 자원을 관리해주는 Manager Class
 class ResourceManager{
     constructor() {
-        this.resources = [
-
-        ];
+        this.resources = [];
     }
 
     // ResourceManager에서 플레이어의 자원을 모두 초기화 시키고, 선에 따라서 food에 값 추가
-    initialize(선){
+    initialize(isFirst){
         let wood = {resourceType: RT.WOOD, amount: 0};
         let clay = {resourceType: RT.CLAY, amount: 0};
         let stone = {resourceType: RT.STONE, amount: 0};
@@ -19,8 +18,7 @@ class ResourceManager{
         let vegetable = {resourceType: RT.VEGETABLE, amount: 0};
 
         let food;
-        // 이게 되는지 모르겠음
-        if(선){
+        if(isFirst){
             food = {resourceType: RT.FOOD, amount: 2};
         }else{
             food = {resourceType: RT.FOOD, amount: 3};
@@ -102,16 +100,10 @@ class ResourceManager{
           }
         }
     }
-
-    // // 선 정해지고 음식 세팅
-    // setFood(선){
-    //     let food = this.resources[6];
-    //     if(선){
-    //         food.amount = 2;
-    //     }else{
-    //         food.amount = 3;
-    //     }
-    // }
 }
+
+const rm = new ResourceManager();
+rm.initialize(false);
+console.log(rm.getResource());
 
 export { ResourceManager as RM };

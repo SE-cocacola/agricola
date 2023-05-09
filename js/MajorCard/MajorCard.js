@@ -1,4 +1,4 @@
-import MajorCardInterface from './MajorCardInterface';
+import MajorCardInterface from '../MajorCard/MajorCardInterface.js';
 import { RT } from "../Resource/ResourceType.js";
 
 /*
@@ -22,7 +22,7 @@ class Brazier1 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType){
+    wheneverAction(resourceType, amount){
         switch (resourceType) {
             case RT.VEGETABLE:
                 // 음식 교환 로직
@@ -62,7 +62,7 @@ class Brazier2 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType){
+    wheneverAction(resourceType, amount){
         switch (resourceType) {
             case RT.VEGETABLE:
                 // 음식 교환 로직
@@ -103,7 +103,7 @@ class FirePot1 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType){
+    wheneverAction(resourceType, amount){
         switch (resourceType) {
             case RT.VEGETABLE:
                 // 음식 교환 로직
@@ -144,7 +144,7 @@ class FirePot2 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType){
+    wheneverAction(resourceType, amount){
         switch (resourceType) {
             case RT.VEGETABLE:
                 // 음식 교환 로직
@@ -324,7 +324,9 @@ class Well extends MajorCardInterface{
         this.score = 4;
     }
 
+    specificAction() {
 
+    }
 }
 
 export {
@@ -337,5 +339,5 @@ export {
     FurnitureFactory,
     BowlFactory,
     BasketFactory,
-    Well,
+    Well
   };
