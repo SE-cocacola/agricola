@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link href="./bootstrap.min.css" rel="stylesheet">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/">
+        <link rel="stylesheet" href="./rule.css" />
+        <script src="js/UIManager.js" type="module"></script>
+        <title>점수 확인 표</title>
+    </head>
+    <body>
+        <p class="dsc" style="width: 50rem; height: 50px; text-align: center;">
+            <b>점수 확인 표</b>
+        </p>
+        <div class="player1" style="width: 50rem; height: 10rem;"> 
+            <b>플레이어 1 점수</b><br>
+            <div class ="score">총점</div>
+        </div>
+        <div class="player2" style="width: 50rem; height: 10rem;"> 
+            <b>플레이어 2 점수</b><br>
+            <div class ="score">총점</div>
+        </div>
+    </body>
+
+    <script type="module">
+        import { UIManager } from './js/UIManager.js';
+    
+        const uiManager = new UIManager();
+    </script>
+</html>
