@@ -20,6 +20,11 @@ class GameManager{
         // [2, 4, 6]
 
         // player turn
+
+    }
+
+    actionRound() {
+
     }
 
     doNextTurn() {
@@ -42,3 +47,5 @@ class GameManager{
 }
 
 export default GameManager;
+
+

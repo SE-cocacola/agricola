@@ -2,7 +2,7 @@ import GameManager from './GameManager.js'
 
 class Game {
     constructor (playerCount) {
-        this.playerCount = playerCount
+        this.playerCount = playerCount;
 
         // 자원 초기화, 주요설비카드 초기화
         const gameManager = new GameManager(this.playerCount);
