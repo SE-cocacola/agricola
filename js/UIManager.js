@@ -20,13 +20,13 @@ export class UIManager extends UIInterface {
     
     // 마우스 오버 효과
     addHoverEffectToDiv(div) {
-        div.addEventListener("mouseover", function() {
-          div.classList.add("hover-red");
-        });
-        div.addEventListener("mouseout", function() {
-          div.classList.remove("hover-red");
-        });
-    }
+      div.addEventListener("mouseover", function() {
+        div.classList.add("hover-red");
+      });
+      div.addEventListener("mouseout", function() {
+        div.classList.remove("hover-red");
+      });
+  }
       addButtonEventListeners() {
         const buttons = document.querySelectorAll(".icon");
         buttons.forEach((button) => {
@@ -79,4 +79,5 @@ export class UIManager extends UIInterface {
       }
       this.isPlayer1Turn = !this.isPlayer1Turn;
     }
+
 }
