@@ -83,18 +83,24 @@ export class UIManager extends UIInterface {
     
     // 턴 바꾸기
     switchTurns() {
-      if (this.isPlayer1Turn) {
-        this.scoreboard1.style.borderColor = 'black';
-        this.scoreboard2.style.borderColor = 'red';
-        this.imgPlayer1.style.display = "none";
-        this.imgPlayer2.style.display = "block";
-      } else {
-        this.scoreboard1.style.borderColor = 'red';
-        this.scoreboard2.style.borderColor = 'black';
-        this.imgPlayer1.style.display = "block";
-        this.imgPlayer2.style.display = "none";
-      }
-      this.isPlayer1Turn = !this.isPlayer1Turn;
+        if (this.isPlayer1Turn) {
+            this.scoreboard1.style.borderColor = 'black';
+            this.scoreboard2.style.borderColor = 'red';
+            this.imgPlayer1.style.display = "none";
+            this.imgPlayer2.style.display = "block";
+        } else {
+            this.scoreboard1.style.borderColor = 'red';
+            this.scoreboard2.style.borderColor = 'black';
+            this.imgPlayer1.style.display = "block";
+            this.imgPlayer2.style.display = "none";
+        }
+        this.isPlayer1Turn = !this.isPlayer1Turn;
     }
 
 }
+
+/*
+규민: 2, 7, 9
+산해: 3, 4, 6
+영웅: 1, 5. 8
+ */
