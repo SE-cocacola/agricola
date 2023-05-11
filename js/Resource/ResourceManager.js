@@ -42,17 +42,13 @@ class ResourceManager{
     // 자원 추가
     addResource(resourceType, amount) {
         const resource = this.resources.find(r => r.resourceType === resourceType);
-        if (resource) {
-          resource.amount += amount;
-        }
+        resource.amount += amount;
     }
 
     // 자원 소비
     removeResource(resourceType, amount){
         const resource = this.resources.find(r => r.resourceType === resourceType);
-        if(resource){
-            resource.amount -= amount;
-        }
+        resource.amount -= amount;
     }
 
     // majorCard들 목록 조회
@@ -89,7 +85,7 @@ class ResourceManager{
     }
 
     addMajorCard(cardIdx){
-        this.getMajorCards.push(this.getMajorCard(cardIdx));
+        this.resources[12].push(getMajorCard(cardIdx));
     }
 
     removeMajorCard(cardIdx) {
@@ -102,8 +98,4 @@ class ResourceManager{
     }
 }
 
-const rm = new ResourceManager();
-rm.initialize(false);
-console.log(rm.getResource());
-
-export { ResourceManager as RM };
+export default ResourceManager;
