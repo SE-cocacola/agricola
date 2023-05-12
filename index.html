@@ -178,7 +178,23 @@
                 </div>
                 <div class="right_box_container">
                     <div class="right_box">
-                        <div>
+                        <div class = "round r1" id = "1">
+                        </div>
+                        <div class = "round r1" id = "2">
+                        </div>
+                        <div class = "round r1" id = "3">
+                        </div>
+                        <div class="round r2" id = "4">
+                        </div>
+                        <div class="round r2" id = "5">
+                        </div>
+                        <div class="round r2" id = "6">
+                        </div>
+                        <div class="round r3" id = "7">
+                        </div>
+                        <div class="round r3" id = "8">
+                        </div>
+                        <!-- <div>
                             <img src="image/board/background_numbers/number1.png" class="number-card" alt="" />
                         </div>
                         <div>
@@ -201,7 +217,7 @@
                         </div>
                         <div>
                             <img src="image/board/background_numbers/number3.png" class="number-card" alt="" />
-                        </div>
+                        </div> -->
                         <div>
                             <a href="javascript:openPop()">
                                 <div>
@@ -680,6 +696,8 @@
         const switchBtn = document.getElementById("switch-button");
         switchBtn.addEventListener("click", function() {
             uiManager.switchTurns();
+            uiManager.changeActionRoundImage(1);
+            uiManager.changeActionRoundImage(3);
         });
     </script>
 </body>

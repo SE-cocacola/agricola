@@ -18,7 +18,9 @@ h3 {
     display: flex;
 }
 
-.action_board_container {}
+.action_board_container {
+    width: 45%;
+}
 
 .action_board {
     width: 100%;
@@ -150,6 +152,32 @@ h3 {
     transform: translate(50%, 50%);
     width: 50%;
     height: 50%;
+}
+
+.round{
+    
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+.r1{
+    background-image: url('image/board/background_numbers/number1.png');
+}
+.r2{
+    background-image: url('image/board/background_numbers/number2.png');
+}
+.r3{
+    background-image: url('image/board/background_numbers/number3.png');
+}
+.r4{
+    background-image: url('image/board/background_numbers/number4.png');
+}
+.r5{
+    background-image: url('image/board/background_numbers/number5.png');
+}
+.r6{
+    background-image: url('image/board/background_numbers/number6.png');
 }
 
 .right_box-card {
