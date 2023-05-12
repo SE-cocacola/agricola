@@ -38,21 +38,30 @@ h3 {
 }
 
 .left_box {
-    margin: 16px 4px;
-    width: 95%;
+    /* margin: 16px 4px; */
+    margin: 8px 2px;
+    /* width: 95%;
+    height: 95%; */
+    width: 93%;
     height: 95%;
     display: grid;
     grid-template-areas: 'a b' 'a b' 'a b' 'a b' 'c d' 'c d' 'e d' 'e d' 'f g' 'f g' 'f g' 'h i' 'h i' 'h i' 'j k' 'j k' 'j k';
     justify-items: center;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
 }
 
 .grid-item {
     background-color: #ccc;
     opacity: 0.5;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
+
+    /* display: flex;
+    justify-content: flex-end;
+    align-items: flex-end; */
+    display: grid;
+
 }
 
 .grid-item img {
@@ -102,6 +111,16 @@ h3 {
 
 .k {
     grid-area: k;
+}
+
+.remain{
+    width: 2vw; 
+    height: 2vw;
+
+    background-color: red;
+    
+    justify-self: end;
+    align-self: end;
 }
 
 
