@@ -14,6 +14,7 @@ export class UIManager extends UIInterface {
 
         this.handleAnimalAddDelete = null;
         this.handleFenceAddDelete = null;
+        this.handleBarnAddDelete = null;
 
     }
 
@@ -213,6 +214,42 @@ export class UIManager extends UIInterface {
                 }
             };
             colfence.addEventListener("click", this.handleFenceAddDelete);
+        });
+    }
+
+    addBarn() {
+        const farmboards = document.querySelectorAll(".farmboard");
+        const barnType = document.querySelector("#barn-type").value;
+        farmboards.forEach(farmboard => {
+            if (this.handleBarnAddDelete) {
+                farmboard.removeEventListener("click", this.handleBarnAddDelete);
+            }
+            const handleClick = function () {
+                const barnImage = farmboard.querySelector(".farmbarn");
+                if (!barnImage) {
+                    const newBarnImage = document.createElement("img");
+                    newBarnImage.src = `./image/resource/barn${barnType}.png`;
+                    newBarnImage.classList.add('farmbarn');
+                    farmboard.appendChild(newBarnImage);
+                }
+            };
+            farmboard.addEventListener("click", handleClick);
+        });
+    }
+
+    removeBarn() {
+        const farmboards = document.querySelectorAll(".farmboard");
+        farmboards.forEach(farmboard => {
+            if (this.handleBarnAddDelete) {
+                farmboard.removeEventListener("click", this.handleBarnAddDelete);
+            }
+            this.handleBarnAddDelete = function () {
+                const barnImage = farmboard.querySelector(".farmbarn");
+                if (barnImage) {
+                    farmboard.removeChild(barnImage);
+                }
+            };
+            farmboard.addEventListener("click", this.handleBarnAddDelete);
         });
     }
 }
