@@ -12,6 +12,8 @@ export class UIManager extends UIInterface {
       this.imgPlayer1 = document.getElementById("player1_first");
       this.imgPlayer2 = document.getElementById("player2_first");
 
+      this.handleAddDelete = null;
+
     }
     
     initUI() {
@@ -96,6 +98,46 @@ export class UIManager extends UIInterface {
         }
         this.isPlayer1Turn = !this.isPlayer1Turn;
     }
+
+    // 가축 배치
+
+    addAnimal() {
+        const farmboards = document.querySelectorAll(".farmboard");
+        const animalType = document.querySelector("#animal-type").value;
+        const animalNumber = document.querySelector("#animal-number").value;
+        farmboards.forEach(farmboard => {
+            const handleClick = function() {
+                const animalImage = farmboard.querySelector(".farmanimal");
+                if (!animalImage) {
+                    const newAnimalImage = document.createElement("img");
+                    newAnimalImage.src = `./image/resource/${animalType}${animalNumber}.png`;
+                    newAnimalImage.classList.add('farmanimal');
+                    farmboard.appendChild(newAnimalImage);
+                }
+            };
+            farmboard.addEventListener("click", handleClick);
+        });
+    }
+
+
+
+    removeAnimal() {
+        const farmboards = document.querySelectorAll(".farmboard");
+        farmboards.forEach(farmboard => {
+            if (this.handleAddDelete) {
+                farmboard.removeEventListener("click", this.handleAddDelete);
+            }
+            this.handleAddDelete = function() {
+                const animalImage = farmboard.querySelector(".farmanimal");
+                if (animalImage) {
+                    farmboard.removeChild(animalImage);
+                }
+            };
+            farmboard.addEventListener("click", this.handleAddDelete);
+        });
+    }
+
+
 
 }
 

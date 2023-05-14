@@ -1,0 +1,12 @@
+.farmboard {
+    position: relative;
+}
+
+.farmanimal {
+    position: absolute;
+    width: 50px !important;
+    height: 50px !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
