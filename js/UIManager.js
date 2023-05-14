@@ -9,6 +9,7 @@ export class UIManager extends UIInterface {
       this.scoreboard2 = document.getElementById("score2");
       this.isPlayer1Turn = true;
 
+      this.isPlayer1First = true;
       this.imgPlayer1 = document.getElementById("player1_first");
       this.imgPlayer2 = document.getElementById("player2_first");
 
@@ -50,6 +51,7 @@ export class UIManager extends UIInterface {
 
       // 선 정한 뒤 Manager에 반영
       this.isPlayer1Turn = (orderToken === 1);
+      this.isPlayer1First = this.isPlayer1Turn;
       if (orderToken === 1) {
           document.getElementById("player1text").textContent = "선";
           document.getElementById("player2text").textContent = "X";
@@ -86,15 +88,24 @@ export class UIManager extends UIInterface {
         if (this.isPlayer1Turn) {
             this.scoreboard1.style.borderColor = 'black';
             this.scoreboard2.style.borderColor = 'red';
-            this.imgPlayer1.style.display = "none";
-            this.imgPlayer2.style.display = "block";
         } else {
             this.scoreboard1.style.borderColor = 'red';
             this.scoreboard2.style.borderColor = 'black';
-            this.imgPlayer1.style.display = "block";
-            this.imgPlayer2.style.display = "none";
         }
         this.isPlayer1Turn = !this.isPlayer1Turn;
+    }
+
+    // 선 바꾸기
+    switchFirst(){
+      this.isPlayer1First = !this.isPlayer1First;
+      if(this.isPlayer1First){
+          this.imgPlayer1.style.display = "block";
+          this.imgPlayer2.style.display = "none";
+      }
+      else{
+          this.imgPlayer1.style.display = "none";
+          this.imgPlayer2.style.display = "block";
+      }
     }
 
     // action_round의 background_img 바꾸기
