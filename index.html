@@ -621,6 +621,12 @@
             </select>
 
             <button id="remove-animal" class="btn btn-primary d-block">가축 삭제(Test)</button>
+            <button id="add-fence" class="btn btn-primary d-block">울타리 배치 (Test)</button>
+            <select id="fence-type">
+                <option value="Red">빨강</option>
+                <option value="Blue">파랑</option>
+            </select>
+            <button id="remove-fence" class="btn btn-primary d-block">울타리 삭제 (Test)</button>
         </div>
     </div>
 
@@ -656,6 +662,17 @@
         removeAnimalBtn.addEventListener("click", function() {
             uiManager.removeAnimal();
         });
+
+        const addFenceBtn = document.getElementById("add-fence");
+        addFenceBtn.addEventListener("click", function() {
+            uiManager.addFence();
+        });
+
+        const removeFenceBtn = document.getElementById("remove-fence");
+        removeFenceBtn.addEventListener("click", function() {
+            uiManager.removeFence();
+        });
+
     </script>
 </body>
 
