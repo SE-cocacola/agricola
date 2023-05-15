@@ -35,6 +35,7 @@ class GameManager{
         // turn을 돌아가면서 player가 행동을 함.
         array.forEach(player => {
             player.moveFarmer();
+            
         });
     }
 
