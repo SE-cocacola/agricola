@@ -7,6 +7,7 @@
     <title>Agricola</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="./majors.css" />
+    <link rel="stylesheet" href="./farmboard.css">
     <!-- <link href="./bootstrap.min.css" rel="stylesheet"> -->
     <link href="./selectorder.css" rel="stylesheet">
     <script src="./js/UIManager.js" type="module"></script>
@@ -517,10 +518,10 @@
                 <div class="line"></div>
                 <div class="animals">
                     <div class="animal" id="sheep">
-                        0 <img src="image/resource/sheep.PNG" class="resource_img" />
+                        0 <img src="image/resource/sheep1.PNG" class="resource_img" />
                     </div>
                     <div class="animal" id="pig">
-                        0 <img src="image/resource/boar.png" class="resource_img" />
+                        0 <img src="image/resource/boar1.png" class="resource_img" />
                     </div>
                     <div class="animal" id="cow">
                         0 <img src="image/resource/cattle.png" class="resource_img" />
@@ -581,10 +582,10 @@
                 <div class="line"></div>
                 <div class="animals">
                     <div class="animal" id="sheep">
-                        0 <img src="image/resource/sheep.PNG" class="resource_img" />
+                        0 <img src="image/resource/sheep1.PNG" class="resource_img" />
                     </div>
                     <div class="animal" id="pig">
-                        0 <img src="image/resource/boar.png" class="resource_img" />
+                        0 <img src="image/resource/boar1.png" class="resource_img" />
                     </div>
                     <div class="animal" id="cow">
                         0 <img src="image/resource/cattle.png" class="resource_img" />
@@ -607,6 +608,32 @@
             <!-- <button id="select-order-button" class="btn btn-primary d-block" onclick="window.open('./selectorder.html', '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;">선 정하기(Test)</button> -->
             <button id="select-order-button" class="btn btn-primary d-block">선 정하기(Test)</button>
             <button id="switch-button" class="btn btn-primary d-block">선 df(Test)</button>
+            <button id="add-animal" class="btn btn-primary d-block">가축 배치 (Test)</button>
+            <select id="animal-type">
+                <option value="cow">소</option>
+                <option value="sheep">양</option>
+                <option value="boar">돼지</option>
+            </select>
+            <select id="animal-number">
+                <option value="1">1마리</option>
+                <option value="2">2마리</option>
+                <option value="3">3마리</option>
+            </select>
+
+            <button id="remove-animal" class="btn btn-primary d-block">가축 삭제(Test)</button>
+            <button id="add-fence" class="btn btn-primary d-block">울타리 배치 (Test)</button>
+            <select id="fence-type">
+                <option value="Red">빨강</option>
+                <option value="Blue">파랑</option>
+            </select>
+            <button id="remove-fence" class="btn btn-primary d-block">울타리 삭제 (Test)</button>
+
+            <button id="add-barn" class="btn btn-primary d-block">외양간 배치 (Test)</button>
+            <select id="barn-type">
+                <option value="1">빨강</option>
+                <option value="2">파랑</option>
+            </select>
+            <button id="remove-barn" class="btn btn-primary d-block">외양간 삭제 (Test)</button>
         </div>
     </div>
 
@@ -632,6 +659,37 @@
         switchBtn.addEventListener("click", function() {
             uiManager.switchTurns();
         });
+
+        const addAnimalBtn = document.getElementById("add-animal");
+        addAnimalBtn.addEventListener("click", function() {
+            uiManager.addAnimal();
+        });
+
+        const removeAnimalBtn = document.getElementById("remove-animal");
+        removeAnimalBtn.addEventListener("click", function() {
+            uiManager.removeAnimal();
+        });
+
+        const addFenceBtn = document.getElementById("add-fence");
+        addFenceBtn.addEventListener("click", function() {
+            uiManager.addFence();
+        });
+
+        const removeFenceBtn = document.getElementById("remove-fence");
+        removeFenceBtn.addEventListener("click", function() {
+            uiManager.removeFence();
+        });
+
+        const addBarnBtn = document.getElementById("add-barn");
+        addBarnBtn.addEventListener("click", function() {
+            uiManager.addBarn();
+        });
+
+        const removeBarnBtn = document.getElementById("remove-barn");
+        removeBarnBtn.addEventListener("click", function() {
+            uiManager.removeBarn();
+        });
+
     </script>
 </body>
 
