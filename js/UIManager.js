@@ -48,7 +48,6 @@ export class UIManager extends UIInterface {
     }
 
     // 선 정하기
-
     selectOrder() {
         document.getElementById("start-order-btn").insertAdjacentHTML('afterend', `<p>선이 정해졌습니다. 확인해주세요</p>`);        
         const orderToken = Math.floor(Math.random() * 2) + 1;
@@ -154,7 +153,7 @@ export class UIManager extends UIInterface {
         });
     }
 
-
+    // 가축삭제
     removeAnimal() {
         const farmboards = document.querySelectorAll(".farmboard");
         farmboards.forEach(farmboard => {
@@ -171,6 +170,7 @@ export class UIManager extends UIInterface {
         });
     }
 
+    // 울타리 치기
     addFence() {
         const rowfences = document.querySelectorAll(".row_bar");
         const colfences = document.querySelectorAll(".col_bar");
@@ -217,6 +217,7 @@ export class UIManager extends UIInterface {
         });
     }
 
+    // 울타리 삭제
     removeFence() {
         const rowfences = document.querySelectorAll(".row_bar");
         const colfences = document.querySelectorAll(".col_bar");
@@ -247,6 +248,7 @@ export class UIManager extends UIInterface {
         });
     }
 
+    // 외양간 설치
     addBarn() {
         const farmboards = document.querySelectorAll(".farmboard");
         const barnType = document.querySelector("#barn-type").value;
@@ -267,6 +269,7 @@ export class UIManager extends UIInterface {
         });
     }
 
+    // 외양간 삭제
     removeBarn() {
         const farmboards = document.querySelectorAll(".farmboard");
         farmboards.forEach(farmboard => {
@@ -281,5 +284,25 @@ export class UIManager extends UIInterface {
             };
             farmboard.addEventListener("click", this.handleBarnAddDelete);
         });
+    }
+
+    // 주요설비 팝업
+    openPop() {
+      document.getElementById("popup_layer").style.display = "block";
+    }
+
+    // 주요설비 팝업 닫기
+    closePop() {
+        document.getElementById("popup_layer").style.display = "none";
+    }
+
+    // 선 선택 팝업
+    openSelect(){
+        document.getElementById("popup_select").style.display = "block";
+    }
+    
+    // 선 선택 팝업 닫기
+    closeSelect() {
+        document.getElementById("popup_select").style.display = "none";
     }
 }
