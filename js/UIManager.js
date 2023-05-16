@@ -117,12 +117,15 @@ export class UIManager extends UIInterface {
       switch (actionRound) {
         case 1:
           actionRoundDiv.style.backgroundImage = "url('image/rule1.jpeg')";
+          actionRoundDiv.style.backgroundSize = "contain";
           break;
         case 2:
           actionRoundDiv.style.backgroundImage = "url('image/rule2.jpeg')";
+          actionRoundDiv.style.backgroundSize = "contain";
           break;
         case 3:
           actionRoundDiv.style.backgroundImage = "url('image/rule3.jpeg')";
+          actionRoundDiv.style.backgroundSize = "contain";
           break;
           
         default:

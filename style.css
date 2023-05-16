@@ -159,7 +159,8 @@ h3 {
 .round{
     
     background-repeat: no-repeat;
-    background-size: contain;
+    /* background-size: contain; */
+    background-size: 50%;
     background-position: center center;
 }
 
