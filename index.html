@@ -244,7 +244,7 @@
                     <!-- 2 row -->
                     <div class="row">
                         <div class="col_bar"></div>
-                        <div class="farmboard" id = "test" onmouseover="addHoverEffectToDiv(this)" onmouseout="removeHoverEffectFromDiv(this)">
+                        <div class="farmboard" id = "test">
                             <img src="image/board/FarmBoard/farmboard1.png" />
                         </div>
                         <div class="col_bar"></div>
@@ -669,12 +669,25 @@
 
         const uiManager = new UIManager();
 
-        // 선정하기
+        // hover
+        const div = document.getElementById('test');
+        uiManager.addHoverEffectToDiv(div);
+
+
+        // 선 정하기
         const gameStartBtn = document.getElementById("select-order-button");
         gameStartBtn.addEventListener("click", function() {
             uiManager.openSelect();
         });
-        
+
+        // 선 정하기 시작
+        const startBtn = document.getElementById("start-order-btn");
+        startBtn.addEventListener("click", function() {
+            uiManager.selectOrder();
+            startBtn.disabled = true;
+        });
+
+
         // 턴 바꾸기
         const switchTurnBtn = document.getElementById("switch-turn-button");
         switchTurnBtn.addEventListener("click", function() {
