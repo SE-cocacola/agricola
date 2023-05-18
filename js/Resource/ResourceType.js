@@ -10,6 +10,7 @@ const ResourceType = {
     BOAR: "boar",
     CATTLE: "cattle",
     MAJORCARD: "majorCard",
+    FENCE: 'fence',
   };
 
 Object.freeze(ResourceType);

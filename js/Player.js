@@ -6,6 +6,7 @@ class Player {
         this.leftTurn = 0;
         this.score = 0;
         this.resourceManager = new ResourceManager();
+        this.tileManager = new tileManager()
     }
 
     getAdultFarmer() {

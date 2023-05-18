@@ -9,6 +9,8 @@ class TileManager {
         this.playerBoard = [new Tile("empty"), new Tile("empty"), new Tile("empty"), new Tile("empty"), new Tile("empty"),
                             new Room(RoomType.WOOD, 1), new Tile("empty"), new Tile("empty"), new Tile("empty"), new Tile("empty"),
                             new Room(RoomType.WOOD, 1), new Tile("empty"), new Tile("empty"), new Tile("empty"), new Tile("empty")];
+
+        this.roomType = RoomType.WOOD;
     }
 
     addField(position){

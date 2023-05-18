@@ -11,6 +11,7 @@ class Field extends Tile {
     plantCrop(crop) {
       // this.crop.push crop에 씨 뿌리고 수확하기
       this.isPlant = true;
+      this.crop = crop;
     }
 
     // 수확하기

@@ -1,29 +1,74 @@
 import BoardInterface from './BoardInterface.js'
+import ResourceManager from '../Resource/ResourceManager'
+import RoomType from '../Tile/RoomType.js'
 
 class ActionSpace extends BoardInterface {
-  constructor() {}
+    constructor() {}
 
-  expandFarm() {}
+    expandFarm(player, idx) {
+        roomType = player.tileManager.roomType
 
-  accumulateFood() {}
+        // idx 가 player의 board에서 주변에 있는지 확인해야 함.
 
-  grainSeed() {}
+        switch (roomType) {
+            case RoomType.CLAY:
+                player.resourceManager.removeResource(ResourceType.WOOD, 5)
+                player.resourceManager.removeResource(ResourceType.REED, 2)
+                break
+            case RoomType.STONE:
+                player.resourceManager.removeResource(ResourceType.CLAY, 5)
+                player.resourceManager.removeResource(ResourceType.REED, 2)
+                break
+            case RoomType.WOOD:
+                player.resourceManager.removeResource(ResourceType.STONE, 5)
+                player.resourceManager.removeResource(ResourceType.REED, 2)
+                break
+            default:
+                break
+        }
+        player.tileManager.playerBoard[idx] = roomType
+    }
 
-  farmland() {}
+    accumulateFood(player, cnt) {
+        player.ResourceManager.addResource(RT.FOOD, cnt)
+    }
 
-  lessons() {}
+    grainSeed(player) {
+        player.ResourceManager.addResource(RT.GRAIN, 1)
+    }
 
-  dayLaborer() {}
+    farmland(player, idx) {
+        player.tileManager.addField(idx)
+    }
 
-  fencing() {}
+    lessons(player) {
+        // x
+    }
 
-  forrest() {}
+    dayLaborer(player) {
+        player.ResourceManager.addResource(RT.FOOD, 2)
+    }
 
-  clayPit() {}
+    fencing(player, cnt) {
+        player.ResourceManager.removeResource(RT.WOOD, cnt)
+        player.ResourceManager.addResource(RT.FENCE, cnt)
+    }
 
-  reedBank() {}
+    forrest(player, cnt) {
+        player.ResourceManager.addResource(RT.WOOD, cnt)
+    }
 
-  fishing() {}
+    clayPit(player, cnt) {
+        player.ResourceManager.addResource(RT.CLAY, cnt)
+    }
+
+    reedBank(player, cnt) {
+        player.ResourceManager.addResource(RT.REED, cnt)
+    }
+
+    fishing(player, cnt) {
+        player.ResourceManager.addResource(RT.FOOD, cnt)
+    }
 }
 
 export default ActionSpace
