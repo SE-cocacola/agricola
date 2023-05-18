@@ -54,6 +54,7 @@ export class UIManager extends UIInterface {
 
         // 선 정한 뒤 Manager에 반영
         this.isPlayer1Turn = (orderToken === 1);
+        this.isPlayer1First = this.isPlayer1Turn;
         if (orderToken === 1) {
             document.getElementById("player1text").textContent = "선";
             document.getElementById("player2text").textContent = "X";
