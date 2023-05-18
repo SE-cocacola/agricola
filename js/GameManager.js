@@ -39,6 +39,7 @@ class GameManager{
         });
     }
 
+    // accumulate 함수
 
     harvest() {
         
