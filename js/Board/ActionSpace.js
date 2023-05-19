@@ -6,26 +6,27 @@ class ActionSpace extends BoardInterface {
     constructor() {}
 
     expandFarm(player, idx) {
-        roomType = player.tileManager.roomType
+        const roomType = player.tileManager.roomType;
 
         // idx 가 player의 board에서 주변에 있는지 확인해야 함.
 
         switch (roomType) {
-            case RoomType.CLAY:
-                player.resourceManager.removeResource(ResourceType.WOOD, 5)
-                player.resourceManager.removeResource(ResourceType.REED, 2)
-                break
-            case RoomType.STONE:
-                player.resourceManager.removeResource(ResourceType.CLAY, 5)
-                player.resourceManager.removeResource(ResourceType.REED, 2)
-                break
             case RoomType.WOOD:
-                player.resourceManager.removeResource(ResourceType.STONE, 5)
-                player.resourceManager.removeResource(ResourceType.REED, 2)
-                break
+                player.resourceManager.removeResource(ResourceType.STONE, 5);
+                player.resourceManager.removeResource(ResourceType.REED, 2);
+                break;
+            case RoomType.CLAY:
+                player.resourceManager.removeResource(ResourceType.WOOD, 5);
+                player.resourceManager.removeResource(ResourceType.REED, 2);
+                break;
+            case RoomType.STONE:
+                player.resourceManager.removeResource(ResourceType.CLAY, 5);
+                player.resourceManager.removeResource(ResourceType.REED, 2);
+                break;
             default:
-                break
+                break;
         }
+        
         player.tileManager.playerBoard[idx] = roomType
     }
 
