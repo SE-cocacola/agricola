@@ -1,11 +1,16 @@
 import { UIManager } from "./UIManager";
 import Player from "./Player";
-import { PM } from "./PlayerManager";
+import ActionSpace from "./Board/ActionSpace";
+import RoundSpace from "./Board/RoundSpace";
+import MajorCardManager from "./MajorCard/MajorCardManager";
 
 class GameManager{
     constructor(){
         this.player1 = new Player();
         this.player2 = new Player();
+        this.MajorCardManager = new MajorCardManager();
+        this.actionSpace = new ActionSpace();
+        this.roundSpace = new RoundSpace();
     }
 
     setFirstPlayer(firstPlayer) {

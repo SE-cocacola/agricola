@@ -25,3 +25,5 @@ class TileManager {
         this.playerBoard[position] = new Room();
     }
 }
+
+export default TileManager;

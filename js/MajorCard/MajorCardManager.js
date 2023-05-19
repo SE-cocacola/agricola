@@ -46,5 +46,5 @@ class MajorCardManager {
     }
 }
   
-  export { MajorCardManager as MCM };
+  export default MajorCardManager;
   

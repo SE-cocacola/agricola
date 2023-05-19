@@ -1,4 +1,5 @@
 import ResourceManager from './Resource/ResourceManager.js'
+import TileManager from './Tile/TileManager.js';
 
 class Player {
     constructor(name) {
@@ -6,7 +7,7 @@ class Player {
         this.leftTurn = 0;
         this.score = 0;
         this.resourceManager = new ResourceManager();
-        this.tileManager = new tileManager()
+        this.tileManager = new TileManager();
     }
 
     getAdultFarmer() {
@@ -21,21 +22,21 @@ class Player {
     // TODO: Implement make tile logic
     }
     
-      useMajorCard(resourceManager) {
-        // TODO: Implement use major card logic
-      }
+    useMajorCard(resourceManager) {
+      // TODO: Implement use major card logic
+    }
     
-      calScore(resourceManager) {
-        // TODO: Implement calculate score logic
-      }
+    calScore(resourceManager) {
+      // TODO: Implement calculate score logic
+    }
     
-      getResource() {
-        // TODO: Implement get resource logic
-      }
+    getResource() {
+      // TODO: Implement get resource logic
+    }
     
-      movePlayer() {
-        // TODO: Implement move player logic
-      }
+    movePlayer() {
+      // TODO: Implement move player logic
+    }
 }
 
-export default Player
+export default Player;

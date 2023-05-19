@@ -40,4 +40,4 @@ class RoundSpace extends BoardInterface {
     }
 }
 
-export default RoundSpace
+export default RoundSpace;
