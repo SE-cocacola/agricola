@@ -1,5 +1,6 @@
 import { RT } from "../Resource/ResourceType.js";
 import { MCM } from "../MajorCard/MajorCardManager.js";
+import TileManager from "../Tile/TileManager.js";
 import { Brazier1, Brazier2, FirePot1, FirePot2, EarthenKiln, StoneKiln, FurnitureFactory, BowlFactory, BasketFactory, Well} from '../MajorCard/MajorCard.js';
 
 // 각 플레이어마다 생성되어 자원을 관리해주는 Manager Class
@@ -16,22 +17,24 @@ class ResourceManager{
         let reed = {resourceType: RT.REED, amount: 0};
         let grain = {resourceType: RT.GRAIN, amount: 0};
         let vegetable = {resourceType: RT.VEGETABLE, amount: 0};
-
         let food;
         if(isFirst){
             food = {resourceType: RT.FOOD, amount: 2};
         }else{
             food = {resourceType: RT.FOOD, amount: 3};
         }
-
+        
         let sheep = {resourceType: RT.SHEEP, amount: 0};
         let boar = {resourceType: RT.BOAR, amount: 0};
         let cattle = {resourceType: RT.CATTLE, amount: 0};
-        // let tile = new Tile();
-        // let farmerAdult = 2; -> 타일에서 가져와야되나?
         let majorCard = [];
+        let fence = {resourceType: RT.FENCE, amount: 0};
+        let begging = {resourceType: RT.BEGGING, amount: 0};
+        let pen = {resourceType: RT.PEN, amount: 0};
+        let adultFarmer = {resourceType: RT.FARMER, amount: 2};
+        let childFarmer = {resourceType: RT.FARMER, amount: 0};
 
-        this.resources.push(wood, clay, stone, reed, grain, vegetable, food, sheep, boar, cattle, majorCard);
+        this.resources.push(wood, clay, stone, reed, grain, vegetable, food, sheep, boar, cattle, majorCard, fence, begging, pen, adultFarmer, childFarmer);
     }
 
     // 자원들 모두 가져오기

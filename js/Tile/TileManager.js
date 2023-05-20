@@ -11,6 +11,9 @@ class TileManager {
                             new Room(RoomType.WOOD, 1), new Tile("empty"), new Tile("empty"), new Tile("empty"), new Tile("empty")];
 
         this.roomType = RoomType.WOOD;
+        this.roomPosition = [5, 10];
+        this.fieldPosition = [];
+        this.penPosition = [];
     }
 
     addField(position){

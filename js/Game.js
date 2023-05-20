@@ -5,7 +5,7 @@ class Game {
     constructor () {
 
         // 자원 초기화, 주요설비카드 초기화
-        let gameManager = new GameManager();
+        this.gameManager = new GameManager();
         // this.currentPhase = 1;
         // this.currentRound = 1;
     }
@@ -23,7 +23,7 @@ class Game {
 
         // 반복문 돌면서 라운드 진행
         for (let round=1; round<=8; round++) {
-            this.gameManager.actionRound(i);
+            this.gameManager.actionRound();
             if (round===4 || round===8) {
                 this.gameManager.harvest();
             }

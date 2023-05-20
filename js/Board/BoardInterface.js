@@ -1,17 +1,21 @@
-// import GameManager from './GameManager.js'
-// import { UIManager } from './UIManager.js'
+import GameManager from './GameManager.js'
+import { UIManager } from './UIManager.js'
 
-// class BoardInterface {
-//   constructor(name) {
-//     this.isActive = false;
-//     this.name = name;
-//   }
+class BoardInterface {
+  constructor(name) {
+    this.isActivate = false;
+    this.name = name;
+  }
 
-//   behave() {}
+  behave() {}
 
-//   setActive() {
-//     this.isActive = !this.isActive;
-//   }
-// }
+  setActivate() {
+    this.isActivate = true;
+  }
 
-// export default BoardInterface;
+  setDeactivate(){
+    this.isActivate = false;
+  }
+}
+
+export default BoardInterface;
