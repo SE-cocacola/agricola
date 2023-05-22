@@ -445,6 +445,10 @@ h3 {
 }
 
 /* majors.css */
+.popup_box {
+    padding: 30px 50px;
+}
+
 .image-container {
     width: 800px;
     height: 500px;
@@ -452,8 +456,6 @@ h3 {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 10px;
-
-    padding: 0 100px;
 }
 
 img {
