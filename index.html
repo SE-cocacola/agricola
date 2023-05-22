@@ -477,7 +477,7 @@
         <div class="util_board">
             <div class="setting_board">
                 <div class="icons">
-                        <a href = "#" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 600, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/score.png" style="width: 80%; height: 100%;"></a>
+                        <a href = "./score.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 600, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/score.png" style="width: 80%; height: 100%;"></a>
                         <a href = "./rule.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/book.png" style="width: 80%; height: 100%;"></a>
                         <a href = "#" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/gear.png" style="width: 80%; height: 100%;"></a>
                 </div>
@@ -641,6 +641,13 @@
             </select>
             <button id="remove-barn" class="btn btn-primary d-block">외양간 삭제 (Test)</button>
 
+            <button id="add-farmer" class="btn btn-primary d-block"> 농부 추가</button>
+            <select id="farmer-type">
+                <option value="Red">빨강</option>
+                <option value="Blue">파랑</option>
+            </select>
+            <button id="remove-farmer" class="btn btn-primary d-block"> 농부 삭제</button>
+
         </div>
     </div>
 
@@ -736,6 +743,18 @@
         majorCloseBtn.addEventListener("click", function() {
             uiManager.closePop();
         });
+
+        // 농부 올리기
+        const addFarmerBtn = document.getElementById("add-farmer");
+        addFarmerBtn.addEventListener("click", function() {
+            uiManager.addFarmer();
+        })
+
+        // 농부 삭제
+        const removeFarmerbtn = document.getElementById("remove-farmer");
+        removeFarmerbtn.addEventListener("click", function() {
+            uiManager.removeFarmer();
+        })
 
         
     </script>

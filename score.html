@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link href="./bootstrap.min.css" rel="stylesheet">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/%22%3E">
+        <link rel="stylesheet" href="./rule.css">
+        <title>점수 확인 표</title>
+    </head>
+    <body>
+        <p class="dsc" style="width: 50rem; height: 50px; text-align: center;">
+            <b>점수 확인 표</b>
+        </p>
+        <div id="player1" style="width: 50rem; height: 10rem;"> 
+            <b>플레이어 1 점수</b><br>
+            밭<br>
+            농장<br>
+            작물<br>
+            양<br>
+            <button id="gem" class="sum" > 총점 : </button>
+            <script> 
+                const ScoreManager = new ScoreManager();
+                document.getElementsByClassName("sum").addEventListener("click",
+                function(){
+                    alert("asd");
+                });
+            </script>
+        </div>
+        <div id="player2" style="width: 50rem; height: 10rem;"> 
+            <b>플레이어 2 점수</b><br>
+            <div class ="score" id = "gem">총점 :</div>
+        </div>
+        <script src="./js/ScoreManager.js" type="module"></script>
+    </body>
+</html>

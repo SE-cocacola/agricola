@@ -8,6 +8,7 @@ export class UIManager extends UIInterface {
         this.handleAnimalAddDelete = null;
         this.handleFenceAddDelete = null;
         this.handleBarnAddDelete = null;
+        this.handleFarmerAddDelete = null;
 
     }
 
@@ -207,6 +208,45 @@ export class UIManager extends UIInterface {
                 }
             };
             farmboard.addEventListener("click", this.handleBarnAddDelete);
+        });
+    }
+
+    // 가족 올리기
+    addFarmer() {
+        const farmboards = document.querySelectorAll(".farmboard");
+        const farmerType = document.querySelector("#farmer-type").value;
+        farmboards.forEach(farmboard => {
+            if (this.handleFarmerAddDelete) {
+                farmboard.removeEventListener("click", this.handleFarmerAddDelete);
+            }
+            const handleClick = function () {
+                const farmerImage = farmboard.querySelector(".farmfarmer");
+                if (!farmerImage) {
+                    const newFarmerImage = document.createElement("img");
+                    if (farmerType=="Red") newFarmerImage.src = `./image/resource/farmer1.png`;
+                    else newFarmerImage.src = `./image/resource/farmer2.png`;
+                    newFarmerImage.classList.add('farmfarmer');
+                    farmboard.appendChild(newFarmerImage);
+                }
+            };
+            farmboard.addEventListener("click", handleClick);
+        });
+    }
+
+    // 가족 삭제
+    removeFarmer() {
+        const farmboards = document.querySelectorAll(".farmboard");
+        farmboards.forEach(farmboard => {
+            if (this.handleFarmerAddDelete) {
+                farmboard.removeEventListener("click", this.handleFarmerAddDelete);
+            }
+            this.handleFarmerAddDelete = function () { //handleBarnAddDelete 수정
+                const farmerImage = farmboard.querySelector(".farmfarmer");
+                if (farmerImage) {
+                    farmboard.removeChild(farmerImage);
+                }
+            };
+            farmboard.addEventListener("click", this.handleFarmerAddDelete);
         });
     }
 
