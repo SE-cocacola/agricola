@@ -6,22 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agricola</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./majors.css" />
-    <link rel="stylesheet" href="./farmboard.css">
-    <link href="./selectorder.css" rel="stylesheet">
     <script src="./js/UIManager.js" type="module"></script>
-    <script>
 
-        //팝업 닫기
-        function closePop() {
-            document.getElementById("popup_layer").style.display = "none";
-        }
-
-        function closeSelect() {
-            document.getElementById("popup_select").style.display = "none";
-        }
-    </script>
-    <script src="js/UIManager.js" type="module"></script>
 </head>
 
 <body>
@@ -29,7 +15,7 @@
     <!-- 순서 정하기 -->
     <div class="select_container" id ="popup_select" style="display: none;">
         <div style="height: 40px; width: 40px;">
-            <a href="javascript: closeSelect();"><img src="image/ic_close.svg" class="m_header-banner-close" width="30px" height="30px"></a>
+            <button id = "selectOrder"><img src="image/ic_close.svg" class="m_header-banner-close" width="30px" height="30px"></button>
           </div>
         <h1>선 정하기</h1>
         <button id="start-order-btn" class="btn btn-primary">시작</button>
@@ -65,7 +51,7 @@
                                     <div class="flip-card-front">
                                     </div>
                                     <div class="flip-card-back text-center d-flex justify-content-center align-items-center">
-                                        <h5 id="player2text" class="card-title">X</h5>
+                                        <h5 id="player2text">X</h5>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +68,7 @@
     <div class="popup_layer" id="popup_layer" style="display: none;">
         <div class="popup_box">
             <div style="height: 100px; width: 100px;">
-              <a href="javascript:closePop();"><img src="image/ic_close.svg" class="m_header-banner-close" width="30px" height="30px"></a>
+              <button id = "majorBtn"><img src="image/ic_close.svg" class="m_header-banner-close" width="30px" height="30px"></button>
             </div>
             <!--팝업 컨텐츠 영역-->
             <div class="popup_cont">
@@ -680,6 +666,12 @@
             uiManager.openSelect();
         });
 
+        // 선 정하기 팝업
+        const selectBtn = document.getElementById("selectOrder");
+        selectBtn.addEventListener("click", function() {
+            uiManager.closeSelect();
+        });
+
         // 선 정하기 시작
         const startBtn = document.getElementById("start-order-btn");
         startBtn.addEventListener("click", function() {
@@ -744,6 +736,11 @@
             uiManager.openPop();
         });
 
+        // 주요설비 팝업 닫기
+        const majorCloseBtn = document.getElementById("majorBtn");
+        majorCloseBtn.addEventListener("click", function() {
+            uiManager.closePop();
+        });
 
         
     </script>

@@ -297,6 +297,7 @@ export class UIManager extends UIInterface {
 
     // 주요설비 팝업 닫기
     closePop() {
+        console.log("123");
         document.getElementById("popup_layer").style.display = "none";
     }
 
