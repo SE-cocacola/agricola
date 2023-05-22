@@ -648,6 +648,14 @@
             </select>
             <button id="remove-farmer" class="btn btn-primary d-block"> 농부 삭제</button>
 
+            <button id="add-room" class="btn btn-primary d-block"> 집 추가</button>
+            <select id="room-type">
+                <option value="Clay">점토</option>
+                <option value="Wooden">나무</option>
+                <option value="Stone">돌</option>
+            </select>
+            <button id="remove-room" class="btn btn-primary d-block"> 집 삭제</button>
+
         </div>
     </div>
 
@@ -744,19 +752,29 @@
             uiManager.closePop();
         });
 
-        // 농부 올리기
+        // 농부 배치
         const addFarmerBtn = document.getElementById("add-farmer");
         addFarmerBtn.addEventListener("click", function() {
             uiManager.addFarmer();
         })
 
         // 농부 삭제
-        const removeFarmerbtn = document.getElementById("remove-farmer");
-        removeFarmerbtn.addEventListener("click", function() {
+        const removeFarmerBtn = document.getElementById("remove-farmer");
+        removeFarmerBtn.addEventListener("click", function() {
             uiManager.removeFarmer();
         })
 
-        
+        // 집 배치
+        const addRoomBtn = document.getElementById("add-room");
+        addRoomBtn.addEventListener("click", function() {
+            uiManager.addRoom();
+        })
+
+        // 집 삭제
+        const removeRoombtn = document.getElementById("remove-room");
+        removeRoombtn.addEventListener("click", function() {
+            uiManager.removeRoom();
+        })
     </script>
 </body>
 

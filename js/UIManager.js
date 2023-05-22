@@ -9,6 +9,7 @@ export class UIManager extends UIInterface {
         this.handleFenceAddDelete = null;
         this.handleBarnAddDelete = null;
         this.handleFarmerAddDelete = null;
+        this.handleRoomAddDelete = null;
 
     }
 
@@ -247,6 +248,46 @@ export class UIManager extends UIInterface {
                 }
             };
             farmboard.addEventListener("click", this.handleFarmerAddDelete);
+        });
+    }
+
+    // 집 올리기
+    addRoom() {
+        const farmboards = document.querySelectorAll(".farmboard");
+        const roomType = document.querySelector("#room-type").value;
+        farmboards.forEach(farmboard => {
+            if (this.handleRoomAddDelete) {
+                farmboard.removeEventListener("click", this.handleRoomAddDelete);
+            }
+            const handleClick = function () {
+                const roomImage = farmboard.querySelector(".farmroom");
+                if (!roomImage) {
+                    const newRoomImage = document.createElement("img");
+                    if (roomType=="Clay") newRoomImage.src = `./image/board/FarmBoard/clayroom.png`;
+                    else if (roomType=="Wooden") newRoomImage.src = `./image/board/FarmBoard/woodenroom.png`;
+                    else newRoomImage.src = `./image/board/FarmBoard/stoneroom.jpeg`;
+                    newRoomImage.classList.add('farmroom');
+                    farmboard.appendChild(newRoomImage);
+                }
+            };
+            farmboard.addEventListener("click", handleClick);
+        });
+    }
+
+    // 집 제거
+    removeRoom() {
+        const farmboards = document.querySelectorAll(".farmboard");
+        farmboards.forEach(farmboard => {
+            if (this.handleRoomAddDelete) {
+                farmboard.removeEventListener("click", this.handleRoomAddDelete);
+            }
+            this.handleRoomAddDelete = function () { 
+                const roomImage = farmboard.querySelector(".farmroom");
+                if (roomImage) {
+                    farmboard.removeChild(roomImage);
+                }
+            };
+            farmboard.addEventListener("click", this.handleRoomAddDelete);
         });
     }
 
