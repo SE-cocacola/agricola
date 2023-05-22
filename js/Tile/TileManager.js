@@ -11,6 +11,8 @@ class TileManager {
                             new Room(RoomType.WOOD, 1), new Tile("empty"), new Tile("empty"), new Tile("empty"), new Tile("empty")];
 
         this.roomType = RoomType.WOOD;
+
+        // room, field, pen 포지션 저장해두는게 의미가 있을까?
         this.roomPosition = [5, 10];
         this.fieldPosition = [];
         this.penPosition = [];
