@@ -64,6 +64,212 @@
     
     </div>
 
+    <!-- 스코어 팝업 -->
+    <div id="popup_score" style="display:none">
+        <div style="margin-top: 10px">
+            <b>점수 계산 표</b>
+        </div>
+        <div id="-1" style="position: absolute; left: 10px">
+            <div id="score-sheet">
+                <b>-1점</b><br>
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/field.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0-1</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/fence1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/bread.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/carrot.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/sheep.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/boar.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/cattle.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+            </div>
+        </div>
+        <div id="1" style="position: absolute; left: 80px">
+            <div id="score-sheet">
+                <b>1점</b><br>
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/field.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">2</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/fence1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/bread.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1-3</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/carrot.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/sheep.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1-3</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/boar.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1-2</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/cattle.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1</h4> 
+                </div>
+            </div>
+        </div>
+        <div id="2" style="position: absolute;left: 160px;">
+            <div id="score-sheet">
+                <b>2점</b><br>
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/field.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">3</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/fence1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">2</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/bread.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4-5</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/carrot.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">2</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/sheep.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4-5</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/boar.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">3-4</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/cattle.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">2-3</h4> 
+                </div>
+            </div>
+        </div>
+        <div id="3" style="position: absolute;left: 240px;">
+            <div id="score-sheet">
+                <b>3점</b><br>
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/field.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/fence1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">3</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/bread.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">6-7</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/carrot.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">3</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/sheep.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">6-7</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/boar.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">5-6</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/cattle.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4-5</h4> 
+                </div>
+            </div>
+        </div>
+        <div id="4" style="position: absolute; left: 320px">
+            <div id="score-sheet">
+                <b>4점</b><br>
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/field.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">5+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/fence1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/bread.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">8+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/carrot.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/sheep.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">8+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/boar.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">7+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/cattle.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">6+</h4> 
+                </div>
+            </div>
+        </div>
+        <div style="position: absolute; bottom: 10%; left: 35%; height: 130px;">
+            <div style="height: 50px;">
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/farmboard1.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">-1점</h4> 
+                </div>
+                <div class="score-img-row">
+                    <img src="./image/resource/barn1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1점</h4> 
+                </div>
+            </div>
+            <div style="height: 50px;">
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/woodenroom.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1점</h4> 
+                </div>
+                <div class="score-img-row">
+                    <img src="./image/board/FarmBoard/stoneroom.jpeg" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">2점</h4> 
+                </div>
+            </div>
+            <div style="height: 50px;">
+                <div class="score-img">
+                    <img src="./image/resource/farmer1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">3점</h4> 
+                </div>
+                <div class="score-img-row">
+                    <img src="./image/board/Cards/majors_icon.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">?점</h4> 
+                </div>
+            </div>
+        </div>
+        
+        <button id="score-close-btn" class="btn d-block" style="position: absolute; bottom: 10px; left: 45%;">확인</button>
+    </div>
+
     <!-- 주요 설비 -->
     <div class="popup_layer" id="popup_layer" style="display: none;">
         <div class="popup_box">
@@ -477,9 +683,9 @@
         <div class="util_board">
             <div class="setting_board">
                 <div class="icons">
-                        <a href = "./score.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 600, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/score.png" style="width: 80%; height: 100%;"></a>
-                        <a href = "./rule.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/book.png" style="width: 80%; height: 100%;"></a>
-                        <a href = "#" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/gear.png" style="width: 80%; height: 100%;"></a>
+                    <button id="scoreBtn" style = "width: 20%;"><img src="image/board/Cards/score.png" style="width: 100%; height: 100%;"></button>
+                    <a href = "./rule.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/book.png" style="width: 80%; height: 100%;"></a>
+                    <a href = "#" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/gear.png" style="width: 80%; height: 100%;"></a>
                 </div>
             </div>
             <div class="score_board" id = "score1">
@@ -655,6 +861,7 @@
                 <option value="Stone">돌</option>
             </select>
             <button id="remove-room" class="btn btn-primary d-block"> 집 삭제</button>
+            <button id="upgrade-room" class="btn btn-primary d-block"> 집 변경</button>
 
         </div>
     </div>
@@ -703,6 +910,18 @@
         switchFirstBtn.addEventListener("click", function() {
             uiManager.switchFirst();
         });
+
+        // 점수 팝업
+        const scorePopupBtn = document.getElementById("scoreBtn");
+        scorePopupBtn.addEventListener("click", function(){
+            uiManager.openScore();
+        })
+
+        // 점수 팝업 닫기
+        const scoreCloseBtn = document.getElementById("score-close-btn");
+        scoreCloseBtn.addEventListener("click", function(){
+            uiManager.closeScore();
+        })
 
         // 가축 배치
         const addAnimalBtn = document.getElementById("add-animal");
@@ -774,6 +993,12 @@
         const removeRoombtn = document.getElementById("remove-room");
         removeRoombtn.addEventListener("click", function() {
             uiManager.removeRoom();
+        })
+
+        // 집 바꾸기
+        const upgradeRoomBtn = document.getElementById("upgrade-room");
+        upgradeRoomBtn.addEventListener("click", function(){
+            uiManager.upgradeRoom();
         })
     </script>
 </body>

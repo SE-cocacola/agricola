@@ -292,6 +292,28 @@ export class UIManager extends UIInterface {
         });
     }
 
+    // 집 바꾸기
+    upgradeRoom() {
+        const farmboards = document.querySelectorAll(".farmboard");
+        const roomType = document.querySelector("#room-type").value;
+        farmboards.forEach(farmboard => {
+            if (this.handleRoomAddDelete) {
+                farmboard.removeEventListener("click", this.handleRoomAddDelete);
+            }
+            const handleClick = function () {
+                const roomImage = farmboard.querySelector(".farmroom");
+                if (!roomImage) {
+                    const newRoomImage = document.createElement("img");
+                    if (roomType=="Wooden") newRoomImage.src = './image/board/FarmBoard/woodenroom.png';
+                    else if (roomType="Stone") newRoomImage.src = './image/board/FarmBoard/stoneroom.jpeg';
+                    newRoomImage.classList.add('farmroom');
+                    farmboard.replaceChild(newRoomImage);
+                }
+            };
+            farmboard.addEventListener("click", handleClick);
+        });
+    }
+
     // 주요설비 팝업
     openPop() {
       document.getElementById("popup_layer").style.display = "block";
@@ -310,5 +332,15 @@ export class UIManager extends UIInterface {
     // 선 선택 팝업 닫기
     closeSelect() {
         document.getElementById("popup_select").style.display = "none";
+    }
+
+    // 스코어 보드 팝업 열기
+    openScore(){
+        document.getElementById("popup_score").style.display = "block";
+    }
+
+    // 스코어 보드 팝업 닫기
+    closeScore(){
+        document.getElementById("popup_score").style.display = "none";
     }
 }

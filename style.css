@@ -569,3 +569,48 @@ img {
 .flipped {
     transform: rotateY(180deg);
 }
+
+#popup_score{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 400px;
+    height: 600px;
+    text-align: center;
+    background-color: #ECECEC;
+
+    z-index: 1;    
+}
+
+#score-sheet{
+    position: fixed;
+    top: 8%;
+
+    width: 50px;
+    height: 350px;
+    text-align: center;
+    background-color: #F3E2A9;
+}
+
+.score-img{
+    position: relative; 
+    top: 10px;
+}
+
+.score-img-row{
+    position: relative;
+    bottom: 35px;
+    left: 50px;
+}
+
+.score-text{
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    text-shadow: -1px 0#F3E2A9, -1px 0#F3E2A9, 1px 0#F3E2A9, 1px 0#F3E2A9;
+}
