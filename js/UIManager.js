@@ -34,27 +34,28 @@ export class UIManager extends UIInterface {
 
     // action_round의 background_img 바꾸기
     changeActionRoundImage(actionRound) {
-      const action_round = actionRound.toString();
+      var action_round = actionRound.toString();
+      action_round = 'r' + action_round;
       const actionRoundDiv = document.getElementById(action_round);
       
       switch (actionRound) {
         case 1:
           actionRoundDiv.style.backgroundImage = "url('image/rule1.jpeg')";
-          actionRoundDiv.style.backgroundSize = "contain";
           break;
         case 2:
           actionRoundDiv.style.backgroundImage = "url('image/rule2.jpeg')";
-          actionRoundDiv.style.backgroundSize = "contain";
           break;
         case 3:
           actionRoundDiv.style.backgroundImage = "url('image/rule3.jpeg')";
-          actionRoundDiv.style.backgroundSize = "contain";
           break;
           
         default:
           actionRoundDiv.style.backgroundImage = "none";
           break;
       }
+      actionRoundDiv.style.backgroundSize = "contain";
+      actionRoundDiv.style.backgroundRepeat = "no-repeat";
+      actionRoundDiv.style.backgroundPosition = "center";
     }
     
     // 가축 배치
