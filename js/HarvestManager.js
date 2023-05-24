@@ -16,6 +16,16 @@ class HarvestManager{
         const playerField = player.tileManager.fieldPosition;
         for(let i=0; i<playerField.length; i++){
             // field 하나씩 확인해서 grain/vegetable 한 개씩만 빼고 자원매니저에 추가
+            // crop이 뭔지 확인하고 1빼주기 근데 Field에서 왜 리스트로 되어있지?
+            // 곡물이나 채소가 안 올라가있는 필드의 경우는?
+            if(player.tileManager.playBoard[playerField[i]].crop[0] === ResourceType.Grain) {
+                player.tileManager.playBoard[playerField[i]].crop.pop();
+                player.resourceManager.resources[4].amout += 1; //grain
+            } else {
+                player.tileManager.playBoard[playerField[i]].crop.pop();
+                player.resourceManager.resources[5].amout += 1; //vegetable
+            }
+            
         }
 
         // 가족 음식 주기(기아 토큰까지)
