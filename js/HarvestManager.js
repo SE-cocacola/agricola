@@ -20,10 +20,10 @@ class HarvestManager{
             // 곡물이나 채소가 안 올라가있는 필드의 경우는?
             if(player.tileManager.playBoard[playerField[i]].crop[0] === ResourceType.Grain) {
                 player.tileManager.playBoard[playerField[i]].crop.pop();
-                player.resourceManager.resources[4].amout += 1; //grain
+                player.resourceManager.resources[4].amount += 1; //grain
             } else {
                 player.tileManager.playBoard[playerField[i]].crop.pop();
-                player.resourceManager.resources[5].amout += 1; //vegetable
+                player.resourceManager.resources[5].amount += 1; //vegetable
             }
             
         }

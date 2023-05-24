@@ -13,10 +13,10 @@ class Room extends Tile {
 
     roomUpgrade(roomType) {
         switch (roomType) {
-          case RoomType.CLAY:
+          case RoomType.WOOD:
             this.roomType = RoomType.CLAY;
             break;
-          case RoomType.STONE:
+          case RoomType.CLAY:
             this.roomType = RoomType.STONE;
             break;
           default:

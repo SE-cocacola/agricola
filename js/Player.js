@@ -4,7 +4,7 @@ import { RT } from './Resource/ResourceType.js';
 
 class Player {
     constructor(name) {
-        this.name = name;
+        this.name = name; // 나중에 없애
         this.leftTurn = 0;
         this.score = 0;
         this.resourceManager = new ResourceManager();
@@ -145,25 +145,18 @@ class Player {
       // 빈 칸, 밭, 우리, 방 - tileManager 돌면서 확인, 울타리 쳐진거 판별 어떤식으로?
       
     }
-
-    makeTile(tileManager) {
-    // TODO: Implement make tile logic
-    }
     
     useMajorCard(resourceManager) {
       // TODO: Implement use major card logic
     }
     
-    calScore(resourceManager) {
-      // TODO: Implement calculate score logic
-    }
     
-    getResource() {
-      // TODO: Implement get resource logic
-    }
-    
-    movePlayer() {
+    moveFarmer() {
       // TODO: Implement move player logic
+      // 타일 클릭 하면 함수 실행
+      // uiManager.move()
+      // useMajorCard
+      
     }
 }
 

@@ -1,3 +1,4 @@
+import RoomType from '../Tile/RoomType.js';
 import BoardInterface from './BoardInterface.js'
 
 class BuildMajorFacility extends BoardInterface{
@@ -27,8 +28,12 @@ class GrainUtilization extends BoardInterface{
     }
     
     // 씨뿌리기
-    behave(player, idx){
-        // if (idx == Field && Field.isPlant === false) Field.plantCrop(씨앗);
+    behave(player, idx, crop){
+        //player.tileManager.fieldPostion을 돌면서 비어있는 필드 확인해야 되고
+        // 클릭한 필드에 ......
+        if (idx == Field && Field.isPlant === false) {
+            Field.plantCrop(crop);
+        };
     }
 
     // 그리고,또는 빵 굽기
@@ -73,7 +78,7 @@ class UpgradeHouse extends BoardInterface{
     }
     
     behave(player){
-        
+        player.tileManager.setRoomType();
     }
 }
 
@@ -93,45 +98,3 @@ class AccumulateStone extends BoardInterface{
 }
 
 export {BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone};
-
-// class RoundSpace extends BoardInterface {
-//     constructor() {}
-
-//     buildMajorFacility(player, cardIdx) {
-//         player.resourceManager.addMajorCard(cardIdx)
-//         MajorCardManager.removeMajorCard(cardIdx)
-//     }
-
-//     buildFence(player) {
-//         // 울타리 치기
-//     }
-
-//     sowSeeds(player, idx) {
-//         // if (idx == Field && Field.isPlant === false) Field.plantCrop(씨앗);
-//     }
-
-//     bakeBread(player) {
-//         // major 카드가 있는지 확인하고, 어떤 카드인지도 확인해야 함.
-//     }
-
-//     accumulateSheep(player, cnt) {
-//         player.ResourceManager.addResource(RT.SHEEP, cnt)
-//     }
-
-//     increaseFamily(player, idx) {
-//         if (type(player.tileManager.playerBoard[idx]) === Room) {
-//             if (player.tileManager.playerBoard[idx].isEmpty) {
-//                 player.tileManager.playerBoard[idx].isChild = true
-//             }
-//         }
-//     }
-
-//     upgradeHouse(player) {
-//     }
-
-//     accumulateStone(player, cnt) {
-//         player.ResourceManager.addResource(RT.STONE, cnt)
-//     }
-// }
-
-// export default RoundSpace;

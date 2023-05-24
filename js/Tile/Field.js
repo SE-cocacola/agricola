@@ -9,9 +9,8 @@ class Field extends Tile {
 
     // 씨 뿌리기
     plantCrop(crop) {
-      // this.crop.push crop에 씨 뿌리고 수확하기
       this.isPlant = true;
-      this.crop = crop;
+      this.crop = [crop, crop, crop];
     } 
 
     // 음식으로 바꾸기

@@ -12,7 +12,6 @@ class TileManager {
 
         this.roomType = RoomType.WOOD;
 
-        // room, field, pen 포지션 저장해두는게 의미가 있을까?
         this.roomPosition = [5, 10];
         this.fieldPosition = [];
         this.penPosition = [];
@@ -20,14 +19,22 @@ class TileManager {
 
     addField(position){
         this.playerBoard[position] = new Field();
+        this.fieldPosition.push(position);
     }
 
     addPen(position){
         this.playerBoard[position] = new Pen();
+        this.penPosition.push(position);
     }
 
     addRoom(position){
-        this.playerBoard[position] = new Room();
+        this.playerBoard[position] = new Room(this.roomType, 1);
+    }
+
+    setRoomType(){
+        for(let i=0; i<this.roomPosition.length; i++){
+            this.playerBoard[this.roomPosition[i]].roomUpgrade(this.roomType);
+        }
     }
 }
 
