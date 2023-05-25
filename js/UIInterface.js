@@ -28,14 +28,16 @@ class UIInterface {
     }
   
    // 선 정하기
-   selectOrder() {
+   selectOrder(firstPlayer) {
+     console.log("uiinterface");
     document.getElementById("start-order-btn").insertAdjacentHTML('afterend', `<p>선이 정해졌습니다. 확인해주세요</p>`);        
-    const orderToken = Math.floor(Math.random() * 2) + 1;
-
+    // const orderToken = Math.floor(Math.random() * 2) + 1;
+    console.log(firstPlayer===1);
     // 선 정한 뒤 Manager에 반영
-    this.isPlayer1Turn = (orderToken === 1);
+    this.isPlayer1Turn = (firstPlayer === 1);
+    console.log(this.isPlayer1Turn);
     this.isPlayer1First = this.isPlayer1Turn;
-    if (orderToken === 1) {
+    if (this.isPlayer1Turn === true) {
         document.getElementById("player1text").textContent = "선";
         document.getElementById("player2text").textContent = "X";
     } else {
@@ -89,6 +91,7 @@ switchFirst(){
       this.imgPlayer2.style.display = "block";
   }
 }
+
 }
   
 export default UIInterface;

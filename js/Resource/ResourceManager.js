@@ -1,5 +1,5 @@
 import { RT } from "../Resource/ResourceType.js";
-import { MCM } from "../MajorCard/MajorCardManager.js";
+import MajorCardManager from "../MajorCard/MajorCardManager.js";
 import TileManager from "../Tile/TileManager.js";
 import { Brazier1, Brazier2, FirePot1, FirePot2, EarthenKiln, StoneKiln, FurnitureFactory, BowlFactory, BasketFactory, Well} from '../MajorCard/MajorCard.js';
 

@@ -1,4 +1,4 @@
-import { UIManager } from "./UIManager.js";
+import UIManager from "./UIManager.js";
 import Player from "./Player.js";
 import MajorCardManager from "./MajorCard/MajorCardManager.js";
 import HarvestManager from "./HarvestManager.js";

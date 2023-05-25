@@ -1,5 +1,5 @@
-import GameManager from './GameManager.js'
-import { UIManager } from './UIManager.js'
+import GameManager from '../GameManager.js'
+import  UIManager from '../UIManager.js'
 
 class BoardInterface {
   constructor(name) {

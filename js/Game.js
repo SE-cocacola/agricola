@@ -1,5 +1,6 @@
 import GameManager from './GameManager.js'
-import { UIManager } from './UIManager.js';
+import UIManager from './UIManager.js';
+import UIInterface from './UIInterface.js';
 
 class Game {
     constructor () {
@@ -8,6 +9,9 @@ class Game {
         this.gameManager = new GameManager();
         // this.currentPhase = 1;
         // this.currentRound = 1;
+
+        this.uiManager = new UIManager();
+
     }
 
     start() {
@@ -15,7 +19,15 @@ class Game {
         const randomInt = Math.floor(Math.random() * 2);
 
         const firstPlayer = randomInt === 0 ? this.gameManager.player1 : this.gameManager.player2;
-        UIManager.selectOrder(firstPlayer);
+        if (firstPlayer === this.gameManager.player1){
+            console.log("player1");
+            this.uiManager.selectOrder(1);
+            
+        }else{
+            console.log("player2");
+            this.uiManager.selectOrder(0);
+        }
+        // UIManager.selectOrder(firstPlayer);
 
         this.gameManager.setFirstPlayer(firstPlayer);
 
@@ -29,8 +41,8 @@ class Game {
             }
         }
 
-        // 게임 종료
-        this.end();   
+        // // 게임 종료
+        // this.end();   
     }
 
     end() {
@@ -38,3 +50,5 @@ class Game {
         this.gameManager.showWinner();
     }
 }
+
+export default Game;

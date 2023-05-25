@@ -1,8 +1,7 @@
 import BoardInterface from './BoardInterface.js'
-import ResourceManager from '../Resource/ResourceManager'
+import ResourceManager from '../Resource/ResourceManager.js'
 import RoomType from '../Tile/RoomType.js'
-import { UIManager } from '../UIManager.js';
-import BoardInterface from './BoardInterface';
+import UIManager from '../UIManager.js';
 
 /*
 ActionSpace의 생성자에 isActive를 선언하면 모든 메소드에서 isActive를 공유하게되고, 따라서

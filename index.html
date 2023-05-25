@@ -687,23 +687,11 @@
         <div class="util_board">
             <div class="setting_board">
                 <div class="icons">
-<<<<<<< HEAD
-                    <!-- <div class="icon"> -->
-                        <!-- <button class="icon" id="score-button"><img src="image/board/Cards/score.png" style="width: 120%; height: 100%;"></button> -->
-                        <!-- <a class ="icon btn_open" href="#pop_info_1"><img src="image/board/Cards/score.png" style="width: 120%; height: 100%;"></a> -->
-                        <a href = "./score.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 600, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/score.png" style="width: 80%; height: 100%;"></a>
-                    <!-- </div> -->
-                    <!-- <div class="icon"> -->
-                        <!-- <button class ="icon" id="book-button"><img src="image/board/Cards/book.png" style="width: 120%; height: 100%;" ></button> -->
-                        <a href = "./rule.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/book.png" style="width: 80%; height: 100%;"></a>
-                    <!-- </div> -->
-                    <!-- <div class="icon"></div> -->
-                        <a href = "./rule.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/gear.png" style="width: 80%; height: 100%;"></a>
-=======
+
                     <button id="scoreBtn" style = "width: 20%; border: none; background-color: transparent; cursor: pointer;"><img src="image/board/Cards/score.png" style="width: 100%; height: 100%;"></button>
                     <a href = "./rule.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/book.png" style="width: 80%; height: 100%;"></a>
                     <a href = "#" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/gear.png" style="width: 80%; height: 100%;"></a>
->>>>>>> main
+
                 </div>
             </div>
             <div class="score_board" id = "score1">
@@ -887,8 +875,10 @@
     <!-- js 코드 -->
     <script type="module">
         import { UIManager } from './js/UIManager.js';
+        import Game from './js/Game.js';
 
         const uiManager = new UIManager();
+        const game = new Game();
 
         // hover
         const div = document.getElementById('board1');
@@ -901,6 +891,7 @@
             uiManager.openSelect();
         });
 
+
         // 선 정하기 팝업
         const selectBtn = document.getElementById("selectOrder");
         selectBtn.addEventListener("click", function() {
@@ -910,7 +901,8 @@
         // 선 정하기 시작
         const startBtn = document.getElementById("start-order-btn");
         startBtn.addEventListener("click", function() {
-            uiManager.selectOrder();
+            // uiManager.selectOrder();
+            game.start();
             startBtn.disabled = true;
         });
 
