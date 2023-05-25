@@ -6,61 +6,384 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agricola</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="js/UIManager.js" type="module"></script>
     <script src="js/Resource/ResourceType.js" type="module"></script>
     <script src="js/MajorCard/MajorCardInterface.js" type="module"></script>
     <script src="js/MajorCard/MajorCard.js" type="module"></script>
     <script src="js/MajorCard/MajorCardManager.js" type="module"></script>
     <script src="js/Resource/ResourceManager.js" type="module"></script>
+    <script src="./js/UIManager.js" type="module"></script>
 </head>
 
 <body>
+    <!--팝업 시작-->
+    <!-- 순서 정하기 -->
+    <div class="select_container" id ="popup_select" style="display: none;">
+        <div style="height: 40px; width: 40px;">
+            <button id = "selectOrder"><img src="image/ic_close.svg" class="m_header-banner-close" width="30px" height="30px"></button>
+          </div>
+        <h1>선 정하기</h1>
+        <button id="start-order-btn" class="btn btn-primary">시작</button>
+        <div class="container mt-5">
+            <div class="row justify-content-center" style="display: flex; justify-content: space-around;">
+                <div class="col-sm-6">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            플레이어 1
+                        </div>
+                        <div class="card-body text-center d-flex justify-content-center align-items-center">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                    </div>
+                                    <div class="flip-card-back text-center d-flex justify-content-center align-items-center">
+                                        <h5 id="player1text">선</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mt-3 flip-button">확인</button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            플레이어 2
+                        </div>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                    </div>
+                                    <div class="flip-card-back text-center d-flex justify-content-center align-items-center">
+                                        <h5 id="player2text">X</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mt-3 flip-button">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <!-- 스코어 팝업 -->
+    <div id="popup_score" style="display:none">
+        <div style="margin-top: 10px">
+            <b>점수 계산 표</b>
+        </div>
+        <div id="-1" style="position: absolute; left: 10px">
+            <div id="score-sheet">
+                <b>-1점</b><br>
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/field.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0-1</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/fence1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/bread.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/carrot.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/sheep.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/boar.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/cattle.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">0</h4> 
+                </div>
+            </div>
+        </div>
+        <div id="1" style="position: absolute; left: 80px">
+            <div id="score-sheet">
+                <b>1점</b><br>
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/field.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">2</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/fence1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/bread.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1-3</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/carrot.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/sheep.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1-3</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/boar.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1-2</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/cattle.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1</h4> 
+                </div>
+            </div>
+        </div>
+        <div id="2" style="position: absolute;left: 160px;">
+            <div id="score-sheet">
+                <b>2점</b><br>
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/field.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">3</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/fence1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">2</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/bread.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4-5</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/carrot.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">2</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/sheep.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4-5</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/boar.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">3-4</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/cattle.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">2-3</h4> 
+                </div>
+            </div>
+        </div>
+        <div id="3" style="position: absolute;left: 240px;">
+            <div id="score-sheet">
+                <b>3점</b><br>
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/field.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/fence1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">3</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/bread.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">6-7</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/carrot.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">3</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/sheep.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">6-7</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/boar.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">5-6</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/cattle.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4-5</h4> 
+                </div>
+            </div>
+        </div>
+        <div id="4" style="position: absolute; left: 320px">
+            <div id="score-sheet">
+                <b>4점</b><br>
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/field.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">5+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/fence1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/bread.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">8+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/carrot.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">4+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/sheep.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">8+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/boar.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">7+</h4> 
+                </div>
+                <div class="score-img">
+                    <img src="./image/resource/cattle.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">6+</h4> 
+                </div>
+            </div>
+        </div>
+        <div style="position: absolute; bottom: 10%; left: 35%; height: 130px;">
+            <div style="height: 50px;">
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/farmboard1.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">-1점</h4> 
+                </div>
+                <div class="score-img-row">
+                    <img src="./image/resource/barn1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1점</h4> 
+                </div>
+            </div>
+            <div style="height: 50px;">
+                <div class="score-img">
+                    <img src="./image/board/FarmBoard/woodenroom.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">1점</h4> 
+                </div>
+                <div class="score-img-row">
+                    <img src="./image/board/FarmBoard/stoneroom.jpeg" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">2점</h4> 
+                </div>
+            </div>
+            <div style="height: 50px;">
+                <div class="score-img">
+                    <img src="./image/resource/farmer1.PNG" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">3점</h4> 
+                </div>
+                <div class="score-img-row">
+                    <img src="./image/board/Cards/majors_icon.png" style="position: relative; width: 40px; height: 40px; object-fit: contain">
+                    <h4 class="score-text">?점</h4> 
+                </div>
+            </div>
+        </div>
+        
+        <button id="score-close-btn" class="btn d-block" style="position: absolute; bottom: 10px; left: 45%;">확인</button>
+    </div>
+
+    <!-- 주요 설비 -->
+    <div class="popup_layer" id="popup_layer" style="display: none;">
+        <div class="popup_box">
+            <div>
+              <button id = "majorBtn"><img src="image/ic_close.svg" class="m_header-banner-close" width="30px" height="30px"></button>
+            </div>
+            <!--팝업 컨텐츠 영역-->
+            <div class="popup_cont">
+                <div class="image-container">
+                    <img id="util_bowl" src="./image/utility/util_bowl.png">
+                    <img id="util_brazier4" src="./image/utility/util_brazier4.png">
+                    <img id="util_brazier5" src="./image/utility/util_brazier5.png">
+                    <img id="util_buket.png" src="./image/utility/util_buket.png">
+                    <img id="util_earthenkiln" src="./image/utility/util_earthenkiln.png">
+                    <img id="util_furniture" src="./image/utility/util_furniture.png">
+                    <img id="util_stonekiln" src="./image/utility/util_stonekiln.png">
+                    <img id="util_stove2" src="./image/utility/util_stove2.png">
+                    <img id="util_stove3" src="./image/utility/util_stove3.png">
+                    <img id="util_well" src="./image/utility/util_well.png">
+                </div>
+            </div>
+        </div>
+      </div>
+      <!--팝업 끝-->
     <div id="container">
         <div class="action_board_container">
             <div class="action_board">
                 <div class="left_box_container">
                     <div class="left_box">
-                        <div class="a grid-item"></div>
-                        <div class="b grid-item"></div>
-                        <div class="c grid-item"></div>
-                        <div class="d grid-item"></div>
-                        <div class="e grid-item"></div>
-                        <div class="f grid-item"></div>
-                        <div class="g grid-item"></div>
-                        <div class="h grid-item"></div>
-                        <div class="i grid-item"></div>
-                        <div class="j grid-item"></div>
-                        <div class="k grid-item"></div>
+                        <div id="a1" class="a grid-item">
+                            <div class="remain">
+                                4
+                            </div>
+                        </div>
+                        <div id="r1" class="b grid-item">
+                            <div class="remain">
+                                
+                            </div>
+                        </div>
+                        <div id="a2" class="c grid-item">
+                            <div class="remain">
+                                
+                            </div>
+                        </div>
+                        <div id="a3" class="d grid-item">
+                            <div class="remain">
+                                
+                            </div>
+                        </div>
+                        <div id="a4" class="e grid-item">
+                            <div class="remain">
+                                
+                            </div>
+                        </div>
+                        <div id="a5" class="f grid-item">
+                            <div class="remain">
+                                
+                            </div>
+                        </div>
+                        <div id="a6" class="g grid-item">
+                            <div class="remain">
+                                
+                            </div>
+                        </div>
+                        <div id="a7" class="h grid-item">
+                            <div class="remain">
+                                
+                            </div>
+                        </div>
+                        <div id="a8" class="i grid-item">
+                            <div class="remain">
+                                
+                            </div>
+                        </div>
+                        <div id="a9" class="j grid-item">
+                            <div class="remain">
+                                
+                            </div>
+                        </div>
+                        <div id="a10" class="k grid-item">
+                            <div class="remain">
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="right_box_container">
                     <div class="right_box">
-                        <div>
-                            <img src="image/board/background_numbers/number1.png" class="number-card" alt="" />
+                        <div class = "round r1" id = "r2">
+                        </div>
+                        <div class = "round r1" id = "r3">
+                        </div>
+                        <div class = "round r1" id = "r4">
+                        </div>
+                        <div class="round r2" id = "r5">
+                        </div>
+                        <div class="round r2" id = "r6">
+                        </div>
+                        <div class="round r2" id = "r7">
+                        </div>
+                        <div class="round r3" id = "r8">
+                        </div>
+                        <div class="round r3" id = "r9">
                         </div>
                         <div>
-                            <img src="image/board/background_numbers/number1.png" class="number-card" alt="" />
-                        </div>
-                        <div>
-                            <img src="image/board/background_numbers/number1.png" class="number-card" alt="" />
-                        </div>
-                        <div>
-                            <img src="image/board/background_numbers/number2.png" class="number-card" alt="" />
-                        </div>
-                        <div>
-                            <img src="image/board/background_numbers/number2.png" class="number-card" alt="" />
-                        </div>
-                        <div>
-                            <img src="image/board/background_numbers/number2.png" class="number-card" alt="" />
-                        </div>
-                        <div>
-                            <img src="image/board/background_numbers/number3.png" class="number-card" alt="" />
-                        </div>
-                        <div>
-                            <img src="image/board/background_numbers/number3.png" class="number-card" alt="" />
-                        </div>
-                        <div>
-                            <img src="image/board/Cards/majors_icon.png" class="right_box-card" onclick="window.open('./majors.html', '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"/>
+                            <button id = "major_popup" style="background:transparent; border: none; cursor: pointer;">
+                                <div>
+                                    <img src="image/board/Cards/majors_icon.png" class="right_box-card"/>
+                                </div>
+                            </button>
                         </div>
                         <div>
                             <img src="image/board/background_numbers/number4.png" class="number-card" alt="" />
@@ -98,263 +421,263 @@
                     <!-- 1 row -->
                     <div class="row">
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f1"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f2"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f3"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f4"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f5"></div>
                         <div class="square"></div>
                     </div>
                     <!-- 2 row -->
                     <div class="row">
-                        <div class="col_bar"></div>
-                        <div class="farmboard" id = "test" onmouseover="addHoverEffectToDiv(this)" onmouseout="removeHoverEffectFromDiv(this)">
+                        <div class="col_bar" id="f6"></div>
+                        <div class="farmboard" id="board1">
                             <img src="image/board/FarmBoard/farmboard1.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f7"></div>
+                        <div class="farmboard" id="board2">
                             <img src="image/board/FarmBoard/farmboard2.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f8"></div>
+                        <div class="farmboard" id="board3">
                             <img src="image/board/FarmBoard/farmboard3.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f9"></div>
+                        <div class="farmboard" id="board4">
                             <img src="image/board/FarmBoard/farmboard4.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f10"></div>
+                        <div class="farmboard" id="board5">
                             <img src="image/board/FarmBoard/farmboard5.png" />
                         </div>
-                        <div class="col_bar"></div>
+                        <div class="col_bar" id="f11"></div>
                     </div>
                     <!-- 3 row -->
                     <div class="row">
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f12"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f13"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f14"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f15"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f16"></div>
                         <div class="square"></div>
                     </div>
                     <!-- 4 row -->
                     <div class="row">
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f17"></div>
+                        <div class="farmboard" id="board6">
                             <img src="image/board/FarmBoard/clayroom.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f18"></div>
+                        <div class="farmboard" id="board7">
                             <img src="image/board/FarmBoard/farmboard1.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f19"></div>
+                        <div class="farmboard" id="board8">
                             <img src="image/board/FarmBoard/farmboard2.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f20"></div>
+                        <div class="farmboard" id="board9">
                             <img src="image/board/FarmBoard/farmboard3.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f21"></div>
+                        <div class="farmboard" id="board10">
                             <img src="image/board/FarmBoard/farmboard4.png" />
                         </div>
-                        <div class="col_bar"></div>
+                        <div class="col_bar" id="f22"></div>
                     </div>
                     <!-- 5 row -->
                     <div class="row">
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f23"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f24"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f25"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f26"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f27"></div>
                         <div class="square"></div>
                     </div>
                     <!-- 6 row -->
                     <div class="row">
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f28"></div>
+                        <div class="farmboard" id="board11">
                             <img src="image/board/FarmBoard/clayroom.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f29"></div>
+                        <div class="farmboard" id="board12">
                             <img src="image/board/FarmBoard/farmboard1.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f30"></div>
+                        <div class="farmboard" id="board13">
                             <img src="image/board/FarmBoard/farmboard2.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f31"></div>
+                        <div class="farmboard" id="board14">
                             <img src="image/board/FarmBoard/farmboard3.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f32"></div>
+                        <div class="farmboard" id="board15">
                             <img src="image/board/FarmBoard/farmboard4.png" />
                         </div>
-                        <div class="col_bar"></div>
+                        <div class="col_bar" id="f33"></div>
                     </div>
                     <!-- 7 row -->
                     <div class="row">
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f34"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f35"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f36"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f37"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f38"></div>
                         <div class="square"></div>
                     </div>
                 </div>
             </div>
             <div class="farm_board">
                 <!-- title -->
-                <div class="title"><span>Player 1</span></div>
+                <div class="title"><span>Player 2</span></div>
                 <div class = "farm_border">
                     <!-- 1 row -->
                     <div class="row">
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f39"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f40"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f41"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f42"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f43"></div>
                         <div class="square"></div>
                     </div>
                     <!-- 2 row -->
                     <div class="row">
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f44"></div>
+                        <div class="farmboard" id="board16">
                             <img src="image/board/FarmBoard/farmboard1.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f45"></div>
+                        <div class="farmboard" id="board17">
                             <img src="image/board/FarmBoard/farmboard2.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f46"></div>
+                        <div class="farmboard" id="board18">
                             <img src="image/board/FarmBoard/farmboard3.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f47"></div>
+                        <div class="farmboard" id="board19">
                             <img src="image/board/FarmBoard/farmboard4.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f48"></div>
+                        <div class="farmboard" id="board20">
                             <img src="image/board/FarmBoard/farmboard5.png" />
                         </div>
-                        <div class="col_bar"></div>
+                        <div class="col_bar" id="f49"></div>
                     </div>
                     <!-- 3 row -->
                     <div class="row">
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f50"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f51"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f52"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f53"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f54"></div>
                         <div class="square"></div>
                     </div>
                     <!-- 4 row -->
                     <div class="row">
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f55"></div>
+                        <div class="farmboard" id="board21">
                             <img src="image/board/FarmBoard/clayroom.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f56"></div>
+                        <div class="farmboard" id="board22">
                             <img src="image/board/FarmBoard/farmboard1.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f57"></div>
+                        <div class="farmboard" id="board23">
                             <img src="image/board/FarmBoard/farmboard2.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f58"></div>
+                        <div class="farmboard" id="board24">
                             <img src="image/board/FarmBoard/farmboard3.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f59"></div>
+                        <div class="farmboard" id="board25">
                             <img src="image/board/FarmBoard/farmboard4.png" />
                         </div>
-                        <div class="col_bar"></div>
+                        <div class="col_bar" id="f60"></div>
                     </div>
                     <!-- 5 row -->
                     <div class="row">
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f61"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f62"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f63"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f64"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f65"></div>
                         <div class="square"></div>
                     </div>
                     <!-- 6 row -->
                     <div class="row">
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f66"></div>
+                        <div class="farmboard" id="board26">
                             <img src="image/board/FarmBoard/clayroom.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f67"></div>
+                        <div class="farmboard" id="board27">
                             <img src="image/board/FarmBoard/farmboard1.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f68"></div>
+                        <div class="farmboard" id="board28">
                             <img src="image/board/FarmBoard/farmboard2.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f69"></div>
+                        <div class="farmboard" id="board29">
                             <img src="image/board/FarmBoard/farmboard3.png" />
                         </div>
-                        <div class="col_bar"></div>
-                        <div class="farmboard">
+                        <div class="col_bar" id="f70"></div>
+                        <div class="farmboard" id="board30">
                             <img src="image/board/FarmBoard/farmboard4.png" />
                         </div>
-                        <div class="col_bar"></div>
+                        <div class="col_bar" id="f71"></div>
                     </div>
                     <!-- 7 row -->
                     <div class="row">
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f72"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f73"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f74"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f75"></div>
                         <div class="square"></div>
-                        <div class="row_bar"></div>
+                        <div class="row_bar" id="f76"></div>
                         <div class="square"></div>
                     </div>
                 </div>
@@ -364,6 +687,7 @@
         <div class="util_board">
             <div class="setting_board">
                 <div class="icons">
+<<<<<<< HEAD
                     <!-- <div class="icon"> -->
                         <!-- <button class="icon" id="score-button"><img src="image/board/Cards/score.png" style="width: 120%; height: 100%;"></button> -->
                         <!-- <a class ="icon btn_open" href="#pop_info_1"><img src="image/board/Cards/score.png" style="width: 120%; height: 100%;"></a> -->
@@ -375,9 +699,14 @@
                     <!-- </div> -->
                     <!-- <div class="icon"></div> -->
                         <a href = "./rule.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/gear.png" style="width: 80%; height: 100%;"></a>
+=======
+                    <button id="scoreBtn" style = "width: 20%; border: none; background-color: transparent; cursor: pointer;"><img src="image/board/Cards/score.png" style="width: 100%; height: 100%;"></button>
+                    <a href = "./rule.html" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/book.png" style="width: 80%; height: 100%;"></a>
+                    <a href = "#" style = "width: 20%;" onclick="window.open(this.href, '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;"><img src="image/board/Cards/gear.png" style="width: 80%; height: 100%;"></a>
+>>>>>>> main
                 </div>
             </div>
-            <div class="score_board">
+            <div class="score_board" id = "score1">
                 <div class="score_board_top">
                     <img src="/image/board/Cards/hand_icon.png" alt="" class="avatar" />
                     <div>
@@ -387,7 +716,7 @@
                         </div>
                     </div>
                     <div class="ex">
-                        <img src="image/board/Cards/majors_icon.png" alt="" />
+                        <img src="image/board/Cards/first.png" id = "player1_first" alt="" />
                     </div>
                     <div class="ex">
                         <img src="image/board/Cards/majors_icon.png" alt="" />
@@ -441,7 +770,7 @@
                     </div>
                 </div>
             </div>
-            <div class="score_board">
+            <div class="score_board" id = "score2">
                 <div class="score_board_top">
                     <img src="/image/board/Cards/hand_icon.png" alt="" class="avatar" />
                     <div>
@@ -451,7 +780,7 @@
                         </div>
                     </div>
                     <div class="ex">
-                        <img src="image/board/Cards/majors_icon.png" alt="" />
+                        <img src="image/board/Cards/first.png" id = "player2_first" alt="" />
                     </div>
                     <div class="ex">
                         <img src="image/board/Cards/majors_icon.png" alt="" />
@@ -506,18 +835,189 @@
                 </div>
             </div>
             <!--  선 정하기 Test, 추후 게임 시작시 실행되도록 수정  -->
-            <button id="select-order-button" class="btn btn-primary d-block" onclick="window.open('./selectorder.html', '_blank', 'width = 1000, height = 800, top = 100, left = 200, location = no, toolbars=no, scrollbars=yes'); return false;">선 정하기(Test)</button>
+            <button id="select-order-button" class="btn btn-primary d-block">선 정하기(Test)</button>
+            <button id="switch-turn-button" class="btn btn-primary d-block">턴(Test)</button>
+            <button id="switch-first-button" class="btn btn-primary d-block">선(Test)</button>
+            <button id="add-animal" class="btn btn-primary d-block">가축 배치 (Test)</button>
+            <select id="animal-type">
+                <option value="cow">소</option>
+                <option value="sheep">양</option>
+                <option value="boar">돼지</option>
+            </select>
+            <select id="animal-number">
+                <option value="1">1마리</option>
+                <option value="2">2마리</option>
+                <option value="3">3마리</option>
+            </select>
+
+            <button id="remove-animal" class="btn btn-primary d-block">가축 삭제(Test)</button>
+            <button id="add-fence" class="btn btn-primary d-block">울타리 배치 (Test)</button>
+            <select id="fence-type">
+                <option value="Red">빨강</option>
+                <option value="Blue">파랑</option>
+            </select>
+            <button id="remove-fence" class="btn btn-primary d-block">울타리 삭제 (Test)</button>
+
+            <button id="add-barn" class="btn btn-primary d-block">외양간 배치 (Test)</button>
+            <select id="barn-type">
+                <option value="1">빨강</option>
+                <option value="2">파랑</option>
+            </select>
+            <button id="remove-barn" class="btn btn-primary d-block">외양간 삭제 (Test)</button>
+
+            <button id="add-farmer" class="btn btn-primary d-block"> 농부 추가</button>
+            <select id="farmer-type">
+                <option value="Red">빨강</option>
+                <option value="Blue">파랑</option>
+            </select>
+            <button id="remove-farmer" class="btn btn-primary d-block"> 농부 삭제</button>
+
+            <button id="add-room" class="btn btn-primary d-block"> 집 추가</button>
+            <select id="room-type">
+                <option value="Clay">점토</option>
+                <option value="Wooden">나무</option>
+                <option value="Stone">돌</option>
+            </select>
+            <button id="remove-room" class="btn btn-primary d-block"> 집 삭제</button>
+            <button id="upgrade-room" class="btn btn-primary d-block"> 집 변경</button>
+
         </div>
     </div>
 
     <!-- js 코드 -->
     <script type="module">
         import { UIManager } from './js/UIManager.js';
-    
+
         const uiManager = new UIManager();
-        const div = document.getElementById('test');
+
+        // hover
+        const div = document.getElementById('board1');
         uiManager.addHoverEffectToDiv(div);
 
+
+        // 선 정하기
+        const gameStartBtn = document.getElementById("select-order-button");
+        gameStartBtn.addEventListener("click", function() {
+            uiManager.openSelect();
+        });
+
+        // 선 정하기 팝업
+        const selectBtn = document.getElementById("selectOrder");
+        selectBtn.addEventListener("click", function() {
+            uiManager.closeSelect();
+        });
+
+        // 선 정하기 시작
+        const startBtn = document.getElementById("start-order-btn");
+        startBtn.addEventListener("click", function() {
+            uiManager.selectOrder();
+            startBtn.disabled = true;
+        });
+
+
+        // 턴 바꾸기
+        const switchTurnBtn = document.getElementById("switch-turn-button");
+        switchTurnBtn.addEventListener("click", function() {
+            uiManager.switchTurns();
+            uiManager.changeActionRoundImage(1);
+            uiManager.changeActionRoundImage(2);
+        });
+
+        // 선 바꾸기
+        const switchFirstBtn = document.getElementById("switch-first-button");
+        switchFirstBtn.addEventListener("click", function() {
+            uiManager.switchFirst();
+        });
+
+        // 점수 팝업
+        const scorePopupBtn = document.getElementById("scoreBtn");
+        scorePopupBtn.addEventListener("click", function(){
+            uiManager.openScore();
+        })
+
+        // 점수 팝업 닫기
+        const scoreCloseBtn = document.getElementById("score-close-btn");
+        scoreCloseBtn.addEventListener("click", function(){
+            uiManager.closeScore();
+        })
+
+        // 가축 배치
+        const addAnimalBtn = document.getElementById("add-animal");
+        addAnimalBtn.addEventListener("click", function() {
+            uiManager.addAnimal();
+        });
+
+        // 가축 삭제
+        const removeAnimalBtn = document.getElementById("remove-animal");
+        removeAnimalBtn.addEventListener("click", function() {
+            uiManager.removeAnimal();
+        });
+
+        // 울타리 치기
+        const addFenceBtn = document.getElementById("add-fence");
+        addFenceBtn.addEventListener("click", function() {
+            uiManager.addFence();
+        });
+
+        // 울타리 삭제
+        const removeFenceBtn = document.getElementById("remove-fence");
+        removeFenceBtn.addEventListener("click", function() {
+            uiManager.removeFence();
+        });
+
+        // 외양간 짓기
+        const addBarnBtn = document.getElementById("add-barn");
+        addBarnBtn.addEventListener("click", function() {
+            uiManager.addBarn();
+        });
+
+        // 외양간 삭제
+        const removeBarnBtn = document.getElementById("remove-barn");
+        removeBarnBtn.addEventListener("click", function() {
+            uiManager.removeBarn();
+        });
+
+        // 주요설비 팝업
+        const majorBtn = document.getElementById("major_popup");
+        majorBtn.addEventListener("click", function() {
+            uiManager.openPop();
+        });
+
+        // 주요설비 팝업 닫기
+        const majorCloseBtn = document.getElementById("majorBtn");
+        majorCloseBtn.addEventListener("click", function() {
+            uiManager.closePop();
+        });
+
+        // 농부 배치
+        const addFarmerBtn = document.getElementById("add-farmer");
+        addFarmerBtn.addEventListener("click", function() {
+            uiManager.addFarmer();
+        })
+
+        // 농부 삭제
+        const removeFarmerBtn = document.getElementById("remove-farmer");
+        removeFarmerBtn.addEventListener("click", function() {
+            uiManager.removeFarmer();
+        })
+
+        // 집 배치
+        const addRoomBtn = document.getElementById("add-room");
+        addRoomBtn.addEventListener("click", function() {
+            uiManager.addRoom();
+        })
+
+        // 집 삭제
+        const removeRoombtn = document.getElementById("remove-room");
+        removeRoombtn.addEventListener("click", function() {
+            uiManager.removeRoom();
+        })
+
+        // 집 바꾸기
+        const upgradeRoomBtn = document.getElementById("upgrade-room");
+        upgradeRoomBtn.addEventListener("click", function(){
+            uiManager.upgradeRoom();
+        })
     </script>
 </body>
 
