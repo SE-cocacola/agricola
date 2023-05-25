@@ -1,39 +1,40 @@
 import { RT } from "../Resource/ResourceType.js";
 import { MCM } from "../MajorCard/MajorCardManager.js";
-import { Brazier1, Brazier2, FirePot1, FirePot2, EarthenKiln, StoneKiln, FurnitureFactory, BowlFactory, BasketFactory, Well} from '../MajorCard/MajorCardInterface';
+import TileManager from "../Tile/TileManager.js";
+import { Brazier1, Brazier2, FirePot1, FirePot2, EarthenKiln, StoneKiln, FurnitureFactory, BowlFactory, BasketFactory, Well} from '../MajorCard/MajorCard.js';
 
+// 각 플레이어마다 생성되어 자원을 관리해주는 Manager Class
 class ResourceManager{
     constructor() {
-        this.resources = [
-
-        ];
+        this.resources = [];
     }
 
     // ResourceManager에서 플레이어의 자원을 모두 초기화 시키고, 선에 따라서 food에 값 추가
-    initialize(선){
+    initialize(isFirst){
         let wood = {resourceType: RT.WOOD, amount: 0};
         let clay = {resourceType: RT.CLAY, amount: 0};
         let stone = {resourceType: RT.STONE, amount: 0};
         let reed = {resourceType: RT.REED, amount: 0};
         let grain = {resourceType: RT.GRAIN, amount: 0};
         let vegetable = {resourceType: RT.VEGETABLE, amount: 0};
-
         let food;
-        // 이게 되는지 모르겠음
-        if(선){
+        if(isFirst){
             food = {resourceType: RT.FOOD, amount: 2};
         }else{
             food = {resourceType: RT.FOOD, amount: 3};
         }
-
+        
         let sheep = {resourceType: RT.SHEEP, amount: 0};
         let boar = {resourceType: RT.BOAR, amount: 0};
         let cattle = {resourceType: RT.CATTLE, amount: 0};
-        // let tile = new Tile();
-        // let farmerAdult = 2; -> 타일에서 가져와야되나?
         let majorCard = [];
+        let fence = {resourceType: RT.FENCE, amount: 0};
+        let begging = {resourceType: RT.BEGGING, amount: 0};
+        let pen = {resourceType: RT.PEN, amount: 0};
+        let adultFarmer = {resourceType: RT.FARMER, amount: 2};
+        let childFarmer = {resourceType: RT.FARMER, amount: 0};
 
-        this.resources.push(wood, clay, stone, reed, grain, vegetable, food, sheep, boar, cattle, majorCard);
+        this.resources.push(wood, clay, stone, reed, grain, vegetable, food, sheep, boar, cattle, majorCard, fence, begging, pen, adultFarmer, childFarmer);
     }
 
     // 자원들 모두 가져오기
@@ -44,17 +45,13 @@ class ResourceManager{
     // 자원 추가
     addResource(resourceType, amount) {
         const resource = this.resources.find(r => r.resourceType === resourceType);
-        if (resource) {
-          resource.amount += amount;
-        }
+        resource.amount += amount;
     }
 
     // 자원 소비
     removeResource(resourceType, amount){
         const resource = this.resources.find(r => r.resourceType === resourceType);
-        if(resource){
-            resource.amount -= amount;
-        }
+        resource.amount -= amount;
     }
 
     // majorCard들 목록 조회
@@ -91,7 +88,7 @@ class ResourceManager{
     }
 
     addMajorCard(cardIdx){
-        this.getMajorCards.push(this.getMajorCard(cardIdx));
+        this.resources[12].push(getMajorCard(cardIdx));
     }
 
     removeMajorCard(cardIdx) {
@@ -102,16 +99,6 @@ class ResourceManager{
           }
         }
     }
-
-    // // 선 정해지고 음식 세팅
-    // setFood(선){
-    //     let food = this.resources[6];
-    //     if(선){
-    //         food.amount = 2;
-    //     }else{
-    //         food.amount = 3;
-    //     }
-    // }
 }
 
-export { ResourceManager as RM };
+export default ResourceManager;

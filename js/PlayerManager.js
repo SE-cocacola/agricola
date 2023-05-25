@@ -25,3 +25,5 @@ class PlayerManager {
       // TODO: Implement move player logic
     }
   }
+
+export {PlayerManager as PM};

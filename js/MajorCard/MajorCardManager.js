@@ -8,23 +8,12 @@ import {
     FurnitureFactory,
     BowlFactory,
     BasketFactory,
-    Well,
-  } from './MajorCardInterface';
-  
+    Well
+  } from '../MajorCard/MajorCard.js';
+
 class MajorCardManager {
     constructor() {
-      this.cards = [
-        // new Brazier1(),
-        // new Brazier2(),
-        // new FirePot1(),
-        // new FirePot2(),
-        // new EarthenKiln(),
-        // new StoneKiln(),
-        // new FurnitureFactory(),
-        // new BowlFactory(),
-        // new BasketFactory(),
-        // new Well()
-      ];
+      this.cards = [];
     }
     
     initialize(){
@@ -43,16 +32,19 @@ class MajorCardManager {
             stoneKiln, furnitureFactory, bowlFactory, basketFactory, well);
     }
 
-
+    // 플레이어가 주요 설비 카드를 가져가면 Manager의 Constructor 내의 카드를 없애거나 사용하지 못하게
     removeMajorCard(cardIdx){
-        const takenCard = this.cards[cardIdx];
+        // const takenCard = this.cards[cardIdx];
+        // null로 만들거나, 아예 삭제했다가 추가할때 새로 push해도 됨
         this.cards[cardIdx] = null;
     }
-    
-    exchangeMajorCard(cardIdx){
-        // 화로와 화덕 교환 로직
+
+    // 화로가 들어오면 화덕을 교환해주는 함수
+    exchangeMajorCard(inCardIdx, outCardIdx){
+        
+        this.cards
     }
 }
   
-  export { MajorCardManager as MCM };
+  export default MajorCardManager;
   

@@ -1,5 +1,7 @@
-import MajorCardInterface from './MajorCardInterface';
+import MajorCardInterface from '../MajorCard/MajorCardInterface.js';
 import { RT } from "../Resource/ResourceType.js";
+import ResourceManager from '../Resource/ResourceManager.js';
+import Player from '../Player.js';
 
 /*
  * 음식 교환할 때 개수도 같이 받아야 함
@@ -22,16 +24,19 @@ class Brazier1 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType){
+    wheneverAction(resourceType, amount){
         switch (resourceType) {
+            // 음식 교환 로직
             case RT.VEGETABLE:
-                // 음식 교환 로직
             case RT.SHEEP:
-                // 음식 교환 로직
             case RT.BOAR:
-                // 음식 교환 로직
+                {RT.FOOD, 2 * amount};
+                break;
+
             case RT.CATTLE:
-                // 음식 교환 로직
+                {RT.FOOD, 3 * amount};
+                break;
+
             default:
                 break;
         }
@@ -62,16 +67,18 @@ class Brazier2 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType){
+    wheneverAction(resourceType, amount){
         switch (resourceType) {
             case RT.VEGETABLE:
-                // 음식 교환 로직
             case RT.SHEEP:
-                // 음식 교환 로직
             case RT.BOAR:
-                // 음식 교환 로직
+                {RT.FOOD, 2 * amount};
+                break;
+
             case RT.CATTLE:
-                // 음식 교환 로직
+                {RT.FOOD, 3 * amount};
+                break;
+
             default:
                 break;
         }
@@ -103,16 +110,19 @@ class FirePot1 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType){
+    wheneverAction(resourceType, amount){
         switch (resourceType) {
+            // 음식 교환 로직
             case RT.VEGETABLE:
-                // 음식 교환 로직
-            case RT.SHEEP:
-                // 음식 교환 로직
             case RT.BOAR:
-                // 음식 교환 로직
+                {RT.FOOD, 3 * amount};
+                
+            case RT.SHEEP:
+                {RT.FOOD, 2 * amount};
+            
             case RT.CATTLE:
-                // 음식 교환 로직
+                {RT.FOOD, 4 * amount};
+                
             default:
                 break;
         }
@@ -144,7 +154,7 @@ class FirePot2 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType){
+    wheneverAction(resourceType, amount){
         switch (resourceType) {
             case RT.VEGETABLE:
                 // 음식 교환 로직
@@ -324,7 +334,9 @@ class Well extends MajorCardInterface{
         this.score = 4;
     }
 
+    specificAction() {
 
+    }
 }
 
 export {
@@ -337,5 +349,5 @@ export {
     FurnitureFactory,
     BowlFactory,
     BasketFactory,
-    Well,
+    Well
   };
