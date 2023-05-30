@@ -27,7 +27,7 @@ class ResourceManager{
         let sheep = {resourceType: RT.SHEEP, amount: 0};
         let boar = {resourceType: RT.BOAR, amount: 0};
         let cattle = {resourceType: RT.CATTLE, amount: 0};
-        let majorCard = [];
+        let majorCard = {};
         let fence = {resourceType: RT.FENCE, amount: 0};
         let begging = {resourceType: RT.BEGGING, amount: 0};
         let pen = {resourceType: RT.PEN, amount: 0};
@@ -39,7 +39,7 @@ class ResourceManager{
 
     // 자원들 모두 가져오기
     getResource(){
-        return this.resources;
+        return this.resources[10];
     }
 
     // 자원 추가
@@ -88,7 +88,7 @@ class ResourceManager{
     }
 
     addMajorCard(cardIdx){
-        this.resources[12].push(getMajorCard(cardIdx));
+        this.resources[10].push(cardIdx);
     }
 
     removeMajorCard(cardIdx) {

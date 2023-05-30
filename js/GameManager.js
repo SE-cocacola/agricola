@@ -61,6 +61,11 @@ class GameManager{
         UIManager.showWinner(winner);
         return winner;
     }
+
+    addMajorCardPlayer1 = () => {
+        let brazier1 = this.MajorCardManager.popMajorCard();
+        this.player1.resourceManager.addMajorCard(brazier1);
+    };
 }
 
 export default GameManager;

@@ -5,7 +5,6 @@ export class UIManager extends UIInterface {
     constructor() {
         // 상속
         super();
-
         this.handleAnimalAddDelete = null;
         this.handleFenceAddDelete = null;
         this.handleBarnAddDelete = null;
@@ -329,7 +328,22 @@ export class UIManager extends UIInterface {
     }
 
     // 주요설비 팝업
-    openPop() {
+    openPop(majorCardsIds) {
+      // 먼저 모든 이미지 요소를 지움
+      let majorCardsContainer = document.getElementById("major_cards_container");
+      let cards =  majorCardsContainer.getElementsByTagName("img");
+      while (cards.length > 0) {
+          cards[0].parentNode.removeChild(cards[0]);
+      }
+
+      // 현재 남아있는 Major cards를 추가함
+      for (let cardId of majorCardsIds) {
+          const majorCard = document.createElement('img');
+          majorCard.setAttribute("id", cardId);
+          majorCard.setAttribute("src", "image/utility/" + cardId + ".png");
+          majorCardsContainer.appendChild(majorCard);
+      }
+
       document.getElementById("popup_layer").style.display = "block";
     }
 
