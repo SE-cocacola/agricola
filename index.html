@@ -282,17 +282,17 @@
             </div>
             <!--팝업 컨텐츠 영역-->
             <div class="popup_cont">
-                <div class="image-container">
-                    <img id="util_bowl" src="./image/utility/util_bowl.png">
-                    <img id="util_brazier4" src="./image/utility/util_brazier4.png">
-                    <img id="util_brazier5" src="./image/utility/util_brazier5.png">
-                    <img id="util_buket.png" src="./image/utility/util_buket.png">
-                    <img id="util_earthenkiln" src="./image/utility/util_earthenkiln.png">
-                    <img id="util_furniture" src="./image/utility/util_furniture.png">
-                    <img id="util_stonekiln" src="./image/utility/util_stonekiln.png">
-                    <img id="util_stove2" src="./image/utility/util_stove2.png">
-                    <img id="util_stove3" src="./image/utility/util_stove3.png">
-                    <img id="util_well" src="./image/utility/util_well.png">
+                <div class="image-container" id="major_cards_container">
+                    <img id="bowlFactory" src="image/utility/bowlFactory.png">
+                    <img id="firePot1" src="image/utility/brazier1.png">
+                    <img id="firePot2" src="image/utility/brazier2.png">
+                    <img id="basketFactory" src="image/utility/basketFactory.png">
+                    <img id="earthenKiln" src="image/utility/earthenKiln.png">
+                    <img id="furnitureFactory" src="image/utility/furnitureFactory.png">
+                    <img id="stoneKiln" src="image/utility/stoneKiln.png">
+                    <img id="brazier1" src="image/utility/firePot.png">
+                    <img id="brazier2" src="image/utility/firePot2.png">
+                    <img id="well" src="image/utility/well.png">
                 </div>
             </div>
         </div>
@@ -707,7 +707,11 @@
                         <img src="image/board/Cards/first.png" id = "player1_first" alt="" />
                     </div>
                     <div class="ex">
-                        <img src="image/board/Cards/majors_icon.png" alt="" />
+                        <button id = "major_popup_player_1" style="background:transparent; border: none; cursor: pointer;">
+                            <div>
+                                <img src="image/board/Cards/majors_icon.png" alt="" />
+                            </div>
+                        </button>
                     </div>
                 </div>
                 <div class="resources">
@@ -771,7 +775,11 @@
                         <img src="image/board/Cards/first.png" id = "player2_first" alt="" />
                     </div>
                     <div class="ex">
-                        <img src="image/board/Cards/majors_icon.png" alt="" />
+                        <button id = "major_popup_player_2" style="background:transparent; border: none; cursor: pointer;">
+                            <div>
+                                <img src="image/board/Cards/majors_icon.png" alt="" />
+                            </div>
+                        </button>
                     </div>
                 </div>
                 <div class="resources">
@@ -868,6 +876,8 @@
             </select>
             <button id="remove-room" class="btn btn-primary d-block"> 집 삭제</button>
             <button id="upgrade-room" class="btn btn-primary d-block"> 집 변경</button>
+
+            <button id="add-major" class="btn btn-primary d-block">플레이어 1에게 주요설비 추가</button>
 
         </div>
     </div>
@@ -972,6 +982,12 @@
         // 주요설비 팝업
         const majorBtn = document.getElementById("major_popup");
         majorBtn.addEventListener("click", function() {
+            let majorCardIds = Object.keys(game.gameManager.MajorCardManager.cards);
+            uiManager.openPop(majorCardIds);
+        });
+
+        const majorBtn1 = document.getElementById("major_popup_player_1");
+        majorBtn1.addEventListener("click", function() {
             uiManager.openPop();
         });
 
@@ -1010,6 +1026,15 @@
         upgradeRoomBtn.addEventListener("click", function(){
             uiManager.upgradeRoom();
         })
+
+        // 플레이어 1 주요 설비 팝업
+        let majorAddBtn = document.getElementById("major_popup_player_1");
+        majorAddBtn.addEventListener("click", function(){
+            uiManager.openPop(["basketFactory"]);
+        })
+
+
+
     </script>
 </body>
 
