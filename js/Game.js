@@ -22,10 +22,14 @@ class Game {
         if (firstPlayer === this.gameManager.player1){
             console.log("player1");
             this.uiManager.selectOrder(1);
+            this.gameManager.player1.resourceManager.initialize(true)
+            this.gameManager.player2.resourceManager.initialize(false)
             
         }else{
             console.log("player2");
             this.uiManager.selectOrder(0);
+            this.gameManager.player2.resourceManager.initialize(true)
+            this.gameManager.player1.resourceManager.initialize(false)
         }
         // UIManager.selectOrder(firstPlayer);
 
