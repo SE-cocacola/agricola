@@ -36,6 +36,7 @@ class Game {
         this.gameManager.setFirstPlayer(firstPlayer);
 
         // 선 정한 뒤 Manager에 반영
+        this.uiManager.changeActionRoundImage(1);
 
         // 반복문 돌면서 라운드 진행
         for (let round=1; round<=8; round++) {

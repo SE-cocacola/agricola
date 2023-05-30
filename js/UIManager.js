@@ -34,20 +34,33 @@ export class UIManager extends UIInterface {
 
     // action_round의 background_img 바꾸기
     changeActionRoundImage(actionRound) {
+        console.log("changeActionRound");
       var action_round = actionRound.toString();
       action_round = 'r' + action_round;
       const actionRoundDiv = document.getElementById(action_round);
       
       switch (actionRound) {
         case 1:
-          actionRoundDiv.style.backgroundImage = "url('image/rule1.jpeg')";
-          break;
+            actionRoundDiv.style.backgroundImage = "url('image/action/action_utility.png')";
+            break;
         case 2:
-          actionRoundDiv.style.backgroundImage = "url('image/rule2.jpeg')";
-          break;
+            actionRoundDiv.style.backgroundImage = "url('image/action/action_fence.png')";
+            break;
         case 3:
-          actionRoundDiv.style.backgroundImage = "url('image/rule3.jpeg')";
-          break;
+            actionRoundDiv.style.backgroundImage = "url('image/action/action_grain.png')";
+            break;
+        case 4:
+            actionRoundDiv.style.backgroundImage = "url('image/action/action_sheep.png')";
+            break;
+        case 5:
+            actionRoundDiv.style.backgroundImage = "url('image/action/action_expand.png')";
+            break;
+        case 6:
+            actionRoundDiv.style.backgroundImage = "url('image/action/action_fixhouse.png')";
+            break;
+        case 7:
+            actionRoundDiv.style.backgroundImage = "url('image/action/action_weststone.png')";
+            break;
           
         default:
           actionRoundDiv.style.backgroundImage = "none";
