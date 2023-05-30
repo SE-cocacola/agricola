@@ -40,9 +40,9 @@ class Game {
         // 반복문 돌면서 라운드 진행
         for (let round=1; round<=8; round++) {
             this.gameManager.actionRound();
-            if (round===4 || round===8) {
-                this.gameManager.harvest();
-            }
+            // if (round===4 || round===8) {
+            //     this.gameManager.harvest();
+            // }
         }
 
         // // 게임 종료

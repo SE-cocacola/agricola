@@ -1,4 +1,5 @@
 import UIInterface from './UIInterface.js';
+import Game from './Game.js';
 
 export class UIManager extends UIInterface {
     constructor() {
@@ -349,6 +350,42 @@ export class UIManager extends UIInterface {
       document.getElementById("score").insertAdjacentHTML('beforeend', `<p>10점</p>`);
     }
 
+    showResource(game) {
+        const player1 = game.gameManager.player1.resourceManager.resources;
+        const player2 = game.gameManager.player2.resourceManager.resources;
+
+        console.log(player1)
+        console.log(player2)
+
+        let farmercnt = 0;
+
+        document.getElementById("player1score").innerHTML = game.gameManager.player1.calculateScore();
+        document.getElementById("player2score").innerHTML = game.gameManager.player2.calculateScore();
+
+        player1.forEach(element => {
+            const element1 = document.getElementById(element.resourceType+"1")
+            if(element1 !== null){
+                element1.innerHTML = element.amount;
+                if(element.resourceType+"1" === "farmer1"){
+                    farmercnt += element.amount;
+                    element1.innerHTML = farmercnt;
+                }
+            }
+        });
+
+        farmercnt = 0;
+
+        player2.forEach(element => {
+            const element2 = document.getElementById(element.resourceType+"2")
+            if(element2 !== null){
+                element2.innerHTML = element.amount;    
+                if(element.resourceType+"2" === "farmer2"){
+                    farmercnt += element.amount;
+                    element2.innerHTML = farmercnt;
+                }
+            }
+        });
+    }
     
 }
 
