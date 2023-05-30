@@ -12,7 +12,7 @@ class Player {
     }
 
     getAdultFarmer() {
-        return this.resourceManager.adultFarmer;
+        return this.resourceManager.resources[14].amount;
     }
 
     calculateScore() {

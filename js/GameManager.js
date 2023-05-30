@@ -7,8 +7,8 @@ import {BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, Incre
 
 class GameManager{
     constructor(){
-        this.player1 = new Player();
-        this.player2 = new Player();
+        this.player1 = new Player("player1");
+        this.player2 = new Player("player2");
         this.MajorCardManager = new MajorCardManager();
         // 11개 기본 행동칸 순서대로
         this.actionSpace = [new ExpandFarm(), new AccumulateFood(), new GrainSeed(), new FarmLand(), new Lesson(),
@@ -34,10 +34,10 @@ class GameManager{
         // player1과 player2의 farmer 수에 따라 번갈아가며 turns에 추가합니다.
         for (let i = 0; i < player1Farmers + player2Farmers; i++) {
             turns.push(currentPlayer);
-            if (currentPlayer === player2) {
-                currentPlayer = player1;
+            if (currentPlayer === this.player2) {
+                currentPlayer = this.player1;
             } else {
-                currentPlayer = player2;
+                currentPlayer = this.player2;
             }
         }
         
