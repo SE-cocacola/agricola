@@ -65,6 +65,13 @@ class UIInterface {
         this.scoreboard2.style.borderColor = 'red';
         this.imgPlayer1.style.display = "none";
     }
+
+    this.showFarmer("board6", "Red");
+    this.showFarmer("board11", "Red");
+
+    this.showFarmer("board21", "Blue");
+    this.showFarmer("board26", "Blue");
+    
 }
 
 // 턴 바꾸기
@@ -90,6 +97,16 @@ switchFirst(){
       this.imgPlayer1.style.display = "none";
       this.imgPlayer2.style.display = "block";
   }
+}
+
+// 파라미터로 div읽어오고 농부 이미지 해당 div태그 띄워지게
+showFarmer(id, farmerType){
+  const farmboard = document.getElementById(id);
+  const newFarmerImage = document.createElement("img");
+  if (farmerType=="Red") newFarmerImage.src = `./image/resource/farmer1.png`;
+  else newFarmerImage.src = `./image/resource/farmer2.png`;
+  newFarmerImage.classList.add('farmfarmer');
+  farmboard.appendChild(newFarmerImage);        
 }
 
 }

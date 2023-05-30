@@ -348,6 +348,8 @@ export class UIManager extends UIInterface {
     calcurateScore() {
       document.getElementById("score").insertAdjacentHTML('beforeend', `<p>10점</p>`);
     }
+
+    
 }
 
 export default UIManager;
