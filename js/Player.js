@@ -137,10 +137,11 @@ class Player {
           case 9:
             playrScore += 4;
           default:
-            return null;
-        }
+            return playrScore;
+         }
       }
-    
+
+    return playrScore;
 
       // 빈 칸, 밭, 우리, 방 - tileManager 돌면서 확인, 울타리 쳐진거 판별 어떤식으로?
       
