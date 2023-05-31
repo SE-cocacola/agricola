@@ -377,6 +377,7 @@ export class UIManager extends UIInterface {
       document.getElementById("score").insertAdjacentHTML('beforeend', `<p>10점</p>`);
     }
 
+
     showResource(game) {
         const player1 = game.gameManager.player1.resourceManager.resources;
         const player2 = game.gameManager.player2.resourceManager.resources;
@@ -413,7 +414,95 @@ export class UIManager extends UIInterface {
             }
         });
     }
+
+    // 농부 이동
+    // move(){
+    //     console.log("move");
+    //     const farmboards = document.querySelectorAll('.farm_border')[0];
+    //     farmboards.addEventListener('click', function(event) {
+    //         let farmer_target = event.target.parentElement;
+
+    //         if (farmer_target.matches('.farmboard')) {
+    //             const farmer = farmer_target.querySelector('.farmfarmer');
+    //             if (farmer) {
+    //                 const actionboards = document.querySelector('.action_board_container');
+    //                 actionboards.addEventListener('click', function(event) {
+    //                     let action_target = event.target;
+    //                     farmer_target.removeChild(farmer);
+
+    //                     const newFarmerImage = document.createElement("img");
+    //                     newFarmerImage.src = `./image/resource/farmer1.png`;
+    //                     //if (farmerType=="Red") newFarmerImage.src = `./image/resource/farmer1.png`;
+    //                     //else newFarmerImage.src = `./image/resource/farmer2.png`;
+    //                     newFarmerImage.classList.add('farmfarmer');
+    //                     action_target.appendChild(newFarmerImage);  
+    //                 });
+                    
+
+    //             }
+    //         }
+    //     });
+    // }
+    async move(farmerType, turn) {
+        const farmboards = document.querySelectorAll('.farm_border')[turn]
+        let farmer = null
+        let onClick = function() {}
+
+        let farmboardPromise = new Promise((resolve) => {
+            farmboards.addEventListener('click', function onClick(event) {
+                farmer = clickFarmer(event)
+                if (farmer) {
+                    resolve(onClick)
+                }
+            })
+        })
+
+        onClick = await farmboardPromise
+
+        let actionboardPromise = new Promise((resolve) => {
+            farmboards.removeEventListener("click", onClick)
+            const action_boards = document.querySelector('.action_board_container');
+            action_boards.addEventListener('click', function onTap(event) {
+                clickActionBoard(event, farmer, farmerType)
+                this.removeEventListener('click', onTap)
+                resolve();
+            })
+        })
+
+        await actionboardPromise
+    }
     
+}
+
+function clickFarmer(event) {
+    const farm_board = event.target.parentElement
+    if (farm_board.matches('.farmboard')) {
+        const farmer = farm_board.querySelector('.farmfarmer');
+        return farmer
+    }
+}
+
+function clickActionBoard(event, farmer, farmerType) {
+
+    const action_board = event.target
+    const new_farmer = document.createElement('img')
+
+    // 농부 style 입히기
+    new_farmer.src = farmerType === 'Red' ? './image/resource/farmer1.png' : './image/resource/farmer2.png';
+    new_farmer.style = `
+        position: relative; 
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%); 
+        max-width: 100%;
+    `
+    new_farmer.classList.add('farmfarmer')
+
+    // action 칸에 농부 추가
+    action_board.appendChild(new_farmer)
+
+    // farmboard에 있는 농부 제거
+    farmer.remove();
 }
 
 export default UIManager;
