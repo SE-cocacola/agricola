@@ -39,11 +39,13 @@ class Game {
         this.uiManager.changeActionRoundImage(1);
 
         // 반복문 돌면서 라운드 진행
-        for (let round=1; round<=8; round++) {
+        for (let round = 1; round <= 7; round++) {
             this.gameManager.actionRound();
-            // if (round===4 || round===8) {
-            //     this.gameManager.harvest();
-            // }
+            
+            this.gameManager.actionRound(this.uiManager);
+            if (round===4 || round===7) {
+                this.gameManager.harvest();
+            }
         }
 
         // // 게임 종료

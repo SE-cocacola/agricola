@@ -12,7 +12,7 @@ class Player {
     }
 
     getAdultFarmer() {
-        return this.resourceManager.adultFarmer;
+        return this.resourceManager.resources[14].amount;
     }
 
     calculateScore() {
@@ -152,11 +152,16 @@ class Player {
     }
     
     
-    moveFarmer() {
+    moveFarmer(uiManager) {
+      console.log("moveFarmer");
       // TODO: Implement move player logic
       // 타일 클릭 하면 함수 실행
-      // uiManager.move()
       // useMajorCard
+      uiManager.move();
+      // await this.uiManager.move("Red", 0)
+    //   await this.uiManager.move("Blue", 1)
+    //   await this.uiManager.move("Red", 0)
+    //   await this.uiManager.move("Blue", 1)
       
     }
 }
