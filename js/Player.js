@@ -1,6 +1,7 @@
 import ResourceManager from './Resource/ResourceManager.js'
 import TileManager from './Tile/TileManager.js';
 import { RT } from './Resource/ResourceType.js';
+import { BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone } from "./Board/RoundSpace.js"
 
 class Player {
     constructor(name) {
@@ -156,14 +157,51 @@ class Player {
         // TODO: Implement move player logic
         // 타일 클릭 하면 함수 실행
         // useMajorCard
+        let action_round_id = 0
         if (this.name === "0") {
-            await uiManager.move("Red", 0)
+            action_round_id = await uiManager.move("Red", 0)
         } else {
-            await uiManager.move("Blue", 1)
+            action_round_id = await uiManager.move("Blue", 1)
         }
-        //await uiManager.move("Blue", 1)
-        //await uiManager.move("Red", 0)
-        //await uiManager.move("Blue", 1)
+
+        switch (action_round_id) {
+            case "r1":
+                const buildMajorFacility = new BuildMajorFacility()
+                buildMajorFacility.behave(this)
+            case "r2":
+
+            case "r3":
+
+            case "r4":
+
+            case "r5":
+
+            case "r6":
+
+            case "r7":
+
+            case "a1":
+
+            case "a2":
+
+            case "a3":
+
+            case "a4":
+
+            case "a5":
+
+            case "a6":
+
+            case "a7":
+
+            case "a8":
+
+            case "a9":
+
+            case "a10":
+
+            default:
+        }
 
     }
 }

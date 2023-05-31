@@ -416,6 +416,7 @@ export class UIManager extends UIInterface {
     async move(farmerType, turn) {
         const farmboards = document.querySelectorAll('.farm_border')[turn]
         let farmer = null
+        let action_board_id = 0;
         let onClick = function() {}
 
         let farmboardPromise = new Promise((resolve) => {
@@ -435,11 +436,12 @@ export class UIManager extends UIInterface {
             action_boards.addEventListener('click', function onTap(event) {
                 clickActionBoard(event, farmer, farmerType)
                 this.removeEventListener('click', onTap)
-                resolve();
+                resolve(event.target.id);
             })
         })
 
-        await actionboardPromise
+        action_board_id = await actionboardPromise
+        return action_board_id
     }
 
 }
@@ -473,6 +475,8 @@ function clickActionBoard(event, farmer, farmerType) {
 
     // farmboard에 있는 농부 제거
     farmer.remove();
+
+    return action_board.id
 }
 
 export default UIManager;
