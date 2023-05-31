@@ -6,8 +6,8 @@ class BuildMajorFacility extends BoardInterface {
         super("BuildMajorFacility");
     }
 
-    behave(player, uiManager) {
-        uiManager.openPop(Object.keys(game.gameManager.MajorCardManager.cards))
+    behave(player, cardIdx) {
+        // uiManager.openPop(Object.keys(game.gameManager.MajorCardManager.cards))
         player.resourceManager.addMajorCard(cardIdx);
         MajorCardManager.removeMajorCard(cardIdx);
     }

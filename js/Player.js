@@ -1,7 +1,7 @@
 import ResourceManager from './Resource/ResourceManager.js'
 import TileManager from './Tile/TileManager.js';
 import { RT } from './Resource/ResourceType.js';
-import { BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone } from "./Board/RoundSpace.js"
+//import { BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone } from "./Board/RoundSpace.js"
 
 class Player {
     constructor(name) {
@@ -166,8 +166,9 @@ class Player {
 
         switch (action_round_id) {
             case "r1":
-                const buildMajorFacility = new BuildMajorFacility()
-                buildMajorFacility.behave(this)
+                console.log("Action")
+                    //const buildMajorFacility = new BuildMajorFacility()
+                    //buildMajorFacility.behave(this)
             case "r2":
 
             case "r3":
