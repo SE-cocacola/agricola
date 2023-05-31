@@ -2,20 +2,22 @@ import UIManager from "./UIManager.js";
 import Player from "./Player.js";
 import MajorCardManager from "./MajorCard/MajorCardManager.js";
 import HarvestManager from "./HarvestManager.js";
-import {ExpandFarm, AccumulateFood, GrainSeed, FarmLand, Lesson, DayLaborer, Fencing, Forest, ClayPit, ReedBank, Fishing} from "./Board/ActionSpace.js";
-import {BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone} from "./Board/RoundSpace.js";
+import { ExpandFarm, AccumulateFood, GrainSeed, FarmLand, Lesson, DayLaborer, Fencing, Forest, ClayPit, ReedBank, Fishing } from "./Board/ActionSpace.js";
+import { BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone } from "./Board/RoundSpace.js";
 
-class GameManager{
-    constructor(){
-        this.player1 = new Player();
-        this.player2 = new Player();
+class GameManager {
+    constructor() {
+        this.player1 = new Player("0");
+        this.player2 = new Player("1");
         this.MajorCardManager = new MajorCardManager();
         // 11개 기본 행동칸 순서대로
         this.actionSpace = [new ExpandFarm(), new AccumulateFood(), new GrainSeed(), new FarmLand(), new Lesson(),
-                             new DayLaborer(), new Fencing(), new Forest(), new ClayPit(), new ReedBank(), new Fishing()];
+            new DayLaborer(), new Fencing(), new Forest(), new ClayPit(), new ReedBank(), new Fishing()
+        ];
         // 7개 라운드 행동칸 순서대로
         this.roundSpace = [new BuildMajorFacility(), new BuildFence(), new GrainUtilization(), new AccumulateSheep(),
-                            new IncreaseFamily(), new UpgradeHouse(), new AccumulateStone()];
+            new IncreaseFamily(), new UpgradeHouse(), new AccumulateStone()
+        ];
     }
 
     setFirstPlayer(firstPlayer) {
@@ -26,7 +28,7 @@ class GameManager{
         let turns = [];
         const player1Farmers = this.player1.getAdultFarmer();
         const player2Farmers = this.player2.getAdultFarmer();
-        
+
 
         // 먼저 firstPlayer가 player2인 경우부터 생각해 봅시다.
         let currentPlayer = this.firstPlayer;
@@ -40,12 +42,11 @@ class GameManager{
                 currentPlayer = this.player2;
             }
         }
-        
+
         // turn을 돌아가면서 player가 행동을 함.
-        turns.forEach(async player => {
+        for (const player of turns) {
             await player.moveFarmer(uiManager);
-            
-        });
+        }
     }
 
     harvest() {

@@ -23,10 +23,10 @@ export class UIManager extends UIInterface {
 
     // 마우스 오버 효과
     addHoverEffectToDiv(div) {
-        div.addEventListener("mouseover", function () {
+        div.addEventListener("mouseover", function() {
             div.classList.add("hover-red");
         });
-        div.addEventListener("mouseout", function () {
+        div.addEventListener("mouseout", function() {
             div.classList.remove("hover-red");
         });
     }
@@ -34,42 +34,42 @@ export class UIManager extends UIInterface {
 
     // action_round의 background_img 바꾸기
     changeActionRoundImage(actionRound) {
-      var action_round = actionRound.toString();
-      action_round = 'r' + action_round;
-      const actionRoundDiv = document.getElementById(action_round);
-      
-      switch (actionRound) {
-        case 1:
-            actionRoundDiv.style.backgroundImage = "url('image/action/action_utility.png')";
-            break;
-        case 2:
-            actionRoundDiv.style.backgroundImage = "url('image/action/action_fence.png')";
-            break;
-        case 3:
-            actionRoundDiv.style.backgroundImage = "url('image/action/action_grain.png')";
-            break;
-        case 4:
-            actionRoundDiv.style.backgroundImage = "url('image/action/action_sheep.png')";
-            break;
-        case 5:
-            actionRoundDiv.style.backgroundImage = "url('image/action/action_expand.png')";
-            break;
-        case 6:
-            actionRoundDiv.style.backgroundImage = "url('image/action/action_fixhouse.png')";
-            break;
-        case 7:
-            actionRoundDiv.style.backgroundImage = "url('image/action/action_weststone.png')";
-            break;
-          
-        default:
-          actionRoundDiv.style.backgroundImage = "none";
-          break;
-      }
-      actionRoundDiv.style.backgroundSize = "contain";
-      actionRoundDiv.style.backgroundRepeat = "no-repeat";
-      actionRoundDiv.style.backgroundPosition = "center";
+        var action_round = actionRound.toString();
+        action_round = 'r' + action_round;
+        const actionRoundDiv = document.getElementById(action_round);
+
+        switch (actionRound) {
+            case 1:
+                actionRoundDiv.style.backgroundImage = "url('image/action/action_utility.png')";
+                break;
+            case 2:
+                actionRoundDiv.style.backgroundImage = "url('image/action/action_fence.png')";
+                break;
+            case 3:
+                actionRoundDiv.style.backgroundImage = "url('image/action/action_grain.png')";
+                break;
+            case 4:
+                actionRoundDiv.style.backgroundImage = "url('image/action/action_sheep.png')";
+                break;
+            case 5:
+                actionRoundDiv.style.backgroundImage = "url('image/action/action_expand.png')";
+                break;
+            case 6:
+                actionRoundDiv.style.backgroundImage = "url('image/action/action_fixhouse.png')";
+                break;
+            case 7:
+                actionRoundDiv.style.backgroundImage = "url('image/action/action_weststone.png')";
+                break;
+
+            default:
+                actionRoundDiv.style.backgroundImage = "none";
+                break;
+        }
+        actionRoundDiv.style.backgroundSize = "contain";
+        actionRoundDiv.style.backgroundRepeat = "no-repeat";
+        actionRoundDiv.style.backgroundPosition = "center";
     }
-    
+
     // 가축 배치
     addAnimal() {
         const farmboards = document.querySelectorAll(".farmboard");
@@ -79,7 +79,7 @@ export class UIManager extends UIInterface {
             if (this.handleAnimalAddDelete) {
                 farmboard.removeEventListener("click", this.handleAnimalAddDelete);
             }
-            const handleClick = function () {
+            const handleClick = function() {
                 const animalImage = farmboard.querySelector(".farmanimal");
                 if (!animalImage) {
                     const newAnimalImage = document.createElement("img");
@@ -99,7 +99,7 @@ export class UIManager extends UIInterface {
             if (this.handleAnimalAddDelete) {
                 farmboard.removeEventListener("click", this.handleAnimalAddDelete);
             }
-            this.handleAnimalAddDelete = function () {
+            this.handleAnimalAddDelete = function() {
                 const animalImage = farmboard.querySelector(".farmanimal");
                 if (animalImage) {
                     farmboard.removeChild(animalImage);
@@ -118,7 +118,7 @@ export class UIManager extends UIInterface {
             if (this.handleFenceAddDelete) {
                 rowfence.removeEventListener("click", this.handleFenceAddDelete);
             }
-            const handleClick = function () {
+            const handleClick = function() {
                 const fenceImage = rowfence.querySelector(".farmfence");
                 if (!fenceImage) {
                     const newFenceImage = document.createElement("div");
@@ -139,7 +139,7 @@ export class UIManager extends UIInterface {
                 colfence.removeEventListener("click", this.handleFenceAddDelete);
             }
 
-            const handleClick = function () {
+            const handleClick = function() {
                 const fenceImage = colfence.querySelector(".farmfence");
                 if (!fenceImage) {
                     const newFenceImage = document.createElement("div");
@@ -164,7 +164,7 @@ export class UIManager extends UIInterface {
             if (this.handleFenceAddDelete) {
                 rowfence.removeEventListener("click", this.handleFenceAddDelete);
             }
-            this.handleFenceAddDelete = function () {
+            this.handleFenceAddDelete = function() {
                 const fenceImage = rowfence.querySelector(".farmfence");
                 if (fenceImage) {
                     rowfence.removeChild(fenceImage);
@@ -177,7 +177,7 @@ export class UIManager extends UIInterface {
             if (this.handleFenceAddDelete) {
                 colfence.removeEventListener("click", this.handleFenceAddDelete);
             }
-            this.handleFenceAddDelete = function () {
+            this.handleFenceAddDelete = function() {
                 const fenceImage = colfence.querySelector(".farmfence");
                 if (fenceImage) {
                     colfence.removeChild(fenceImage);
@@ -195,7 +195,7 @@ export class UIManager extends UIInterface {
             if (this.handleBarnAddDelete) {
                 farmboard.removeEventListener("click", this.handleBarnAddDelete);
             }
-            const handleClick = function () {
+            const handleClick = function() {
                 const barnImage = farmboard.querySelector(".farmbarn");
                 if (!barnImage) {
                     const newBarnImage = document.createElement("img");
@@ -215,7 +215,7 @@ export class UIManager extends UIInterface {
             if (this.handleBarnAddDelete) {
                 farmboard.removeEventListener("click", this.handleBarnAddDelete);
             }
-            this.handleBarnAddDelete = function () {
+            this.handleBarnAddDelete = function() {
                 const barnImage = farmboard.querySelector(".farmbarn");
                 if (barnImage) {
                     farmboard.removeChild(barnImage);
@@ -233,11 +233,11 @@ export class UIManager extends UIInterface {
             if (this.handleFarmerAddDelete) {
                 farmboard.removeEventListener("click", this.handleFarmerAddDelete);
             }
-            const handleClick = function () {
+            const handleClick = function() {
                 const farmerImage = farmboard.querySelector(".farmfarmer");
                 if (!farmerImage) {
                     const newFarmerImage = document.createElement("img");
-                    if (farmerType=="Red") newFarmerImage.src = `./image/resource/farmer1.png`;
+                    if (farmerType == "Red") newFarmerImage.src = `./image/resource/farmer1.png`;
                     else newFarmerImage.src = `./image/resource/farmer2.png`;
                     newFarmerImage.classList.add('farmfarmer');
                     farmboard.appendChild(newFarmerImage);
@@ -254,7 +254,7 @@ export class UIManager extends UIInterface {
             if (this.handleFarmerAddDelete) {
                 farmboard.removeEventListener("click", this.handleFarmerAddDelete);
             }
-            this.handleFarmerAddDelete = function () { //handleBarnAddDelete 수정
+            this.handleFarmerAddDelete = function() { //handleBarnAddDelete 수정
                 const farmerImage = farmboard.querySelector(".farmfarmer");
                 if (farmerImage) {
                     farmboard.removeChild(farmerImage);
@@ -272,12 +272,12 @@ export class UIManager extends UIInterface {
             if (this.handleRoomAddDelete) {
                 farmboard.removeEventListener("click", this.handleRoomAddDelete);
             }
-            const handleClick = function () {
+            const handleClick = function() {
                 const roomImage = farmboard.querySelector(".farmroom");
                 if (!roomImage) {
                     const newRoomImage = document.createElement("img");
-                    if (roomType=="Clay") newRoomImage.src = `./image/board/FarmBoard/clayroom.png`;
-                    else if (roomType=="Wooden") newRoomImage.src = `./image/board/FarmBoard/woodenroom.png`;
+                    if (roomType == "Clay") newRoomImage.src = `./image/board/FarmBoard/clayroom.png`;
+                    else if (roomType == "Wooden") newRoomImage.src = `./image/board/FarmBoard/woodenroom.png`;
                     else newRoomImage.src = `./image/board/FarmBoard/stoneroom.jpeg`;
                     newRoomImage.classList.add('farmroom');
                     farmboard.appendChild(newRoomImage);
@@ -294,7 +294,7 @@ export class UIManager extends UIInterface {
             if (this.handleRoomAddDelete) {
                 farmboard.removeEventListener("click", this.handleRoomAddDelete);
             }
-            this.handleRoomAddDelete = function () { 
+            this.handleRoomAddDelete = function() {
                 const roomImage = farmboard.querySelector(".farmroom");
                 if (roomImage) {
                     farmboard.removeChild(roomImage);
@@ -312,12 +312,12 @@ export class UIManager extends UIInterface {
             if (this.handleRoomAddDelete) {
                 farmboard.removeEventListener("click", this.handleRoomAddDelete);
             }
-            const handleClick = function () {
+            const handleClick = function() {
                 const roomImage = farmboard.querySelector(".farmroom");
                 if (!roomImage) {
                     const newRoomImage = document.createElement("img");
-                    if (roomType=="Wooden") newRoomImage.src = './image/board/FarmBoard/woodenroom.png';
-                    else if (roomType="Stone") newRoomImage.src = './image/board/FarmBoard/stoneroom.jpeg';
+                    if (roomType == "Wooden") newRoomImage.src = './image/board/FarmBoard/woodenroom.png';
+                    else if (roomType = "Stone") newRoomImage.src = './image/board/FarmBoard/stoneroom.jpeg';
                     newRoomImage.classList.add('farmroom');
                     farmboard.replaceChild(newRoomImage);
                 }
@@ -328,22 +328,22 @@ export class UIManager extends UIInterface {
 
     // 주요설비 팝업
     openPop(majorCardsIds) {
-      // 먼저 모든 이미지 요소를 지움
-      let majorCardsContainer = document.getElementById("major_cards_container");
-      let cards =  majorCardsContainer.getElementsByTagName("img");
-      while (cards.length > 0) {
-          cards[0].parentNode.removeChild(cards[0]);
-      }
+        // 먼저 모든 이미지 요소를 지움
+        let majorCardsContainer = document.getElementById("major_cards_container");
+        let cards = majorCardsContainer.getElementsByTagName("img");
+        while (cards.length > 0) {
+            cards[0].parentNode.removeChild(cards[0]);
+        }
 
-      // 현재 남아있는 Major cards를 추가함
-      for (let cardId of majorCardsIds) {
-          const majorCard = document.createElement('img');
-          majorCard.setAttribute("id", cardId);
-          majorCard.setAttribute("src", "image/utility/" + cardId + ".png");
-          majorCardsContainer.appendChild(majorCard);
-      }
+        // 현재 남아있는 Major cards를 추가함
+        for (let cardId of majorCardsIds) {
+            const majorCard = document.createElement('img');
+            majorCard.setAttribute("id", cardId);
+            majorCard.setAttribute("src", "image/utility/" + cardId + ".png");
+            majorCardsContainer.appendChild(majorCard);
+        }
 
-      document.getElementById("popup_layer").style.display = "block";
+        document.getElementById("popup_layer").style.display = "block";
     }
 
     // 주요설비 팝업 닫기
@@ -352,28 +352,28 @@ export class UIManager extends UIInterface {
     }
 
     // 선 선택 팝업
-    openSelect(){
+    openSelect() {
         document.getElementById("popup_select").style.display = "block";
     }
-    
+
     // 선 선택 팝업 닫기
     closeSelect() {
         document.getElementById("popup_select").style.display = "none";
     }
 
     // 스코어 보드 팝업 열기
-    openScore(){
+    openScore() {
         document.getElementById("popup_score").style.display = "block";
     }
 
     // 스코어 보드 팝업 닫기
-    closeScore(){
+    closeScore() {
         document.getElementById("popup_score").style.display = "none";
     }
 
     // 점수 계산 > 나중에 scoreManager.js 등으로 따로 구현
     calcurateScore() {
-      document.getElementById("score").insertAdjacentHTML('beforeend', `<p>10점</p>`);
+        document.getElementById("score").insertAdjacentHTML('beforeend', `<p>10점</p>`);
     }
 
 
@@ -388,10 +388,10 @@ export class UIManager extends UIInterface {
         document.getElementById("player2score").innerHTML = game.gameManager.player2.calculateScore();
 
         player1.forEach(element => {
-            const element1 = document.getElementById(element.resourceType+"1")
-            if(element1 !== null){
+            const element1 = document.getElementById(element.resourceType + "1")
+            if (element1 !== null) {
                 element1.innerHTML = element.amount;
-                if(element.resourceType+"1" === "farmer1"){
+                if (element.resourceType + "1" === "farmer1") {
                     farmercnt += element.amount;
                     element1.innerHTML = farmercnt;
                 }
@@ -401,10 +401,10 @@ export class UIManager extends UIInterface {
         farmercnt = 0;
 
         player2.forEach(element => {
-            const element2 = document.getElementById(element.resourceType+"2")
-            if(element2 !== null){
-                element2.innerHTML = element.amount;    
-                if(element.resourceType+"2" === "farmer2"){
+            const element2 = document.getElementById(element.resourceType + "2")
+            if (element2 !== null) {
+                element2.innerHTML = element.amount;
+                if (element.resourceType + "2" === "farmer2") {
                     farmercnt += element.amount;
                     element2.innerHTML = farmercnt;
                 }
@@ -441,7 +441,7 @@ export class UIManager extends UIInterface {
 
         await actionboardPromise
     }
-    
+
 }
 
 function clickFarmer(event) {
