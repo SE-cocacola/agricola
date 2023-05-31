@@ -34,7 +34,6 @@ export class UIManager extends UIInterface {
 
     // action_round의 background_img 바꾸기
     changeActionRoundImage(actionRound) {
-        console.log("changeActionRound");
       var action_round = actionRound.toString();
       action_round = 'r' + action_round;
       const actionRoundDiv = document.getElementById(action_round);
@@ -382,8 +381,6 @@ export class UIManager extends UIInterface {
         const player1 = game.gameManager.player1.resourceManager.resources;
         const player2 = game.gameManager.player2.resourceManager.resources;
 
-        console.log(player1)
-        console.log(player2)
 
         let farmercnt = 0;
 
@@ -415,34 +412,7 @@ export class UIManager extends UIInterface {
         });
     }
 
-    // 농부 이동
-    // move(){
-    //     console.log("move");
-    //     const farmboards = document.querySelectorAll('.farm_border')[0];
-    //     farmboards.addEventListener('click', function(event) {
-    //         let farmer_target = event.target.parentElement;
-
-    //         if (farmer_target.matches('.farmboard')) {
-    //             const farmer = farmer_target.querySelector('.farmfarmer');
-    //             if (farmer) {
-    //                 const actionboards = document.querySelector('.action_board_container');
-    //                 actionboards.addEventListener('click', function(event) {
-    //                     let action_target = event.target;
-    //                     farmer_target.removeChild(farmer);
-
-    //                     const newFarmerImage = document.createElement("img");
-    //                     newFarmerImage.src = `./image/resource/farmer1.png`;
-    //                     //if (farmerType=="Red") newFarmerImage.src = `./image/resource/farmer1.png`;
-    //                     //else newFarmerImage.src = `./image/resource/farmer2.png`;
-    //                     newFarmerImage.classList.add('farmfarmer');
-    //                     action_target.appendChild(newFarmerImage);  
-    //                 });
-                    
-
-    //             }
-    //         }
-    //     });
-    // }
+    // 농부이동 
     async move(farmerType, turn) {
         const farmboards = document.querySelectorAll('.farm_border')[turn]
         let farmer = null

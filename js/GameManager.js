@@ -22,8 +22,7 @@ class GameManager{
         this.firstPlayer = firstPlayer;
     }
 
-    actionRound(uiManager) {
-        console.log("actionRound");
+    async actionRound(uiManager) {
         let turns = [];
         const player1Farmers = this.player1.getAdultFarmer();
         const player2Farmers = this.player2.getAdultFarmer();
@@ -34,7 +33,6 @@ class GameManager{
 
         // player1과 player2의 farmer 수에 따라 번갈아가며 turns에 추가합니다.
         for (let i = 0; i < player1Farmers + player2Farmers; i++) {
-            console.log("1232");
             turns.push(currentPlayer);
             if (currentPlayer === this.player2) {
                 currentPlayer = this.player1;
@@ -44,8 +42,8 @@ class GameManager{
         }
         
         // turn을 돌아가면서 player가 행동을 함.
-        turns.forEach(player => {
-            player.moveFarmer(uiManager);
+        turns.forEach(async player => {
+            await player.moveFarmer(uiManager);
             
         });
     }

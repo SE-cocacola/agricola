@@ -14,19 +14,17 @@ class Game {
 
     }
 
-    start() {
+    async start() {
         // 선 정하기
         const randomInt = Math.floor(Math.random() * 2);
 
         const firstPlayer = randomInt === 0 ? this.gameManager.player1 : this.gameManager.player2;
         if (firstPlayer === this.gameManager.player1){
-            console.log("player1");
             this.uiManager.selectOrder(1);
             this.gameManager.player1.resourceManager.initialize(true)
             this.gameManager.player2.resourceManager.initialize(false)
             
         }else{
-            console.log("player2");
             this.uiManager.selectOrder(0);
             this.gameManager.player2.resourceManager.initialize(true)
             this.gameManager.player1.resourceManager.initialize(false)
@@ -40,9 +38,9 @@ class Game {
 
         // 반복문 돌면서 라운드 진행
         for (let round = 1; round <= 7; round++) {
-            this.gameManager.actionRound();
+            await this.gameManager.actionRound(this.uiManager);
             
-            this.gameManager.actionRound(this.uiManager);
+            //this.gameManager.actionRound(this.uiManager);
             if (round===4 || round===7) {
                 this.gameManager.harvest();
             }

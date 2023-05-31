@@ -152,16 +152,15 @@ class Player {
     }
     
     
-    moveFarmer(uiManager) {
-      console.log("moveFarmer");
+    async moveFarmer(uiManager) {
       // TODO: Implement move player logic
       // 타일 클릭 하면 함수 실행
       // useMajorCard
-      uiManager.move();
-      // await this.uiManager.move("Red", 0)
-    //   await this.uiManager.move("Blue", 1)
-    //   await this.uiManager.move("Red", 0)
-    //   await this.uiManager.move("Blue", 1)
+       //uiManager.move();
+       await uiManager.move("Red", 0)
+       //await uiManager.move("Blue", 1)
+       //await uiManager.move("Red", 0)
+       //await uiManager.move("Blue", 1)
       
     }
 }
