@@ -1,7 +1,8 @@
 import ResourceManager from './Resource/ResourceManager.js'
 import TileManager from './Tile/TileManager.js';
 import { RT } from './Resource/ResourceType.js';
-//import { BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone } from "./Board/RoundSpace.js"
+import BoardInterface from './Board/BoardInterface.js';
+import { BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone } from "./Board/RoundSpace.js"
 
 class Player {
     constructor(name) {
@@ -153,11 +154,11 @@ class Player {
     }
 
 
-    async moveFarmer(uiManager) {
+    async moveFarmer(uiManager, majorCardManager) {
         // TODO: Implement move player logic
         // 타일 클릭 하면 함수 실행
         // useMajorCard
-        let action_round_id = 0
+        let action_round_id;
         if (this.name === "0") {
             action_round_id = await uiManager.move("Red", 0)
         } else {
@@ -166,9 +167,10 @@ class Player {
 
         switch (action_round_id) {
             case "r1":
-                console.log("Action")
-                    //const buildMajorFacility = new BuildMajorFacility()
-                    //buildMajorFacility.behave(this)
+                console.log("Round1 Action");
+                const buildMajorFacility = new BuildMajorFacility();
+                buildMajorFacility.behave(this, uiManager, majorCardManager);
+                break;
             case "r2":
 
             case "r3":

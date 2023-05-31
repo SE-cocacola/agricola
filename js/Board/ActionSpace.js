@@ -1,18 +1,9 @@
-import BoardInterface from './BoardInterface.js'
+import BoardInterface from '../Board/BoardInterface.js';
 import ResourceManager from '../Resource/ResourceManager.js'
 import RoomType from '../Tile/RoomType.js'
 import UIManager from '../UIManager.js';
 
-/*
-ActionSpace의 생성자에 isActive를 선언하면 모든 메소드에서 isActive를 공유하게되고, 따라서
-BoardInterface를 extends하려면 각 ActionSpace의 expandFarm, accumulatedFood 등을 class별로 짜야함.
-ActionSpace class 안에 메소드로 정의하면 메소드 쓸 때는 더 편하지만 각 메소드에 있는 변수 접근자 메소드를 다시 짜야함...
-그래서 생각한게 어차피 GameManager에서 각 player들을 생성하고, MajorCardManager와 행동칸들을 공통으로 관리하게될텐데
-프론트에서도 인덱스로 행동칸 받아온다고했으니까 GameManager에 리스트형태로 ActionSpace의 칸들을 넣어둔 변수랑 RoundSpace의 칸들을 넣어둔 변수를 constructor에 선언해서
-관리하는게 어떤지?
-*/
-
-class ExpandFarm extends BoardInterface{
+class ExpandFarm extends BoardInterface {
     constructor(){
         super("ExpandFarm");
     }

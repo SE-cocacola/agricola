@@ -87,17 +87,47 @@ class ResourceManager{
         }
     }
 
-    addMajorCard(cardIdx){
-        this.resources[10].push(cardIdx);
-    }
-
-    removeMajorCard(cardIdx) {
-        for (let i = 0; i < this.resources[12].length; i++) {
-          if (this.resources[12][i].cardIdx === cardIdx) {
-            this.resources[12].splice(i, 1);
-            break;
-          }
-        }
+    addMajorCard(cardName){
+      let cardInstance;
+    
+      switch (cardName) {
+        case 'brazier1':
+          cardInstance = new Brazier1();
+          break;
+        case 'brazier2':
+          cardInstance = new Brazier2();
+          break;
+        case 'firePot1':
+          cardInstance = new FirePot1();
+          break;
+        case 'firePot2':
+          cardInstance = new FirePot2();
+          break;
+        case 'earthenKiln':
+          cardInstance = new EarthenKiln();
+          break;
+        case 'stoneKiln':
+          cardInstance = new StoneKiln();
+          break;
+        case 'furnitureFactory':
+          cardInstance = new FurnitureFactory();
+          break;
+        case 'bowlFactory':
+          cardInstance = new BowlFactory();
+          break;
+        case 'basketFactory':
+          cardInstance = new BasketFactory();
+        case 'well':
+          cardInstance = new Well();
+          break;
+        default:
+          console.error('Invalid cardName: ' + cardName);
+          return;
+      }
+  
+      // key-value 형태로 majorCard에 추가
+      this.majorCard = this.resources[10];
+      this.majorCard[cardName] = cardInstance;
     }
 }
 
