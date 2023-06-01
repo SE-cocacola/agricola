@@ -2,7 +2,7 @@ import UIManager from "./UIManager.js";
 import Player from "./Player.js";
 import MajorCardManager from "./MajorCard/MajorCardManager.js";
 import HarvestManager from "./HarvestManager.js";
-import { ExpandFarm, AccumulateFood, GrainSeed, FarmLand, Lesson, DayLaborer, Fencing, Forest, ClayPit, ReedBank, Fishing } from "./Board/ActionSpace.js";
+import { ExpandFarm, AccumulateFood, GrainSeed, FarmLand, Lesson, DayLaborer, Forest, ClayPit, ReedBank, Fishing } from "./Board/ActionSpace.js";
 import { BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone } from "./Board/RoundSpace.js";
 
 class GameManager {
@@ -12,9 +12,9 @@ class GameManager {
         this.majorCardManager = new MajorCardManager();
 
         // 이거 아래 필요없을듯 - Player에서 다룸
-        // 11개 기본 행동칸 순서대로
+        // 10개 기본 행동칸 순서대로
         this.actionSpace = [new ExpandFarm(), new AccumulateFood(), new GrainSeed(), new FarmLand(), new Lesson(),
-            new DayLaborer(), new Fencing(), new Forest(), new ClayPit(), new ReedBank(), new Fishing()
+            new DayLaborer(), new Forest(), new ClayPit(), new ReedBank(), new Fishing()
         ];
         // 7개 라운드 행동칸 순서대로
         this.roundSpace = [new BuildMajorFacility(), new BuildFence(), new GrainUtilization(), new AccumulateSheep(),
@@ -46,7 +46,7 @@ class GameManager {
 
         // turn을 돌아가면서 player가 행동을 함.
         for (const player of turns) {
-            await player.moveFarmer(uiManager, this.majorCardManager);
+            await player.moveFarmer(uiManager, this.majorCardManager, this.actionSpace, this.roundSpace);
             uiManager.switchTurns();
         }
     }

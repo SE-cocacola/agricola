@@ -1,8 +1,6 @@
 import ResourceManager from './Resource/ResourceManager.js'
 import TileManager from './Tile/TileManager.js';
 import { RT } from './Resource/ResourceType.js';
-import BoardInterface from './Board/BoardInterface.js';
-import { BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone } from "./Board/RoundSpace.js"
 
 class Player {
     constructor(name) {
@@ -154,7 +152,7 @@ class Player {
     }
 
 
-    async moveFarmer(uiManager, majorCardManager) {
+    async moveFarmer(uiManager, majorCardManager, actionSpace, roundSpace) {
         // TODO: Implement move player logic
         // 타일 클릭 하면 함수 실행
         // useMajorCard
@@ -168,66 +166,115 @@ class Player {
         switch (action_round_id) {
             case "r1":
                 console.log("r1");
-                const buildMajorFacility = new BuildMajorFacility();
+                let buildMajorFacility = roundSpace[0];
                 buildMajorFacility.behave(this, uiManager, majorCardManager);
                 break;
             case "r2":
                 console.log("r2");
+                let buildFence = roundSpace[1];
+
                 break;
 
             case "r3":
                 console.log("r3");
+                let grainUtilization = roundSpace[2];
+
                 break;
 
             case "r4":
                 console.log("r4");
+                let accumalteSheep = roundSpace[3];
+                accumalteSheep.behave(this);
                 break;
 
             case "r5":
                 console.log("r5");
+                let increaseFamily = roundSpace[4];
+
                 break;
 
             case "r6":
                 console.log("r6");
+                let upgradeHouse = roundSpace[5];
+
                 break;
 
             case "r7":
                 console.log("r7");
+                let accululateStone = roundSpace[6];
+                accululateStone.behave(this)
                 break;
 
             case "a1":
                 console.log("a1");
+                // 농장 확장
+                let expandFarm = actionSpace[0];
+
                 break;
 
             case "a2":
-                console.log("12");
+                console.log("a2");
+                // 음식 +1 누적칸
+                let accululateFood = actionSpace[1];
+                accululateFood.behave(this);
                 break;
 
             case "a3":
                 console.log("a3");
+                // 숲 +3 누적칸
+                let forest = actionSpace[6];
+                forest.behave(this);
                 break;
 
             case "a4":
                 console.log("a4");
+                // 곡식 종자 1개 (누적 X)
+                let grainSeed = actionSpace[2];
+                grainSeed.behave(this);
                 break;
 
             case "a5":
                 console.log("a5");
+                // 밭 한개 일구기
+                let farmLand = actionSpace[3];
+
                 break;
 
             case "a6":
                 console.log("a6");
+                // 흙 +1 누적칸
+                let clayPit = actionSpace[7];
+                clayPit.behave(this);
                 break;
 
             case "a7":
                 console.log("a7");
+                // 교습 -> ?
+                let lesson = actionSpace[4];
+
                 break;
 
             case "a8":
+                console.log("a8");
+                // 갈대 +1 누적칸
+                let reedBank = actionSpace[8];
+                reedBank.behave(this);
+                break;
+
             case "a9":
+                console.log("a9");
+                // 음식 2개 (누적 X)
+                let dayLaborer = actionSpace[5];
+                dayLaborer.behave(this);
+                break;
             case "a10":
+                console.log("a10");
+                // 음식 +1 누적칸
+                let fishing = actionSpace[9];
+                fishing.behave(this);
+                break;
             default:
-                console.log("none");
+                console.log("다른데 클릭했음");
                 break;
         }
 

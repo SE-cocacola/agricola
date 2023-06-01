@@ -2,6 +2,7 @@ import BoardInterface from '../Board/BoardInterface.js';
 import ResourceManager from '../Resource/ResourceManager.js'
 import RoomType from '../Tile/RoomType.js'
 import UIManager from '../UIManager.js';
+import { RT } from '../Resource/ResourceType.js';
 
 class ExpandFarm extends BoardInterface {
     constructor(){
@@ -29,21 +30,25 @@ class ExpandFarm extends BoardInterface {
         }
 
         player.tileManager.playerBoard[idx] = roomType;
+
+        this.setActivate();
     }
 }
 
 class AccumulateFood extends BoardInterface{
     constructor(){
         super("AccumulateFood");
+        this.default = 1;
         this.cnt = 1;
     }
 
     behave(player){
-        player.ResourceManager.addResource(RT.FOOD, this.cnt);
+        player.resourceManager.addResource(RT.FOOD, this.cnt);
+        this.setActivate();
     }
 
     // isActivate가 false이면 cnt++
-    increaseFood(){
+    increaseCnt(){
         this.cnt++;
     }
 }
@@ -53,7 +58,9 @@ class GrainSeed extends BoardInterface{
         super("GrainSeed");
     }
     behave(player){
-        player.ResourceManager.addResource(RT.GRAIN, 1);
+        player.resourceManager.addResource(RT.GRAIN, 1);
+
+        this.setActivate();
     }
 }
 
@@ -63,6 +70,8 @@ class FarmLand extends BoardInterface{
     }
     behave(player, idx){
         player.tileManager.addField(idx);
+
+        this.setActivate();
     }
 }
 
@@ -71,7 +80,8 @@ class Lesson extends BoardInterface{
         super("Lesson");
     }
     behave(player){
-        
+        // 얘는 머임?
+        this.setActivate();
     }
 } 
 
@@ -80,30 +90,23 @@ class DayLaborer extends BoardInterface{
         super("DayLaborer");
     }
     behave(player){
-        player.ResourceManager.addResource(RT.FOOD, 2);
-    }
-}
-
-class Fencing extends BoardInterface{
-    constructor(){
-        super("Fencing");
-    }
-    behave(player, cnt){
-        player.ResourceManager.removeResource(RT.WOOD, cnt);
-        player.ResourceManager.addResource(RT.FENCE, cnt);
+        player.resourceManager.addResource(RT.FOOD, 2);
+        this.setActivate();
     }
 }
 
 class Forest extends BoardInterface{
     constructor(){
         super("Forest");
+        this.default = 3;
         this.cnt = 3;
     }
     behave(player){
-        player.ResourceManager.addResource(RT.WOOD, this.cnt);
+        player.resourceManager.addResource(RT.WOOD, this.cnt);
+        this.setActivate();
     }
 
-    increaseWood(){
+    increaseCnt(){
         this.cnt += 3;
     }
 }
@@ -111,13 +114,15 @@ class Forest extends BoardInterface{
 class ClayPit extends BoardInterface{
     constructor(){
         super("ClayPit");
+        this.default = 1;
         this.cnt = 1;
     }
     behave(player){
-        player.ResourceManager.addResource(RT.CLAY, this.cnt);
+        player.resourceManager.addResource(RT.CLAY, this.cnt);
+        this.setActivate();
     }
 
-    increaseClay(){
+    increaseCnt(){
         this.cnt++;
     }
 }
@@ -125,13 +130,15 @@ class ClayPit extends BoardInterface{
 class ReedBank extends BoardInterface{
     constructor(){
         super("ReedBank");
+        this.default = 1;
         this.cnt = 1;
     }
     behave(player){
-        player.ResourceManager.addResource(RT.REED, this.cnt);
+        player.resourceManager.addResource(RT.REED, this.cnt);
+        this.setActivate();
     }
 
-    increaseReed(){
+    increaseCnt(){
         this.cnt++;
     }
 }
@@ -139,15 +146,17 @@ class ReedBank extends BoardInterface{
 class Fishing extends BoardInterface{
     constructor(){
         super("Fishing");
+        this.default = 1;
         this.cnt = 1;
     }
     behave(player){
-        player.ResourceManager.addResource(RT.FOOD, this.cnt);
+        player.resourceManager.addResource(RT.FOOD, this.cnt);
+        this.setActivate();
     }
 
-    increaseFood(){
+    increaseCnt(){
         this.cnt++;
     }
 }
 
-export {ExpandFarm, AccumulateFood, GrainSeed, FarmLand, Lesson, DayLaborer, Fencing, Forest, ClayPit, ReedBank, Fishing};
+export {ExpandFarm, AccumulateFood, GrainSeed, FarmLand, Lesson, DayLaborer, Forest, ClayPit, ReedBank, Fishing};
