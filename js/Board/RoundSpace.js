@@ -3,6 +3,7 @@ import BoardInterface from '../Board/BoardInterface.js';
 import MajorCardManager from '../MajorCard/MajorCardManager.js';
 import UIManager from '../UIManager.js';
 import Game from '../Game.js';
+import { RT } from '../Resource/ResourceType.js';
 
 class BuildMajorFacility extends BoardInterface {
     constructor() {
@@ -31,6 +32,8 @@ class BuildFence extends BoardInterface {
 
     behave(player) {
         // 울타리 치기
+
+        this.setActivate();
     }
 }
 
@@ -46,6 +49,8 @@ class GrainUtilization extends BoardInterface {
         if (idx == Field && Field.isPlant === false) {
             Field.plantCrop(crop);
         };
+
+        this.setActivate();
     }
 
     // 그리고,또는 빵 굽기
@@ -57,14 +62,17 @@ class GrainUtilization extends BoardInterface {
 class AccumulateSheep extends BoardInterface {
     constructor() {
         super("AccumulateSheep");
+        this.default = 1;
         this.cnt = 1;
     }
 
     behave(player) {
         player.ResourceManager.addResource(RT.SHEEP, this.cnt);
+
+        this.setActivate();
     }
 
-    increaseSheep() {
+    increaseCnt() {
         this.cnt++;
     }
 }
@@ -81,6 +89,8 @@ class IncreaseFamily extends BoardInterface {
                 player.tileManager.playerBoard[idx].isChild = true;
             }
         }
+
+        this.setActivate();
     }
 }
 
@@ -91,20 +101,25 @@ class UpgradeHouse extends BoardInterface {
 
     behave(player) {
         player.tileManager.setRoomType();
+
+        this.setActivate();
     }
 }
 
 class AccumulateStone extends BoardInterface {
     constructor() {
         super("AccumulateStone");
+        this.default = 1;
         this.cnt = 1;
     }
 
     behave(player) {
         player.ResourceManager.addResource(RT.STONE, this.cnt);
+
+        this.setActivate();
     }
 
-    increaseStone() {
+    increaseCnt() {
         this.cnt++;
     }
 }

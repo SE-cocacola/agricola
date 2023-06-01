@@ -44,13 +44,45 @@ class Game {
                 this.gameManager.harvest();
             }
             this.uiManager.removeImages("action_board", './image/resource/farmer');
-            
-            // 농부의 집을 어떻게 파악? 수는 getAdultFarmer
+
+            // 돌아갈 때 농부의 집 파악해서 그 집에 아래 코드 실행 해야함
             this.uiManager.showFarmer("board6", "Red");
             this.uiManager.showFarmer("board11", "Red");
 
             this.uiManager.showFarmer("board21", "Blue");
             this.uiManager.showFarmer("board26", "Blue");
+
+            // 라운드가 끝날 때 각 보드판의 누적 자원칸이 activative가 아닐 경우 자원 증가시키는 코드 추가
+            let actionBoard = this.gameManager.actionSpace;
+            let roundBoard = this.gameManager.roundSpace;
+
+            // ExpandFarm, AccumulateFood, GrainSeed, FarmLand, Lesson, DayLaborer, Forest, ClayPit, ReedBank, Fishing
+            for(let i=0; i<10; i++){
+                if(i === 1 || i === 6 || i === 7 || i === 8 || i === 9){
+                    if(!actionBoard[i].isActivate){
+                        actionBoard[i].increaseCnt();
+                    }else{
+                        actionBoard[i].cnt = actionBoard[i].default;
+                    }
+                }
+                actionBoard[i].setDeactivate();
+            }
+
+            // BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone
+            for(let i=0; i<7; i++){
+                if(i === 3|| i === 6){
+                    if(!roundBoard[i].isActivate){
+                        roundBoard[i].increaseCnt();
+                    }else{
+                        roundBoard[i].cnt = roundBoard[i].default;
+                    }
+                }
+                roundBoard[i].setDeactivate();
+            }
+
+            // 라운드 끝날때마다 플레이어의 자원 확인(누적값 확인)
+            console.log(this.gameManager.player1.resourceManager);
+            console.log(this.gameManager.player2.resourceManager);
         }
 
         // // 게임 종료
