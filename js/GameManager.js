@@ -9,7 +9,9 @@ class GameManager {
     constructor() {
         this.player1 = new Player("0");
         this.player2 = new Player("1");
-        this.MajorCardManager = new MajorCardManager();
+        this.majorCardManager = new MajorCardManager();
+
+        // 이거 아래 필요없을듯 - Player에서 다룸
         // 11개 기본 행동칸 순서대로
         this.actionSpace = [new ExpandFarm(), new AccumulateFood(), new GrainSeed(), new FarmLand(), new Lesson(),
             new DayLaborer(), new Fencing(), new Forest(), new ClayPit(), new ReedBank(), new Fishing()
@@ -44,7 +46,7 @@ class GameManager {
 
         // turn을 돌아가면서 player가 행동을 함.
         for (const player of turns) {
-            await player.moveFarmer(uiManager);
+            await player.moveFarmer(uiManager, this.majorCardManager);
             uiManager.switchTurns();
         }
     }

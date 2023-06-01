@@ -876,9 +876,6 @@
             </select>
             <button id="remove-room" class="btn btn-primary d-block"> 집 삭제</button>
             <button id="upgrade-room" class="btn btn-primary d-block"> 집 변경</button>
-
-            <button id="add-major" class="btn btn-primary d-block">플레이어 1에게 주요설비 추가</button>
-
         </div>
     </div>
 
@@ -984,20 +981,31 @@
         // 주요설비 팝업
         const majorBtn = document.getElementById("major_popup");
         majorBtn.addEventListener("click", function() {
-            let majorCardIds = Object.keys(game.gameManager.MajorCardManager.cards);
-            uiManager.openPop(majorCardIds);
-        });
-
-        const majorBtn1 = document.getElementById("major_popup_player_1");
-        majorBtn1.addEventListener("click", function() {
-            uiManager.openPop();
+            let majorCardsName = Object.keys(game.gameManager.majorCardManager.cards);
+            uiManager.majorCardPopUp(majorCardsName, false);
         });
 
         // 주요설비 팝업 닫기
         const majorCloseBtn = document.getElementById("majorBtn");
         majorCloseBtn.addEventListener("click", function() {
-            uiManager.closePop();
+            uiManager.closePopUp();
         });
+
+        // 플레이어 1 주요 설비 보여주기
+        const showPlayer1MajorCards = document.getElementById("major_popup_player_1");
+        showPlayer1MajorCards.addEventListener("click", function(){
+            const player1ResourceManager = game.gameManager.player1.resourceManager;
+            let player1MajorCardsName = player1ResourceManager.resources[10] ? Object.keys(player1ResourceManager.resources[10]) : [];
+            uiManager.majorCardPopUp(player1MajorCardsName, true);
+        })
+
+        // 플레이어 2 주요 설비 보여주기
+        const showPlayer2MajorCards = document.getElementById("major_popup_player_2");
+        showPlayer2MajorCards.addEventListener("click", function(){
+            const player2ResourceManager = game.gameManager.player2.resourceManager;
+            let player2MajorCardsName = player2ResourceManager.resources[10] ? Object.keys(player2ResourceManager.resources[10]) : [];
+            uiManager.majorCardPopUp(player2MajorCardsName, true);
+        })
 
         // 농부 배치
         const addFarmerBtn = document.getElementById("add-farmer");
@@ -1028,15 +1036,6 @@
         upgradeRoomBtn.addEventListener("click", function(){
             uiManager.upgradeRoom();
         })
-
-        // 플레이어 1 주요 설비 팝업
-        let majorAddBtn = document.getElementById("major_popup_player_1");
-        majorAddBtn.addEventListener("click", function(){
-            uiManager.openPop(["basketFactory"]);
-        })
-
-
-
     </script>
 </body>
 

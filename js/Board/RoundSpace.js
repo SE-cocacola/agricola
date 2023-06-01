@@ -1,15 +1,26 @@
 import RoomType from '../Tile/RoomType.js';
-import BoardInterface from './BoardInterface.js'
+import BoardInterface from '../Board/BoardInterface.js';
+import MajorCardManager from '../MajorCard/MajorCardManager.js';
+import UIManager from '../UIManager.js';
+import Game from '../Game.js';
 
 class BuildMajorFacility extends BoardInterface {
     constructor() {
         super("BuildMajorFacility");
     }
 
-    behave(player, cardIdx) {
-        // uiManager.openPop(Object.keys(game.gameManager.MajorCardManager.cards))
-        player.resourceManager.addMajorCard(cardIdx);
-        MajorCardManager.removeMajorCard(cardIdx);
+    // player의 자원 감소시키고, 자원 부족하면 획득 못하게 설정해야됨
+    async behave(player, uiManager, majorCardManager) {
+        // uiManager를 통해 클릭하면 그 majorCard의 name 받아와서 변수에 저장
+        let majorCardsName = Object.keys(majorCardManager.cards);
+
+        // majorCard를 클릭하면 그 클릭한 id 값을 cardName 변수에 저장
+        let cardName = await uiManager.majorCardPopUp(majorCardsName, true);
+        
+        player.resourceManager.addMajorCard(cardName);
+        majorCardManager.removeMajorCard(cardName);
+
+        this.setActivate();
     }
 }
 

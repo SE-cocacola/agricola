@@ -15,7 +15,7 @@ class Brazier1 extends MajorCardInterface{
     constructor() {
         super();
         this.cardIdx = 0;
-        this.name = "Brazier1";
+        this.name = "brazier1";
         this.needResource = [
             [
                 {resourceType: RT.CLAY, amount: 2}
@@ -58,7 +58,7 @@ class Brazier2 extends MajorCardInterface{
     constructor() {
         super();
         this.cardIdx = 1;
-        this.name = "Brazier2";
+        this.name = "brazier2";
         this.needResource = [
             [
                 {resourceType: RT.CLAY, amount: 3}
@@ -100,7 +100,7 @@ class FirePot1 extends MajorCardInterface{
     constructor() {
         super();
         this.cardIdx = 2;
-        this.name = "FirePot1";
+        this.name = "firePot1";
         this.needResource = [
             [
                 {resourceType: RT.CLAY, amount: 4}
@@ -144,7 +144,7 @@ class FirePot2 extends MajorCardInterface{
     constructor() {
         super();
         this.cardIdx = 3;
-        this.name = "FirePot2";
+        this.name = "firePot2";
         this.needResource = [
             [
                 {resourceType: RT.CLAY, amount: 5}
@@ -185,7 +185,7 @@ class EarthenKiln extends MajorCardInterface{
     constructor() {
         super();
         this.cardIdx = 4;
-        this.name = "EarthenKiln";
+        this.name = "earthenKiln";
         this.needResource = [
             [
                 {resourceType: RT.CLAY, amount: 3},
@@ -211,7 +211,7 @@ class StoneKiln extends MajorCardInterface{
     constructor() {
         super();
         this.cardIdx = 5;
-        this.name = "StoneKiln";
+        this.name = "stoneKiln";
         this.needResource = [
             [
                 {resourceType: RT.CLAY, amount: 1},
@@ -237,7 +237,7 @@ class FurnitureFactory extends MajorCardInterface{
     constructor() {
         super();
         this.cardIdx = 6;
-        this.name = "FurnitureFactory";
+        this.name = "furnitureFactory";
         this.needResource = [
             [
                 {resourceType: RT.WOOD, amount: 2},
@@ -266,7 +266,7 @@ class BowlFactory extends MajorCardInterface{
     constructor() {
         super();
         this.cardIdx = 7;
-        this.name = "BowlFactory";
+        this.name = "bowlFactory";
         this.needResource = [
             [
                 {resourceType: RT.CLAY, amount: 2},
@@ -295,7 +295,7 @@ class BasketFactory extends MajorCardInterface{
     constructor() {
         super();
         this.cardIdx = 8;
-        this.name = "BasketFactory";
+        this.name = "basketFactory";
         this.needResource = [
             [
                 {resourceType: RT.REED, amount: 2},
@@ -324,7 +324,7 @@ class Well extends MajorCardInterface{
     constructor() {
         super();
         this.cardIdx = 9;
-        this.name = "Well";
+        this.name = "well";
         this.needResource = [
             [
                 {resourceType: RT.WOOD, amount: 1},
