@@ -418,15 +418,14 @@ export class UIManager extends UIInterface {
     }
 
 
-    showResource(game) {
-        const player1 = game.gameManager.player1.resourceManager.resources;
-        const player2 = game.gameManager.player2.resourceManager.resources;
-
+    showResource(gameManager) {
+        const player1 = gameManager.player1.resourceManager.resources;
+        const player2 = gameManager.player2.resourceManager.resources;
 
         let farmercnt = 0;
 
-        document.getElementById("player1score").innerHTML = game.gameManager.player1.calculateScore();
-        document.getElementById("player2score").innerHTML = game.gameManager.player2.calculateScore();
+        document.getElementById("player1score").innerHTML = gameManager.player1.calculateScore();
+        document.getElementById("player2score").innerHTML = gameManager.player2.calculateScore();
 
         player1.forEach(element => {
             const element1 = document.getElementById(element.resourceType + "1")

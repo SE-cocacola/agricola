@@ -15,7 +15,7 @@ class Game {
     }
 
     async start() {
-        // 선 정하기
+        // 선 정하고 resourceManager 초기화
         const randomInt = Math.floor(Math.random() * 2);
 
         const firstPlayer = randomInt === 0 ? this.gameManager.player1 : this.gameManager.player2;
@@ -32,6 +32,9 @@ class Game {
         
         // 선 정한 뒤 Manager에 반영
         this.gameManager.setFirstPlayer(firstPlayer);
+
+        // Util판 resource 업데이트
+        this.uiManager.showResource(this.gameManager);
 
         // 반복문 돌면서 라운드 진행
         for (let round = 1; round <= 7; round++) {

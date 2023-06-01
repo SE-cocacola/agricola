@@ -93,20 +93,28 @@ class Player {
         playrScore -= resources[12].amount * 3;
 
         // majorCard 확인, 인덱스 확인해서 점수 계산, 추가점수까지
-        for (let i = 0; i < resources[10].length; i++) {
-            switch (resources[10].get(i).cardIdx) {
+        for(let key in resources[10]) {
+            console.log(key);
+            console.log(resources[10][key].cardIdx);
+            switch (resources[10][key].cardIdx) {
                 case 0:
                     playrScore += 1;
+                    break;
                 case 1:
                     playrScore += 1;
+                    break;
                 case 2:
                     playrScore += 1;
+                    break;
                 case 3:
                     playrScore += 1;
+                    break;
                 case 4:
                     playrScore += 2;
+                    break;
                 case 5:
                     playrScore += 3;
+                    break;
                 case 6: // 가구
                     playrScore += 2;
                     if (3 <= resources[0].amount && resources[0].amount < 5) {
@@ -116,6 +124,7 @@ class Player {
                     } else if (7 <= resources[0].amount) {
                         playrScore += 3;
                     }
+                    break;
                 case 7: // 그릇
                     playrScore += 2;
                     if (3 <= resources[1].amount && resources[1].amount < 5) {
@@ -125,6 +134,7 @@ class Player {
                     } else if (7 <= resources[1].amount) {
                         playrScore += 3;
                     }
+                    break;
                 case 8: // 바구니
                     playrScore += 2;
                     if (3 <= resources[3].amount && resources[3].amount < 5) {
@@ -134,8 +144,10 @@ class Player {
                     } else if (7 <= resources[3].amount) {
                         playrScore += 3;
                     }
+                    break;
                 case 9:
                     playrScore += 4;
+                    break;
                 default:
                     return playrScore;
             }
@@ -167,7 +179,7 @@ class Player {
             case "r1":
                 console.log("r1");
                 let buildMajorFacility = roundSpace[0];
-                buildMajorFacility.behave(this, uiManager, majorCardManager);
+                await buildMajorFacility.behave(this, uiManager, majorCardManager);
                 break;
             case "r2":
                 console.log("r2");
@@ -184,7 +196,7 @@ class Player {
             case "r4":
                 console.log("r4");
                 let accumalteSheep = roundSpace[3];
-                accumalteSheep.behave(this);
+                await accumalteSheep.behave(this);
                 break;
 
             case "r5":
@@ -202,7 +214,7 @@ class Player {
             case "r7":
                 console.log("r7");
                 let accululateStone = roundSpace[6];
-                accululateStone.behave(this)
+                await accululateStone.behave(this)
                 break;
 
             case "a1":
@@ -216,21 +228,21 @@ class Player {
                 console.log("a2");
                 // 음식 +1 누적칸
                 let accululateFood = actionSpace[1];
-                accululateFood.behave(this);
+                await accululateFood.behave(this);
                 break;
 
             case "a3":
                 console.log("a3");
                 // 숲 +3 누적칸
                 let forest = actionSpace[6];
-                forest.behave(this);
+                await forest.behave(this);
                 break;
 
             case "a4":
                 console.log("a4");
                 // 곡식 종자 1개 (누적 X)
                 let grainSeed = actionSpace[2];
-                grainSeed.behave(this);
+                await grainSeed.behave(this);
                 break;
 
             case "a5":
@@ -244,7 +256,7 @@ class Player {
                 console.log("a6");
                 // 흙 +1 누적칸
                 let clayPit = actionSpace[7];
-                clayPit.behave(this);
+                await clayPit.behave(this);
                 break;
 
             case "a7":
@@ -258,20 +270,20 @@ class Player {
                 console.log("a8");
                 // 갈대 +1 누적칸
                 let reedBank = actionSpace[8];
-                reedBank.behave(this);
+                await reedBank.behave(this);
                 break;
 
             case "a9":
                 console.log("a9");
                 // 음식 2개 (누적 X)
                 let dayLaborer = actionSpace[5];
-                dayLaborer.behave(this);
+                await dayLaborer.behave(this);
                 break;
             case "a10":
                 console.log("a10");
                 // 음식 +1 누적칸
                 let fishing = actionSpace[9];
-                fishing.behave(this);
+                await fishing.behave(this);
                 break;
             default:
                 console.log("다른데 클릭했음");
