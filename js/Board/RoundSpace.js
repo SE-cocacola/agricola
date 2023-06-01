@@ -67,7 +67,7 @@ class AccumulateSheep extends BoardInterface {
     }
 
     behave(player) {
-        player.ResourceManager.addResource(RT.SHEEP, this.cnt);
+        player.resourceManager.addResource(RT.SHEEP, this.cnt);
 
         this.setActivate();
     }
@@ -114,7 +114,7 @@ class AccumulateStone extends BoardInterface {
     }
 
     behave(player) {
-        player.ResourceManager.addResource(RT.STONE, this.cnt);
+        player.resourceManager.addResource(RT.STONE, this.cnt);
 
         this.setActivate();
     }

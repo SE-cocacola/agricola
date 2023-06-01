@@ -94,8 +94,6 @@ class Player {
 
         // majorCard 확인, 인덱스 확인해서 점수 계산, 추가점수까지
         for(let key in resources[10]) {
-            console.log(key);
-            console.log(resources[10][key].cardIdx);
             switch (resources[10][key].cardIdx) {
                 case 0:
                     playrScore += 1;
