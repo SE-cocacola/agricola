@@ -166,42 +166,69 @@ class Player {
 
         switch (action_round_id) {
             case "r1":
-                console.log("Action")
-                    //const buildMajorFacility = new BuildMajorFacility()
-                    //buildMajorFacility.behave(this)
+                console.log("r1");
+                //const buildMajorFacility = new BuildMajorFacility()
+                //buildMajorFacility.behave(this)
+                break;
+                    
             case "r2":
+                console.log("r2");
+                break;
 
             case "r3":
+                console.log("r3");
+                break;
 
             case "r4":
+                console.log("r4");
+                break;
 
             case "r5":
+                console.log("r5");
+                break;
 
             case "r6":
+                console.log("r6");
+                break;
 
             case "r7":
+                console.log("r7");
+                break;
 
             case "a1":
+                console.log("a1");
+                break;
 
             case "a2":
+                console.log("12");
+                break;
 
             case "a3":
+                console.log("a3");
+                break;
 
             case "a4":
+                console.log("a4");
+                break;
 
             case "a5":
+                console.log("a5");
+                break;
 
             case "a6":
+                console.log("a6");
+                break;
 
             case "a7":
+                console.log("a7");
+                break;
 
             case "a8":
-
             case "a9":
-
             case "a10":
-
             default:
+                console.log("none");
+                break;
         }
 
     }

@@ -413,6 +413,7 @@ export class UIManager extends UIInterface {
     }
 
     // 농부이동 
+    // round에 따라서 갈수 없는 곳 체크
     async move(farmerType, turn) {
         const farmboards = document.querySelectorAll('.farm_border')[turn]
         let farmer = null
@@ -442,6 +443,22 @@ export class UIManager extends UIInterface {
 
         action_board_id = await actionboardPromise
         return action_board_id
+    }
+    
+    
+    // 라운드 끝나고 농부 이미지 지우기
+    removeImages(className, srcPrefix) {
+        const elements = document.getElementsByClassName(className);
+
+        for (let i = elements.length - 1; i >= 0; i--) {
+            const imageElements = elements[i].getElementsByTagName('img');
+            for (let j = imageElements.length - 1; j >= 0; j--) {
+            const imageSrc = imageElements[j].getAttribute('src');
+            if (imageSrc.startsWith(srcPrefix)) {
+                imageElements[j].remove();
+            }
+            }
+        }
     }
 
 }
