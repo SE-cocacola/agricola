@@ -31,7 +31,6 @@ class GameManager {
         const player1Farmers = this.player1.getAdultFarmer();
         const player2Farmers = this.player2.getAdultFarmer();
 
-
         // 먼저 firstPlayer가 player2인 경우부터 생각해 봅시다.
         let currentPlayer = this.firstPlayer;
 
@@ -48,6 +47,7 @@ class GameManager {
         // turn을 돌아가면서 player가 행동을 함.
         for (const player of turns) {
             await player.moveFarmer(uiManager, this.majorCardManager);
+            uiManager.switchTurns();
         }
     }
 

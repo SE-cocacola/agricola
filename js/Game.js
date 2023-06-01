@@ -29,21 +29,28 @@ class Game {
             this.gameManager.player2.resourceManager.initialize(true)
             this.gameManager.player1.resourceManager.initialize(false)
         }
-        // UIManager.selectOrder(firstPlayer);
-
-        this.gameManager.setFirstPlayer(firstPlayer);
-
+        
         // 선 정한 뒤 Manager에 반영
-        this.uiManager.changeActionRoundImage(1);
+        this.gameManager.setFirstPlayer(firstPlayer);
 
         // 반복문 돌면서 라운드 진행
         for (let round = 1; round <= 7; round++) {
+            // round card open
+            this.uiManager.changeActionRoundImage(round);
             await this.gameManager.actionRound(this.uiManager);
             
             //this.gameManager.actionRound(this.uiManager);
             if (round===4 || round===7) {
                 this.gameManager.harvest();
             }
+            this.uiManager.removeImages("action_board", './image/resource/farmer');
+            
+            // 농부의 집을 어떻게 파악? 수는 getAdultFarmer
+            this.uiManager.showFarmer("board6", "Red");
+            this.uiManager.showFarmer("board11", "Red");
+
+            this.uiManager.showFarmer("board21", "Blue");
+            this.uiManager.showFarmer("board26", "Blue");
         }
 
         // // 게임 종료
