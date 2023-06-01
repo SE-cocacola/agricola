@@ -48,6 +48,7 @@ class GameManager {
         for (const player of turns) {
             await player.moveFarmer(uiManager, this.majorCardManager, this.actionSpace, this.roundSpace);
             uiManager.switchTurns();
+            uiManager.showResource(this);
         }
     }
 
