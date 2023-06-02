@@ -43,9 +43,9 @@ class Game {
             await this.gameManager.actionRound(this.uiManager);
             
             //this.gameManager.actionRound(this.uiManager);
-            if (round===4 || round===7) {
-                this.gameManager.harvest();
-            }
+            // if (round===4 || round===7) {
+            //     this.gameManager.harvest();
+            // }
             this.uiManager.removeImages("action_board", './image/resource/farmer');
 
             // 돌아갈 때 농부의 집 파악해서 그 집에 아래 코드 실행 해야함
@@ -72,7 +72,7 @@ class Game {
             }
 
             // BuildMajorFacility, BuildFence, GrainUtilization, AccumulateSheep, IncreaseFamily, UpgradeHouse, AccumulateStone
-            for(let i=0; i<7; i++){
+            for(let i=0; i<round; i++){
                 if(i === 3|| i === 6){
                     if(!roundBoard[i].isActivate){
                         roundBoard[i].increaseCnt();
