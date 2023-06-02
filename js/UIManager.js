@@ -37,6 +37,12 @@ export class UIManager extends UIInterface {
         var action_round = actionRound.toString();
         action_round = 'r' + action_round;
         const actionRoundDiv = document.getElementById(action_round);
+        actionRoundDiv.style = `
+        background-repeat: no-repeat;
+        background-size: 90% 85%;
+        background-position: left center;
+        transform: translate(-5px);
+        `
 
         switch (actionRound) {
             case 1:
@@ -65,9 +71,7 @@ export class UIManager extends UIInterface {
                 actionRoundDiv.style.backgroundImage = "none";
                 break;
         }
-        actionRoundDiv.style.backgroundSize = "contain";
-        actionRoundDiv.style.backgroundRepeat = "no-repeat";
-        actionRoundDiv.style.backgroundPosition = "center";
+        
     }
 
     // 가축 배치
@@ -519,7 +523,7 @@ function clickActionBoard(event, farmer, farmerType) {
     // 농부 style 입히기
     new_farmer.src = farmerType === 'Red' ? './image/resource/farmer1.png' : './image/resource/farmer2.png';
     new_farmer.style = `
-        position: relative; 
+        position: absolute; 
         top: 50%; 
         left: 50%;
         transform: translate(-50%, -50%); 
