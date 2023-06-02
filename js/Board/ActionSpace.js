@@ -9,8 +9,10 @@ class ExpandFarm extends BoardInterface {
         super("ExpandFarm");
     }
     
-    behave(player, idx){
+    behave(player, idx, uiManager){
         const roomType = player.tileManager.roomType;
+        
+        uiManager.addHoverEffectToDiv("a1");
 
         switch (roomType) {
             case RoomType.WOOD:
@@ -30,7 +32,7 @@ class ExpandFarm extends BoardInterface {
         }
 
         player.tileManager.playerBoard[idx] = roomType;
-
+        uiManager.removeAllEventListenersFromFarmBoard();
         this.setActivate();
     }
 }
@@ -68,9 +70,12 @@ class FarmLand extends BoardInterface{
     constructor(){
         super("FarmLand");
     }
-    behave(player, idx){
+    behave(player, idx, uiManager){
+        uiManager.addHoverEffectToDiv("a5");
+
         player.tileManager.addField(idx);
 
+        uiManager.removeAllEventListenersFromFarmBoard();
         this.setActivate();
     }
 }

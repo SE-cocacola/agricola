@@ -30,9 +30,23 @@ class BuildFence extends BoardInterface {
         super("BuildFence");
     }
 
-    behave(player) {
+    behave(player, uiManager) {
         // 울타리 치기
+        // uiManager hover
+        uiManager.addHoverEffectToDiv("r2");
 
+        while(player.resourceManager.resources[0].amount >= 1 && ){ // 어떤 버튼을 클릭했을 때 종료.
+            // 버튼 읽어오고 가능한지 체크.
+            if(/* 제약 조건 */){
+                // 클릭한 board_id 읽어오고
+                uiManager.addFence(player, "board_id");
+            }else{
+                break;
+            }
+            //삭제는 어떻게 처리하지? 삭제하고싶으면?
+            
+        }
+        uiManager.removeAllEventListenersFromFarmBoard();
         this.setActivate();
     }
 }
@@ -66,9 +80,15 @@ class AccumulateSheep extends BoardInterface {
         this.cnt = 1;
     }
 
-    behave(player) {
-        player.resourceManager.addResource(RT.SHEEP, this.cnt);
-
+    behave(player, uiManager) {
+        // uiManager에서 어디를 선택할 수 있는지.
+        uiManager.addHoverEffectToDiv("r4");
+        if(/* 제약조건 */){
+            player.resourceManager.addResource(RT.SHEEP, this.cnt);
+        }else{
+            return;
+        }
+        uiManager.removeAllEventListenersFromFarmBoard();
         this.setActivate();
     }
 
@@ -99,9 +119,12 @@ class UpgradeHouse extends BoardInterface {
         super("UpgradeHouse");
     }
 
-    behave(player) {
-        player.tileManager.setRoomType();
+    behave(player, uiManager) {
+        uiManager.addHoverEffectToDiv("r6");
 
+        player.tileManager.setRoomType();
+        
+        uiManager.removeAllEventListenersFromFarmBoard();
         this.setActivate();
     }
 }

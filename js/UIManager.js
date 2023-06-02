@@ -22,14 +22,145 @@ export class UIManager extends UIInterface {
     }
 
     // 마우스 오버 효과
-    addHoverEffectToDiv(div) {
-        div.addEventListener("mouseover", function() {
-            div.classList.add("hover-red");
-        });
-        div.addEventListener("mouseout", function() {
-            div.classList.remove("hover-red");
-        });
+    addHoverEffectToDiv(divId) {
+        const div = document.getElementById(divId);
+        
+        // div.addEventListener("mouseover", function () {
+        //     div.classList.add("hover-red");
+        // });
+        // div.addEventListener("mouseout", function () {
+        //     div.classList.remove("hover-red");
+        // });
+        const farmBoard = document.querySelector('.farm_board');
+        const farmboardDivs = farmBoard.querySelectorAll('.farmboard');
+      
+        switch (divId) {
+          case "r2":
+              // Fence
+              const rowBars = farmBoard.querySelectorAll('.row_bar');
+              const colBars = farmBoard.querySelectorAll('.col_bar');
+            
+              rowBars.forEach((rowBar) => {
+                rowBar.addEventListener('mouseover', function () {
+                    if (!isRedOrBlue(rowBar)) {
+                        rowBar.classList.add('hover-red');
+                      }
+                });
+            
+                rowBar.addEventListener('mouseout', function () {
+                  rowBar.classList.remove('hover-red');
+                });
+              });
+            
+              colBars.forEach((colBar) => {
+                colBar.addEventListener('mouseover', function () {
+                    if (!isRedOrBlue(rowBar)) {
+                        rowBar.classList.add('hover-red');
+                      }
+                });
+            
+                colBar.addEventListener('mouseout', function () {
+                  colBar.classList.remove('hover-red');
+                });
+              });
+
+            break;
+      
+          case "r4":
+              // sheep
+             // 울타리 고려해야되고, 외양간 고려해야되고
+             // 우리(울타리로 싸인 공간) 1칸당 가축 두마리. 같은 가축만 가능.
+             // 외양간은 * 2 마리 가능
+             // 우리 없이 가축을 키울 시에는 외양간이 있어야함. 1마리만 가능.
+             // 가축을 1마리 집에서 키울 수 있음.
+            break;
+
+          case "r6":
+            // fixhouse
+
+            farmboardDivs.forEach((farmboardDiv) => {
+                const image = farmboardDiv.querySelector('img');
+                const imageSrc = image.getAttribute('src');
+
+                farmboardDiv.addEventListener('mouseover', function () {
+                if (imageSrc === './image/board/clayroom.png' || imageSrc === './image/board/stoneroom.png' || imageSrc === './image/board/woodenroom.png') {
+                        farmboardDiv.classList.add('hover-effect');
+                    }
+                });
+
+                farmboardDiv.addEventListener('mouseout', function () {
+                farmboardDiv.classList.remove('hover-effect');
+                });
+            });
+            break;
+        
+          case "a1":
+            // 집짓기
+
+            farmboardDivs.forEach((farmboardDiv) => {
+                const surroundingDivs = farmboardDiv.querySelectorAll('.farmboard > div');
+
+                surroundingDivs.forEach((div) => {
+                    const image = div.querySelector('img');
+                    const imageSrc = image.getAttribute('src');
+                    const divId = div.getAttribute('id');
+
+                    if (
+                        imageSrc.includes('clayroom.png') ||
+                        imageSrc.includes('stonewood.png') ||
+                        imageSrc.includes('woodenroom.png')
+                    ) {
+                        //아이디에 따라 호버 적용.. 하드코딩?
+                    }
+                });
+            });
+            break;
+      
+          case "a5":
+            //농장
+
+            farmboardDivs.forEach((farmboardDiv) => {
+                const surroundingDivs = farmboardDiv.querySelectorAll('.farmboard > div');
+
+                let hoverDivs = Array.from(surroundingDivs).filter((div) => {
+                    const image = div.querySelector('img');
+                    const imageSrc = image.getAttribute('src');
+                    return imageSrc.includes('field.png');
+                });
+
+                if (hoverDivs.length === 0) {
+                    hoverDivs = Array.from(surroundingDivs).filter((div) => {
+                        const image = div.querySelector('img');
+                        const imageSrc = image.getAttribute('src');
+                        return !imageSrc.includes('house.png');
+                    });
+                }
+
+                // id에 따라 그 주위에만. 하드코딩??
+            });
+            break;
+
+      
+          default:
+            break;
+        }
+      }
+
+    isRedOrBlue(element) {
+        const backgroundColor = getComputedStyle(element).backgroundColor;
+        return backgroundColor === 'red' || backgroundColor === 'blue';
     }
+
+    removeAllEventListenersFromFarmBoard() {
+        const farmBoard = document.querySelector('.farm_board');
+        const eventListeners = getEventListeners(farmBoard);
+      
+        Object.keys(eventListeners).forEach((event) => {
+          eventListeners[event].forEach((listener) => {
+            farmBoard.removeEventListener(event, listener.listener);
+          });
+        });
+      }
 
 
     // action_round의 background_img 바꾸기
@@ -455,6 +586,7 @@ export class UIManager extends UIInterface {
     // 농부이동 
     // round에 따라서 갈수 없는 곳 체크
     async move(farmerType, turn) {
+        // round 파라미터로 받고
         const farmboards = document.querySelectorAll('.farm_border')[turn]
         let farmer = null
         let action_board_id = 0;
@@ -470,7 +602,7 @@ export class UIManager extends UIInterface {
         })
 
         onClick = await farmboardPromise
-
+        // 여기서 제약조건
         let actionboardPromise = new Promise((resolve) => {
             farmboards.removeEventListener("click", onClick)
             const action_boards = document.querySelector('.action_board_container');
@@ -525,6 +657,28 @@ function clickActionBoard(event, farmer, farmerType) {
         transform: translate(-50%, -50%); 
         max-width: 100%;
     `
+     // if(action_board.id.startsWith('r')){
+    //     const actionBoardId = parseInt(action_board.id.substr(1));
+    //     if (actionBoardId <= round) {
+    //         console.log(123);
+    //         new_farmer.classList.add('farmfarmer')
+    //         // action 칸에 농부 추가
+    //         action_board.appendChild(new_farmer)
+    
+    //         // farmboard에 있는 농부 제거
+    //         farmer.remove();
+    //       }else{
+    //         console.log(341);
+    //           return 0;
+    //       }
+    // }else{
+    //     new_farmer.classList.add('farmfarmer')
+    //     // action 칸에 농부 추가
+    //     action_board.appendChild(new_farmer)
+
+    //     // farmboard에 있는 농부 제거
+    //     farmer.remove();
+    // }
     new_farmer.classList.add('farmfarmer')
 
     // action 칸에 농부 추가
