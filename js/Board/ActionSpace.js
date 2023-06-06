@@ -14,7 +14,7 @@ class ExpandFarm extends BoardInterface {
     
     async behave(player, uiManager){
         const roomType = player.tileManager.roomType;
-        let idx = await uiManager.selectExpandFarm(roomType, player.tileManager);
+        let idx = await uiManager.selectExpandFarm(player.name, roomType, player.tileManager);
         idx %= 15;
         switch (roomType) {
             case RoomType.WOOD:
@@ -35,6 +35,7 @@ class ExpandFarm extends BoardInterface {
     
         player.tileManager.addRoom(idx);
         player.tileManager.roomPosition.push(idx);
+        console.log(player.tileManager.playerBoard);
 
         this.setActivate();
     }
@@ -74,10 +75,9 @@ class FarmLand extends BoardInterface{
         super("FarmLand");
     }
     async behave(player, uiManager){
-        let idx = await uiManager.selectFarmLand(player.tileManager);
+        let idx = await uiManager.selectFarmLand(player.name, player.tileManager);
         idx %= 15;
         player.tileManager.addField(idx);
-        console.log(player.tileManager.playerBoard);
 
         this.setActivate();
     }

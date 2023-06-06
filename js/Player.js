@@ -206,7 +206,7 @@ class Player {
             case "r6":
                 console.log("r6");
                 let upgradeHouse = roundSpace[5];
-
+                await upgradeHouse.behave(this, uiManager);
                 break;
 
             case "r7":

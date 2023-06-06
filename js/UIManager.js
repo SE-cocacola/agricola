@@ -320,8 +320,8 @@ export class UIManager extends UIInterface {
                 const roomImage = farmboard.querySelector(".farmroom");
                 if (!roomImage) {
                     const newRoomImage = document.createElement("img");
-                    if (roomType == "Wooden") newRoomImage.src = './image/board/FarmBoard/woodenroom.png';
-                    else if (roomType = "Stone") newRoomImage.src = './image/board/FarmBoard/stoneroom.jpeg';
+                    if (roomType == "wood") newRoomImage.src = './image/board/FarmBoard/clayroom.png';
+                    else if (roomType = "clay") newRoomImage.src = './image/board/FarmBoard/stoneroom.jpeg';
                     newRoomImage.classList.add('farmroom');
                     farmboard.replaceChild(newRoomImage);
                 }
@@ -476,7 +476,7 @@ export class UIManager extends UIInterface {
     }
 
     // 농장 확장
-    selectExpandFarm(roomType, tileManager) {
+    selectExpandFarm(playerName, roomType, tileManager) {
         let roomImg;
         switch (roomType) {
           case "wood":
@@ -498,7 +498,7 @@ export class UIManager extends UIInterface {
         let pen = tileManager.penPosition;
       
         return new Promise((resolve) => {
-          const boards = document.querySelectorAll(".farm_board [id^='board']");
+          const boards = document.querySelectorAll(".farm_board" + playerName + " [id^='board']");
       
           const clickHandler = (event) => {
             // 다른 플레이어의 board 안 눌리게 하려면 boards에서 받아올 때 class 이름 다르게 해야함
@@ -521,7 +521,7 @@ export class UIManager extends UIInterface {
       }
 
       // 밭 설치
-    selectFarmLand(tileManager) {
+    selectFarmLand(playerName, tileManager) {
         // 밭도 서로 붙여야하나? 잘 모르지만 두 개 이상 지을일 없을거같아서 필요없을듯
         // 그치만 room, field, pen이 이미 존재하면 안 눌리게는 해야함
         let room = tileManager.roomPosition;
@@ -529,7 +529,7 @@ export class UIManager extends UIInterface {
         let pen = tileManager.penPosition;
 
         return new Promise((resolve) => {
-            const boards = document.querySelectorAll(".farm_board [id^='board']");
+            const boards = document.querySelectorAll(".farm_board" + playerName + " [id^='board']");
             
             const clickHandler = (event) => {
               // 다른 플레이어의 board 안 눌리게 하려면 boards에서 받아올 때 class 이름 다르게 해야함
@@ -550,6 +550,38 @@ export class UIManager extends UIInterface {
             });
         });
     }  
+
+    // 집 업그레이드
+    upgradeHouse(playerName, roomType, roomPosition){
+        let rooms;
+        let roomImg;
+        switch (roomType) {
+          case "wood":
+            roomImg = "clayroom.png";
+            break;
+          case "clay":
+            roomImg = "stoneroom.jpeg";
+            break;
+          default:
+            break;
+        }
+        console.log("playerName " + playerName);
+        console.log("before roomPosition " + roomPosition);
+        if(playerName === "0"){
+            roomPosition = roomPosition.map(value => value + 1);
+        }else{
+            roomPosition = roomPosition.map(value => value + 16);
+        }
+        console.log("after roomPosition " + roomPosition);
+
+        rooms = roomPosition.map(value => "board" + value);
+        console.log("rooms " + rooms);
+        rooms.forEach((room) =>{
+            const boardElement = document.getElementById(room).querySelector("img");
+            boardElement.src = "image/board/FarmBoard/" + roomImg;
+        });
+        
+    }
 
 }
 
