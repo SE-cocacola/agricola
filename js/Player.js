@@ -162,15 +162,16 @@ class Player {
     }
 
 
-    async moveFarmer(uiManager, majorCardManager, actionSpace, roundSpace) {
+    async moveFarmer(uiManager, majorCardManager, actionSpace, roundSpace, round) {
         // TODO: Implement move player logic
         // 타일 클릭 하면 함수 실행
         // useMajorCard
+
         let action_round_id;
         if (this.name === "0") {
-            action_round_id = await uiManager.move("Red", 0)
+            action_round_id = await uiManager.move("Red", 0, round)
         } else {
-            action_round_id = await uiManager.move("Blue", 1)
+            action_round_id = await uiManager.move("Blue", 1, round)
         }
 
         switch (action_round_id) {

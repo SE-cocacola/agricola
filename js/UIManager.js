@@ -428,7 +428,7 @@ export class UIManager extends UIInterface {
 
     // 농부이동 
     // round에 따라서 갈수 없는 곳 체크
-    async move(farmerType, turn) {
+    async move(farmerType, turn, round) {
         const farmboards = document.querySelectorAll('.farm_border')[turn]
         let farmer = null
         let action_board_id = 0;
@@ -447,12 +447,33 @@ export class UIManager extends UIInterface {
 
         let actionboardPromise = new Promise((resolve) => {
             farmboards.removeEventListener("click", onClick)
-            const action_boards = document.querySelector('.action_board_container');
-            action_boards.addEventListener('click', function onTap(event) {
-                clickActionBoard(event, farmer, farmerType)
-                this.removeEventListener('click', onTap)
-                resolve(event.target.id);
+            
+            const leftBoxes = document.querySelectorAll('.left_box');
+            const rightBoxes = document.querySelectorAll('.right_box .round');
+            let action_boards = [];
+            let roundIds = [];
+            let selectedRounds;
+
+            leftBoxes.forEach((leftBox) => {
+                action_boards.push(leftBox);
+            });
+
+            if(round >= 2){
+                for(let i=2; i<=round; i++){
+                    roundIds.push('r' + i);
+                }
+                selectedRounds = Array.from(rightBoxes).filter(element => roundIds.includes(element.id));
+                action_boards.push(...selectedRounds);
+            }
+
+            action_boards.forEach((action_board) => {
+                action_board.addEventListener('click', function onTap(event) {
+                    clickActionBoard(event, farmer, farmerType)
+                    this.removeEventListener('click', onTap)
+                    resolve(event.target.id);
+                })
             })
+            
         })
 
         action_board_id = await actionboardPromise
