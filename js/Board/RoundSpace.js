@@ -10,17 +10,22 @@ class BuildMajorFacility extends BoardInterface {
         super("BuildMajorFacility");
     }
 
-    // player의 자원 감소시키고, 자원 부족하면 획득 못하게 설정해야됨
+    // 자원 부족하면 획득 못하게 설정해야됨
     async behave(player, uiManager, majorCardManager) {
         // uiManager를 통해 클릭하면 그 majorCard의 name 받아와서 변수에 저장
         let majorCardsName = Object.keys(majorCardManager.cards);
 
         // majorCard를 클릭하면 그 클릭한 id 값을 cardName 변수에 저장
         let cardName = await uiManager.majorCardPopUp(majorCardsName, true);
-        
+        let card = majorCardManager.cards[cardName];
+        const needResources = card.needResource;
+        needResources.forEach((needResource) => {
+            player.resourceManager.removeResource(needResource.resourceType, needResource.amount);
+        });
+
         player.resourceManager.addMajorCard(cardName);
         majorCardManager.removeMajorCard(cardName);
-
+        
         this.setActivate();
     }
 }

@@ -15,6 +15,7 @@ class TileManager {
         this.roomPosition = [5, 10];
         this.fieldPosition = [];
         this.penPosition = [];
+        this.fencePosition = [];
     }
 
     addField(position){
