@@ -40,7 +40,7 @@ class Game {
         for (let round = 1; round <= 7; round++) {
             // round card open
             this.uiManager.changeActionRoundImage(round);
-            await this.gameManager.actionRound(this.uiManager);
+            await this.gameManager.actionRound(this.uiManager, round);
             
             //this.gameManager.actionRound(this.uiManager);
             // if (round===4 || round===7) {
@@ -84,10 +84,10 @@ class Game {
             }
 
             // 라운드 끝날때마다 플레이어의 자원 확인(누적값 확인)
-            console.log(this.gameManager.player1.resourceManager);
-            console.log(this.gameManager.player2.resourceManager);
-            console.log(this.gameManager.player1.tileManager.playerBoard);
-            console.log(this.gameManager.player2.tileManager.playerBoard);
+            // console.log(this.gameManager.player1.resourceManager);
+            // console.log(this.gameManager.player2.resourceManager);
+            // console.log(this.gameManager.player1.tileManager.playerBoard);
+            // console.log(this.gameManager.player2.tileManager.playerBoard);
         }
 
         // // 게임 종료
