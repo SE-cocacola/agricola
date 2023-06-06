@@ -416,7 +416,7 @@ h3 {
 }
 
 /* mouse interaction */
-.hover-red {
+.available-hover {
     background-color: skyblue;
     opacity: 0.4;
     z-index: 1;

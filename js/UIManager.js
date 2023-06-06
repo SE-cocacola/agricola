@@ -21,10 +21,10 @@ export class UIManager extends UIInterface {
         // implementation code for updating the UI
     }
 
-    // 마우스 오버 효과
+    // 마우스 오버 효과 추가
     addHoverEffectToDiv(divId) {
         const div = document.getElementById(divId);
-        
+
         // div.addEventListener("mouseover", function () {
         //     div.classList.add("hover-red");
         // });
@@ -32,135 +32,135 @@ export class UIManager extends UIInterface {
         //     div.classList.remove("hover-red");
         // });
         const farmBoard = document.querySelector('.farm_board');
-        const farmboardDivs = farmBoard.querySelectorAll('.farmboard');
-      
+        const farmTiles = farmBoard.querySelectorAll('.farmboard');
+
         switch (divId) {
-          case "r2":
-              // Fence
-              const rowBars = farmBoard.querySelectorAll('.row_bar');
-              const colBars = farmBoard.querySelectorAll('.col_bar');
-            
-              rowBars.forEach((rowBar) => {
-                rowBar.addEventListener('mouseover', function () {
-                    if (!isRedOrBlue(rowBar)) {
-                        rowBar.classList.add('hover-red');
-                      }
-                });
-            
-                rowBar.addEventListener('mouseout', function () {
-                  rowBar.classList.remove('hover-red');
-                });
-              });
-            
-              colBars.forEach((colBar) => {
-                colBar.addEventListener('mouseover', function () {
-                    if (!isRedOrBlue(rowBar)) {
-                        rowBar.classList.add('hover-red');
-                      }
-                });
-            
-                colBar.addEventListener('mouseout', function () {
-                  colBar.classList.remove('hover-red');
-                });
-              });
-
-            break;
-      
-          case "r4":
-              // sheep
-             // 울타리 고려해야되고, 외양간 고려해야되고
-             // 우리(울타리로 싸인 공간) 1칸당 가축 두마리. 같은 가축만 가능.
-             // 외양간은 * 2 마리 가능
-             // 우리 없이 가축을 키울 시에는 외양간이 있어야함. 1마리만 가능.
-             // 가축을 1마리 집에서 키울 수 있음.
-            break;
-
-          case "r6":
-            // fixhouse
-
-            farmboardDivs.forEach((farmboardDiv) => {
-                const image = farmboardDiv.querySelector('img');
-                const imageSrc = image.getAttribute('src');
-
-                farmboardDiv.addEventListener('mouseover', function () {
-                if (imageSrc === './image/board/clayroom.png' || imageSrc === './image/board/stoneroom.png' || imageSrc === './image/board/woodenroom.png') {
-                        farmboardDiv.classList.add('hover-effect');
-                    }
-                });
-
-                farmboardDiv.addEventListener('mouseout', function () {
-                farmboardDiv.classList.remove('hover-effect');
-                });
-            });
-            break;
-        
-          case "a1":
-            // 집짓기
-
-            farmboardDivs.forEach((farmboardDiv) => {
-                const surroundingDivs = farmboardDiv.querySelectorAll('.farmboard > div');
-
-                surroundingDivs.forEach((div) => {
-                    const image = div.querySelector('img');
-                    const imageSrc = image.getAttribute('src');
-                    const divId = div.getAttribute('id');
-
-                    if (
-                        imageSrc.includes('clayroom.png') ||
-                        imageSrc.includes('stonewood.png') ||
-                        imageSrc.includes('woodenroom.png')
-                    ) {
-                        //아이디에 따라 호버 적용.. 하드코딩?
-                    }
-                });
-            });
-            break;
-      
-          case "a5":
-            //농장
-
-            farmboardDivs.forEach((farmboardDiv) => {
-                const surroundingDivs = farmboardDiv.querySelectorAll('.farmboard > div');
-
-                let hoverDivs = Array.from(surroundingDivs).filter((div) => {
-                    const image = div.querySelector('img');
-                    const imageSrc = image.getAttribute('src');
-                    return imageSrc.includes('field.png');
-                });
-
-                if (hoverDivs.length === 0) {
-                    hoverDivs = Array.from(surroundingDivs).filter((div) => {
-                        const image = div.querySelector('img');
-                        const imageSrc = image.getAttribute('src');
-                        return !imageSrc.includes('house.png');
+            case "r2":
+                // Build Fence
+                // 울타리가 설치되지 않은 모든 곳에 적용
+                const fences = farmBoard.querySelectorAll('.row_bar, .col_bar');
+                Array.from(fences)
+                    .filter(fence => !fence.style.background)
+                    .forEach((fence) => {
+                        fence.addEventListener('mouseover', function () {
+                                fence.classList.add('available-hover');
+                        })
+                        fence.addEventListener('mouseout', function () {
+                            fence.classList.remove('available-hover');
+                        });
+                    })
+                break;
+            case "r4":
+                // sheep
+                // 울타리 고려해야되고, 외양간 고려해야되고
+                // 우리(울타리로 싸인 공간) 1칸당 가축 두마리. 같은 가축만 가능.
+                // 외양간은 * 2 마리 가능
+                // 우리 없이 가축을 키울 시에는 외양간이 있어야함. 1마리만 가능.
+                // 가축을 1마리 집에서 키울 수 있음.
+                break;
+            case "r6":
+                // Upgrade House
+                // 흙집(->나무집), 나무집(->돌집)이 설치된 모든 부분에 적용
+                Array.from(farmTiles)
+                    .filter(farmTile => {
+                        return farmTile.querySelector('img')
+                            .getAttribute('src')
+                            .match(/^image\/board\/FarmBoard\/(woodenroom\.png|stoneroom\.jpeg)$/);
+                    })
+                    .forEach(farmTile => {
+                        farmTile.addEventListener('mouseover', function () {
+                            farmTile.classList.add('available-hover');
+                        });
+                        farmTile.addEventListener('mouseout', function () {
+                            farmTile.classList.remove('available-hover');
+                        });
                     });
-                }
+                break;
+            case "a1":
+                // Expand House
+                // 집은 원래 있던 집에 맞닿아있는 곳에만 설치 가능
 
-                // id에 따라 그 주위에만. 하드코딩??
-            });
-            break;
+                // 원래 있던 집 확인
+                const houseNumbers = Array.from(farmTiles)
+                    .filter(farmTile => {
+                        return farmTile.querySelector('img')
+                            .getAttribute('src')
+                            .match(/^image\/board\/FarmBoard\/farmboard\d+\.png$/);
+                    })
+                    .map(farmTile => Number(farmTile.getAttribute('id').slice(1)));
 
-      
-          default:
-            break;
+                // 맨 처음 집이 왼쪽 아래에 설치되어 있으므로, 빈 타일을 기준으로 아래, 왼쪽만 확인하면 됨.
+                Array.from(farmTiles)
+                    .filter(farmTile => {
+                        const tileNumber = Number(farmTile.getAttribute('id').slice(1));
+                        // 맨 왼쪽이 아니라면, 왼쪽 확인
+                        if(tileNumber !== 1 && tileNumber !== 6 && tileNumber !== 11 && houseNumbers.includes(tileNumber - 1)) return true;
+                        // 맨 아래가 아니라면, 아래쪽 확인
+                        if(tileNumber < 11 && houseNumbers.includes(tileNumber + 5)) return true;
+                        // 아무것도 해당되지 않으면 false
+                        return false;
+                    })
+                    .forEach(farmTile => {
+                        farmTile.addEventListener('mouseover', function () {
+                            farmTile.classList.add('available-hover');
+                        });
+                        farmTile.addEventListener('mouseout', function () {
+                            farmTile.classList.remove('available-hover');
+                        });
+                    });
+                break;
+            case "a5":
+                // 밭 일구기
+                // 밭은 원래 있던 밭에 맞닿아있는 곳에만 설치 가능
+
+                // 원래 있던 집 확인
+                const farmLands = Array.from(farmTiles)
+                    .filter(farmTile => {
+                        return farmTile.querySelector('img')
+                            .getAttribute('src')
+                            .match(/field.png$/);
+                    })
+                    .map(farmTile => Number(farmTile.getAttribute('id').slice(1)));
+
+                // 밭은 상하좌우 모든곳을 고려해야 함
+                Array.from(farmTiles)
+                    .filter(farmTile => {
+                        const tileNumber = Number(farmTile.getAttribute('id').slice(1));
+                        // 맨 왼쪽이 아니라면, 왼쪽 확인
+                        if(tileNumber !== 1 && tileNumber !== 6 && tileNumber !== 11 && farmLands.includes(tileNumber - 1)) return true;
+                        // 맨 오른쪽이 아니라면, 오른쪽 확인
+                        if(tileNumber !== 5 && tileNumber !== 10 && tileNumber !== 15 && farmLands.includes(tileNumber + 1)) return true;
+                        // 맨 위쪽이 아니라면, 위쪽 확인
+                        if(tileNumber > 5 && farmLands.includes(tileNumber - 5)) return true;
+                        // 맨 아래가 아니라면, 아래쪽 확인
+                        if(tileNumber < 11 && farmLands.includes(tileNumber + 5)) return true;
+                        // 아무것도 해당되지 않으면 false
+                        return false;
+                    })
+                    .forEach(farmTile => {
+                        farmTile.addEventListener('mouseover', function () {
+                            farmTile.classList.add('available-hover');
+                        });
+                        farmTile.addEventListener('mouseout', function () {
+                            farmTile.classList.remove('available-hover');
+                        });
+                    });
+                break;
+            default:
+                break;
         }
-      }
-
-    isRedOrBlue(element) {
-        const backgroundColor = getComputedStyle(element).backgroundColor;
-        return backgroundColor === 'red' || backgroundColor === 'blue';
     }
 
     removeAllEventListenersFromFarmBoard() {
         const farmBoard = document.querySelector('.farm_board');
         const eventListeners = getEventListeners(farmBoard);
-      
+
         Object.keys(eventListeners).forEach((event) => {
-          eventListeners[event].forEach((listener) => {
-            farmBoard.removeEventListener(event, listener.listener);
-          });
+            eventListeners[event].forEach((listener) => {
+                farmBoard.removeEventListener(event, listener.listener);
+            });
         });
-      }
+    }
 
 
     // action_round의 background_img 바꾸기
@@ -210,7 +210,7 @@ export class UIManager extends UIInterface {
             if (this.handleAnimalAddDelete) {
                 farmboard.removeEventListener("click", this.handleAnimalAddDelete);
             }
-            const handleClick = function() {
+            const handleClick = function () {
                 const animalImage = farmboard.querySelector(".farmanimal");
                 if (!animalImage) {
                     const newAnimalImage = document.createElement("img");
@@ -230,7 +230,7 @@ export class UIManager extends UIInterface {
             if (this.handleAnimalAddDelete) {
                 farmboard.removeEventListener("click", this.handleAnimalAddDelete);
             }
-            this.handleAnimalAddDelete = function() {
+            this.handleAnimalAddDelete = function () {
                 const animalImage = farmboard.querySelector(".farmanimal");
                 if (animalImage) {
                     farmboard.removeChild(animalImage);
@@ -249,7 +249,7 @@ export class UIManager extends UIInterface {
             if (this.handleFenceAddDelete) {
                 rowfence.removeEventListener("click", this.handleFenceAddDelete);
             }
-            const handleClick = function() {
+            const handleClick = function () {
                 const fenceImage = rowfence.querySelector(".farmfence");
                 if (!fenceImage) {
                     const newFenceImage = document.createElement("div");
@@ -270,7 +270,7 @@ export class UIManager extends UIInterface {
                 colfence.removeEventListener("click", this.handleFenceAddDelete);
             }
 
-            const handleClick = function() {
+            const handleClick = function () {
                 const fenceImage = colfence.querySelector(".farmfence");
                 if (!fenceImage) {
                     const newFenceImage = document.createElement("div");
@@ -295,7 +295,7 @@ export class UIManager extends UIInterface {
             if (this.handleFenceAddDelete) {
                 rowfence.removeEventListener("click", this.handleFenceAddDelete);
             }
-            this.handleFenceAddDelete = function() {
+            this.handleFenceAddDelete = function () {
                 const fenceImage = rowfence.querySelector(".farmfence");
                 if (fenceImage) {
                     rowfence.removeChild(fenceImage);
@@ -308,7 +308,7 @@ export class UIManager extends UIInterface {
             if (this.handleFenceAddDelete) {
                 colfence.removeEventListener("click", this.handleFenceAddDelete);
             }
-            this.handleFenceAddDelete = function() {
+            this.handleFenceAddDelete = function () {
                 const fenceImage = colfence.querySelector(".farmfence");
                 if (fenceImage) {
                     colfence.removeChild(fenceImage);
@@ -326,7 +326,7 @@ export class UIManager extends UIInterface {
             if (this.handleBarnAddDelete) {
                 farmboard.removeEventListener("click", this.handleBarnAddDelete);
             }
-            const handleClick = function() {
+            const handleClick = function () {
                 const barnImage = farmboard.querySelector(".farmbarn");
                 if (!barnImage) {
                     const newBarnImage = document.createElement("img");
@@ -346,7 +346,7 @@ export class UIManager extends UIInterface {
             if (this.handleBarnAddDelete) {
                 farmboard.removeEventListener("click", this.handleBarnAddDelete);
             }
-            this.handleBarnAddDelete = function() {
+            this.handleBarnAddDelete = function () {
                 const barnImage = farmboard.querySelector(".farmbarn");
                 if (barnImage) {
                     farmboard.removeChild(barnImage);
@@ -364,7 +364,7 @@ export class UIManager extends UIInterface {
             if (this.handleFarmerAddDelete) {
                 farmboard.removeEventListener("click", this.handleFarmerAddDelete);
             }
-            const handleClick = function() {
+            const handleClick = function () {
                 const farmerImage = farmboard.querySelector(".farmfarmer");
                 if (!farmerImage) {
                     const newFarmerImage = document.createElement("img");
@@ -385,7 +385,7 @@ export class UIManager extends UIInterface {
             if (this.handleFarmerAddDelete) {
                 farmboard.removeEventListener("click", this.handleFarmerAddDelete);
             }
-            this.handleFarmerAddDelete = function() { //handleBarnAddDelete 수정
+            this.handleFarmerAddDelete = function () { //handleBarnAddDelete 수정
                 const farmerImage = farmboard.querySelector(".farmfarmer");
                 if (farmerImage) {
                     farmboard.removeChild(farmerImage);
@@ -403,7 +403,7 @@ export class UIManager extends UIInterface {
             if (this.handleRoomAddDelete) {
                 farmboard.removeEventListener("click", this.handleRoomAddDelete);
             }
-            const handleClick = function() {
+            const handleClick = function () {
                 const roomImage = farmboard.querySelector(".farmroom");
                 if (!roomImage) {
                     const newRoomImage = document.createElement("img");
@@ -425,7 +425,7 @@ export class UIManager extends UIInterface {
             if (this.handleRoomAddDelete) {
                 farmboard.removeEventListener("click", this.handleRoomAddDelete);
             }
-            this.handleRoomAddDelete = function() {
+            this.handleRoomAddDelete = function () {
                 const roomImage = farmboard.querySelector(".farmroom");
                 if (roomImage) {
                     farmboard.removeChild(roomImage);
@@ -443,7 +443,7 @@ export class UIManager extends UIInterface {
             if (this.handleRoomAddDelete) {
                 farmboard.removeEventListener("click", this.handleRoomAddDelete);
             }
-            const handleClick = function() {
+            const handleClick = function () {
                 const roomImage = farmboard.querySelector(".farmroom");
                 if (!roomImage) {
                     const newRoomImage = document.createElement("img");
@@ -460,38 +460,38 @@ export class UIManager extends UIInterface {
     majorCardPopUp(majorCardsName, isSelectable) {
         return new Promise((resolve) => {
 
-            
+
             let majorCardsContainer = document.getElementById("major_cards_container");
             let cards = majorCardsContainer.getElementsByTagName("img");
             while (cards.length > 0) {
                 cards[0].parentNode.removeChild(cards[0]);
             }
-        
+
             for (let cardName of majorCardsName) {
                 const majorCard = document.createElement('img');
                 majorCard.setAttribute("id", cardName);
                 majorCard.setAttribute("src", "image/utility/" + cardName + ".png");
-        
+
                 if (isSelectable) {
-                majorCard.addEventListener("click", function() {
-                    let selectedCardId = this.getAttribute("id");
-                    resolve(selectedCardId);
-                    document.getElementById("popup_layer").style.display = "none";
-                });
+                    majorCard.addEventListener("click", function () {
+                        let selectedCardId = this.getAttribute("id");
+                        resolve(selectedCardId);
+                        document.getElementById("popup_layer").style.display = "none";
+                    });
                 }
-        
+
                 majorCardsContainer.appendChild(majorCard);
             }
-        
+
             document.getElementById("popup_layer").style.display = "block";
-        
+
         });
-      }
-      
+    }
+
 
     // // 주요 설비 팝업(MajorCardManager)
     // majorCardPopUp(majorCardsName, isSelectable) {
-        
+
     //     // major_cards_container에서 img태그가 있는 자식들 모두 제거
     //     let majorCardsContainer = document.getElementById("major_cards_container");
     //     let cards = majorCardsContainer.getElementsByTagName("img");
@@ -511,7 +511,7 @@ export class UIManager extends UIInterface {
     //                 console.log("Selected Card ID: ", selectedCardName);
     //             });
     //         }
-            
+
     //         majorCardsContainer.appendChild(majorCard);
     //     }
 
@@ -590,7 +590,8 @@ export class UIManager extends UIInterface {
         const farmboards = document.querySelectorAll('.farm_border')[turn]
         let farmer = null
         let action_board_id = 0;
-        let onClick = function() {}
+        let onClick = function () {
+        }
 
         let farmboardPromise = new Promise((resolve) => {
             farmboards.addEventListener('click', function onClick(event) {
@@ -616,8 +617,8 @@ export class UIManager extends UIInterface {
         action_board_id = await actionboardPromise
         return action_board_id
     }
-    
-    
+
+
     // 라운드 끝나고 농부 이미지 지우기
     removeImages(className, srcPrefix) {
         const elements = document.getElementsByClassName(className);
@@ -625,10 +626,10 @@ export class UIManager extends UIInterface {
         for (let i = elements.length - 1; i >= 0; i--) {
             const imageElements = elements[i].getElementsByTagName('img');
             for (let j = imageElements.length - 1; j >= 0; j--) {
-            const imageSrc = imageElements[j].getAttribute('src');
-            if (imageSrc.startsWith(srcPrefix)) {
-                imageElements[j].remove();
-            }
+                const imageSrc = imageElements[j].getAttribute('src');
+                if (imageSrc.startsWith(srcPrefix)) {
+                    imageElements[j].remove();
+                }
             }
         }
     }
@@ -657,14 +658,14 @@ function clickActionBoard(event, farmer, farmerType) {
         transform: translate(-50%, -50%); 
         max-width: 100%;
     `
-     // if(action_board.id.startsWith('r')){
+    // if(action_board.id.startsWith('r')){
     //     const actionBoardId = parseInt(action_board.id.substr(1));
     //     if (actionBoardId <= round) {
     //         console.log(123);
     //         new_farmer.classList.add('farmfarmer')
     //         // action 칸에 농부 추가
     //         action_board.appendChild(new_farmer)
-    
+
     //         // farmboard에 있는 농부 제거
     //         farmer.remove();
     //       }else{
