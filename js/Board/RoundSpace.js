@@ -104,7 +104,23 @@ class UpgradeHouse extends BoardInterface {
         super("UpgradeHouse");
     }
 
-    behave(player) {
+    async behave(player, uiManager) {
+        const roomType = player.tileManager.roomType;
+        const roomPosition = player.tileManager.roomPosition;
+        switch (roomType) {
+            case RoomType.WOOD:
+                player.resourceManager.removeResource(RT.CLAY, roomPosition.length);
+                player.resourceManager.removeResource(RT.REED, roomPosition.length);
+                break;
+            case RoomType.CLAY:
+                player.resourceManager.removeResource(RT.STONE, roomPosition.length);
+                player.resourceManager.removeResource(RT.REED, roomPosition.length);
+                break;
+            default:
+                break;
+        }
+
+        await uiManager.upgradeHouse(player.name, roomType, roomPosition);
         player.tileManager.setRoomType();
 
         this.setActivate();

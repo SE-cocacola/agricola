@@ -33,9 +33,23 @@ class TileManager {
     }
 
     setRoomType(){
-        for(let i=0; i<this.roomPosition.length; i++){
-            this.playerBoard[this.roomPosition[i]].roomUpgrade(this.roomType);
+        switch (this.roomType) {
+            case RoomType.WOOD:
+              this.roomType = RoomType.CLAY;
+              break;
+            case RoomType.CLAY:
+              this.roomType = RoomType.STONE;
+              break;
+            default:
+              console.log("Invalid room type");
+              break;
         }
+
+        for(let i=0; i<this.roomPosition.length; i++){
+            // 아이가 있을 때 집 추가될 수도 있어서 addRoom 하면 안되긴함
+            this.addRoom(this.roomPosition[i]);
+        }
+        console.log(this.playerBoard);
     }
 }
 
