@@ -219,7 +219,7 @@ class Player {
                 console.log("a1");
                 // 농장 확장
                 let expandFarm = actionSpace[0];
-
+                await expandFarm.behave(this, uiManager);
                 break;
 
             case "a2":
@@ -247,7 +247,7 @@ class Player {
                 console.log("a5");
                 // 밭 한개 일구기
                 let farmLand = actionSpace[3];
-
+                await farmLand.behave(this, uiManager);
                 break;
 
             case "a6":

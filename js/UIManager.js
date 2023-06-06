@@ -359,37 +359,7 @@ export class UIManager extends UIInterface {
             document.getElementById("popup_layer").style.display = "block";
         
         });
-      }
-      
-
-    // // 주요 설비 팝업(MajorCardManager)
-    // majorCardPopUp(majorCardsName, isSelectable) {
-        
-    //     // major_cards_container에서 img태그가 있는 자식들 모두 제거
-    //     let majorCardsContainer = document.getElementById("major_cards_container");
-    //     let cards = majorCardsContainer.getElementsByTagName("img");
-    //     while (cards.length > 0) {
-    //         cards[0].parentNode.removeChild(cards[0]);
-    //     }
-
-    //     // 현재 남아있는 Major cards를 추가함
-    //     for (let cardName of majorCardsName) {
-    //         const majorCard = document.createElement('img');
-    //         majorCard.setAttribute("id", cardName);
-    //         majorCard.setAttribute("src", "image/utility/" + cardName + ".png");
-
-    //         if(isSelectable){
-    //             majorCard.addEventListener("click", function() {
-    //                 let selectedCardName = this.getAttribute("id");
-    //                 console.log("Selected Card ID: ", selectedCardName);
-    //             });
-    //         }
-            
-    //         majorCardsContainer.appendChild(majorCard);
-    //     }
-
-    //     document.getElementById("popup_layer").style.display = "block";
-    // }
+    }
 
     // 주요설비 팝업 닫기
     closePopUp() {
@@ -504,6 +474,82 @@ export class UIManager extends UIInterface {
             }
         }
     }
+
+    // 농장 확장
+    selectExpandFarm(roomType, tileManager) {
+        let roomImg;
+        switch (roomType) {
+          case "wood":
+            roomImg = "woodenroom.png";
+            break;
+          case "clay":
+            roomImg = "clayroom.png";
+            break;
+          case "stone":
+            roomImg = "stoneroom.jpeg";
+            break;
+          default:
+            break;
+        }
+
+        // 아래 리스트통해서 클릭 되게 할거랑 안 되게 할거 정하기?
+        let room = tileManager.roomPosition;
+        let field = tileManager.fieldPosition;
+        let pen = tileManager.penPosition;
+      
+        return new Promise((resolve) => {
+          const boards = document.querySelectorAll(".farm_board [id^='board']");
+      
+          const clickHandler = (event) => {
+            // 다른 플레이어의 board 안 눌리게 하려면 boards에서 받아올 때 class 이름 다르게 해야함
+            const board = event.currentTarget;
+            const boardIdx = board.id;
+            const boardElement = document.getElementById(boardIdx).querySelector("img");
+            boardElement.src = "image/board/FarmBoard/" + roomImg;
+            resolve(parseInt(boardIdx.substring(5), 10) - 1);
+      
+            // 클릭 후 board의 이벤트 리스너 제거
+            boards.forEach((board) => {
+              board.removeEventListener("click", clickHandler);
+            });
+          };
+      
+          boards.forEach((board) => {
+            board.addEventListener("click", clickHandler);
+          });
+        });
+      }
+
+      // 밭 설치
+    selectFarmLand(tileManager) {
+        // 밭도 서로 붙여야하나? 잘 모르지만 두 개 이상 지을일 없을거같아서 필요없을듯
+        // 그치만 room, field, pen이 이미 존재하면 안 눌리게는 해야함
+        let room = tileManager.roomPosition;
+        let field = tileManager.fieldPosition;
+        let pen = tileManager.penPosition;
+
+        return new Promise((resolve) => {
+            const boards = document.querySelectorAll(".farm_board [id^='board']");
+            
+            const clickHandler = (event) => {
+              // 다른 플레이어의 board 안 눌리게 하려면 boards에서 받아올 때 class 이름 다르게 해야함
+              const board = event.currentTarget;
+              const boardIdx = board.id;
+              const boardElement = document.getElementById(boardIdx).querySelector("img");
+              boardElement.src = "image/board/FarmBoard/field.png";
+              resolve(parseInt(boardIdx.substring(5), 10) - 1);
+        
+              // 클릭 후 board의 이벤트 리스너 제거
+              boards.forEach((board) => {
+                board.removeEventListener("click", clickHandler);
+              });
+            };
+        
+            boards.forEach((board) => {
+              board.addEventListener("click", clickHandler);
+            });
+        });
+    }  
 
 }
 

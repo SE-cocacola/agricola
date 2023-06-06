@@ -17,9 +17,7 @@ class Brazier1 extends MajorCardInterface{
         this.cardIdx = 0;
         this.name = "brazier1";
         this.needResource = [
-            [
-                {resourceType: RT.CLAY, amount: 2}
-            ], 
+            {resourceType: RT.CLAY, amount: 2}
         ];
         this.score = 1;
     }
@@ -28,7 +26,11 @@ class Brazier1 extends MajorCardInterface{
         switch (resourceType) {
             // 음식 교환 로직
             case RT.VEGETABLE:
+                {RT.FOOD, 2 * amount};
+
             case RT.SHEEP:
+                {RT.FOOD, 2 * amount};
+
             case RT.BOAR:
                 {RT.FOOD, 2 * amount};
                 break;
@@ -42,10 +44,12 @@ class Brazier1 extends MajorCardInterface{
         }
     }
 
-    specificAction(actionType) {
+    specificAction(player, actionType) {
         switch (actionType) {
           case "Baking":
             // 빵굽기 로직
+            player.resourceManager.removeResource(RT.GRAIN, 1);
+            player.resourceManager.addResource(RT.FOOD, 2);
             break;
           default:
             break;
@@ -60,9 +64,7 @@ class Brazier2 extends MajorCardInterface{
         this.cardIdx = 1;
         this.name = "brazier2";
         this.needResource = [
-            [
-                {resourceType: RT.CLAY, amount: 3}
-            ],
+            {resourceType: RT.CLAY, amount: 3}
         ];
         this.score = 1;
     }
@@ -70,7 +72,11 @@ class Brazier2 extends MajorCardInterface{
     wheneverAction(resourceType, amount){
         switch (resourceType) {
             case RT.VEGETABLE:
+                {RT.FOOD, 2 * amount};
+
             case RT.SHEEP:
+                {RT.FOOD, 2 * amount};
+
             case RT.BOAR:
                 {RT.FOOD, 2 * amount};
                 break;
@@ -84,10 +90,12 @@ class Brazier2 extends MajorCardInterface{
         }
     }
 
-    specificAction(actionType) {
+    specificAction(player, actionType) {
         switch (actionType) {
           case "Baking":
             // 빵굽기 로직
+            player.resourceManager.removeResource(RT.GRAIN, 1);
+            player.resourceManager.addResource(RT.FOOD, 2);
             break;
           default:
             break;
@@ -102,9 +110,7 @@ class FirePot1 extends MajorCardInterface{
         this.cardIdx = 2;
         this.name = "firePot1";
         this.needResource = [
-            [
-                {resourceType: RT.CLAY, amount: 4}
-            ],
+            {resourceType: RT.CLAY, amount: 4}
             // 화로 반납 추가
         ];
         this.score = 1;
@@ -114,6 +120,8 @@ class FirePot1 extends MajorCardInterface{
         switch (resourceType) {
             // 음식 교환 로직
             case RT.VEGETABLE:
+                {RT.FOOD, 3 * amount};
+
             case RT.BOAR:
                 {RT.FOOD, 3 * amount};
                 
@@ -128,10 +136,12 @@ class FirePot1 extends MajorCardInterface{
         }
     }
 
-    specificAction(actionType) {
+    specificAction(player, actionType) {
         switch (actionType) {
           case "Baking":
             // 빵굽기 로직
+            player.resourceManager.removeResource(RT.GRAIN, 1);
+            player.resourceManager.addResource(RT.FOOD, 3);
             break;
           default:
             break;
@@ -146,9 +156,7 @@ class FirePot2 extends MajorCardInterface{
         this.cardIdx = 3;
         this.name = "firePot2";
         this.needResource = [
-            [
-                {resourceType: RT.CLAY, amount: 5}
-            ],
+            {resourceType: RT.CLAY, amount: 5}
             // 화로 반납 추가
         ];
         this.score = 1;
@@ -156,23 +164,30 @@ class FirePot2 extends MajorCardInterface{
 
     wheneverAction(resourceType, amount){
         switch (resourceType) {
+            // 음식 교환 로직
             case RT.VEGETABLE:
-                // 음식 교환 로직
-            case RT.SHEEP:
-                // 음식 교환 로직
+                {RT.FOOD, 3 * amount};
+
             case RT.BOAR:
-                // 음식 교환 로직
+                {RT.FOOD, 3 * amount};
+                
+            case RT.SHEEP:
+                {RT.FOOD, 2 * amount};
+            
             case RT.CATTLE:
-                // 음식 교환 로직
+                {RT.FOOD, 4 * amount};
+                
             default:
                 break;
         }
     }
 
-    specificAction(actionType) {
+    specificAction(player, actionType) {
         switch (actionType) {
           case "Baking":
             // 빵굽기 로직
+            player.resourceManager.removeResource(RT.GRAIN, 1);
+            player.resourceManager.addResource(RT.FOOD, 3);
             break;
           default:
             break;
@@ -187,18 +202,18 @@ class EarthenKiln extends MajorCardInterface{
         this.cardIdx = 4;
         this.name = "earthenKiln";
         this.needResource = [
-            [
-                {resourceType: RT.CLAY, amount: 3},
-                {resourceType: RT.STONE, amouont: 1}
-            ]
+            {resourceType: RT.CLAY, amount: 3},
+            {resourceType: RT.STONE, amouont: 1}
         ];
         this.score = 2;
     }
 
-    specificAction(actionType) {
+    specificAction(player, actionType, amount) {
         switch (actionType) {
           case "Baking":
             // 빵굽기 로직
+            player.resourceManager.removeResource(RT.GRAIN, amount);
+            player.resourceManager.addResource(RT.FOOD, 5 * amount);
             break;
           default:
             break;
@@ -213,19 +228,19 @@ class StoneKiln extends MajorCardInterface{
         this.cardIdx = 5;
         this.name = "stoneKiln";
         this.needResource = [
-            [
-                {resourceType: RT.CLAY, amount: 1},
-                {resourceType: RT.STONE, amount: 3}
-            ]
+            {resourceType: RT.CLAY, amount: 1},
+            {resourceType: RT.STONE, amount: 3}
         ];
         this.score = 3;
     }
 
 
-    specificAction(actionType) {
+    specificAction(player, actionType, amount) {
         switch (actionType) {
             case "Baking":
                 // 빵굽기 로직
+                player.resourceManager.removeResource(RT.GRAIN, amount);
+                player.resourceManager.addResource(RT.FOOD, 4 * amount);
                 break;
             default:
                 break;
@@ -239,22 +254,19 @@ class FurnitureFactory extends MajorCardInterface{
         this.cardIdx = 6;
         this.name = "furnitureFactory";
         this.needResource = [
-            [
-                {resourceType: RT.WOOD, amount: 2},
-                {resourceType: RT.STONE, amount: 2}
-            ]
+            {resourceType: RT.WOOD, amount: 2},
+            {resourceType: RT.STONE, amount: 2}
         ];
         this.score = 2;
     }
 
-    specificAction(actionType) {
+    specificAction(player, actionType) {
+        const woodCnt = player.resourceManager.resources[0].amount;
         switch (actionType) {
             case "Harvest":
                 // 수확 로직
+                player.resourceManager.addResource(RT.FOOD, 2 * woodCnt);
                 break;
-            case "End" :
-                // 게임 끝났을 때
-                break;  
             default:
                 break;
         }
@@ -268,22 +280,19 @@ class BowlFactory extends MajorCardInterface{
         this.cardIdx = 7;
         this.name = "bowlFactory";
         this.needResource = [
-            [
-                {resourceType: RT.CLAY, amount: 2},
-                {resourceType: RT.STONE, amount: 2}
-            ]
+            {resourceType: RT.CLAY, amount: 2},
+            {resourceType: RT.STONE, amount: 2}
         ];
         this.score = 2;
     }
 
-    specificAction(actionType) {
+    specificAction(player, actionType) {
+        const clayCnt = player.resourceManager.resources[1];
         switch (actionType) {
             case "Harvest":
                 // 수확 로직
-                break;
-            case "End" :
-                // 게임 끝났을 때
-                break;  
+                player.resourceManager.addResource(RT.FOOD, 2 * clayCnt);
+                break; 
             default:
                 break;
         }
@@ -297,22 +306,19 @@ class BasketFactory extends MajorCardInterface{
         this.cardIdx = 8;
         this.name = "basketFactory";
         this.needResource = [
-            [
-                {resourceType: RT.REED, amount: 2},
-                {resourceType: RT.STONE, amount: 2}
-            ]
+            {resourceType: RT.REED, amount: 2},
+            {resourceType: RT.STONE, amount: 2}
         ];
         this.score = 2;
     }
 
-    specificAction(actionType) {
+    specificAction(player, actionType) {
+        const reedCnt = player.resourceManager.resources[3];
         switch (actionType) {
             case "Harvest":
                 // 수확 로직
+                player.resourceManager.addResource(RT.FOOD, 2 * reedCnt);
                 break;
-            case "End" :
-                // 게임 끝났을 때
-                break;  
             default:
                 break;
         }
@@ -326,10 +332,8 @@ class Well extends MajorCardInterface{
         this.cardIdx = 9;
         this.name = "well";
         this.needResource = [
-            [
-                {resourceType: RT.WOOD, amount: 1},
-                {resourceType: RT.STONE, amount: 3}
-            ]
+            {resourceType: RT.WOOD, amount: 1},
+            {resourceType: RT.STONE, amount: 3}
         ];
         this.score = 4;
     }
