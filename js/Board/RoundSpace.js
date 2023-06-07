@@ -87,6 +87,7 @@ class BuildFence extends BoardInterface {
                 
         
         }
+
         uiManager.removeAllEventListenersFromFarmBoard();
         this.setActivate();
     }
@@ -131,6 +132,17 @@ class AccumulateSheep extends BoardInterface {
         // }
         // uiManager.removeAllEventListenersFromFarmBoard();
         // this.setActivate();
+
+        // uiManager에서 어디를 선택할 수 있는지.
+        uiManager.addHoverEffectToDiv("r4");
+        // if(/* 제약조건 */){
+            player.resourceManager.addResource(RT.SHEEP, this.cnt);
+        // }else{
+        //     return;
+        // }
+        uiManager.removeAllEventListenersFromFarmBoard();
+        this.setActivate();
+
     }
 
     increaseCnt() {
@@ -177,8 +189,6 @@ class UpgradeHouse extends BoardInterface {
         }
 
         await uiManager.upgradeHouse(player.name, roomType, roomPosition);
-        player.tileManager.setRoomType();
-
         player.tileManager.setRoomType();
         
         uiManager.removeAllEventListenersFromFarmBoard();

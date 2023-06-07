@@ -25,6 +25,13 @@ export class UIManager extends UIInterface {
     addHoverEffectToDiv(divId) {
         const div = document.getElementById(divId);
 
+        // div.addEventListener("mouseover", function () {
+        //     div.classList.add("hover-red");
+        // });
+        // div.addEventListener("mouseout", function () {
+        //     div.classList.remove("hover-red");
+        // });
+
         const farmBoard = document.querySelector('.farm_boards');
         const farmTiles = farmBoard.querySelectorAll('.farmboard');
 
