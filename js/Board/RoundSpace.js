@@ -34,6 +34,7 @@ class BuildFence extends BoardInterface {
     constructor() {
         super("BuildFence");
         this.active = true;
+        this.handleClick = this.handleClick.bind(this);
     }
 
     async behave(player, uiManager) {
@@ -41,57 +42,39 @@ class BuildFence extends BoardInterface {
         // uiManager hover
         uiManager.addHoverEffectToDiv("r2");
 
-        document.getElementById('confirm').addEventListener('click', function() {
-            // 변수 값을 변경
-            this.active = false;
-        });
-
-
-        // const rowBars = document.querySelectorAll('.row_bar');
-        // const colBars = document.querySelectorAll('.col_bar');
-        // // row_bar 클래스를 가진 요소에 클릭 이벤트 리스너 등록
-        // rowBars.forEach(function(element) {
-        //     element.addEventListener('click', function(event) {
-        //         target_id = event.target.id;
-        //     });
-        // });
-
-        // // col_bar 클래스를 가진 요소에 클릭 이벤트 리스너 등록
-        // colBars.forEach(function(element) {
-        //     element.addEventListener('click', function(event) {
-        //         target_id = event.target.id;
-        //     });
-        // });
+        document.getElementById('confirm').addEventListener('click', this.handleClick);
 
         let target_id;
-        
-        while(player.resourceManager.resources[0].amount >= 1 && this.active) {
-            const row_col_bars = player.name === 0 ? document.querySelector('.farm_board1') : document.querySelector('.farm_board0');
-            
-            let fencePromise = new Promise((resolve) =>{
-                row_col_bars.addEventListener('click', function(event){
-                    if(event.target.matches('.row_bar') || event.target.matches('col_bar')){
+
+        while (player.resourceManager.resources[0].amount >= 1) {
+            const row_col_bars = player.name === "0" ? document.querySelector('.farm_board0') : document.querySelector('.farm_board1');
+
+            let fencePromise = new Promise((resolve) => {
+                row_col_bars.addEventListener('click', function(event) {
+                    if (event.target.matches('.row_bar') || event.target.matches('.col_bar')) {
                         resolve(event.target.id);
                     }
-                })
+                });
             });
-            
+
             target_id = await fencePromise;
-    
+
             // 버튼 읽어오고 가능한지 체크.
             await uiManager.addFence(player, target_id);
             player.resourceManager.resources[0].amount -= 1;
 
-                
-                //삭제는 어떻게 처리하지? 삭제하고싶으면?
-                
-        
-        }
+            // 삭제는 어떻게 처리하지? 삭제하고싶으면?
 
-        uiManager.removeAllEventListenersFromFarmBoard();
-        this.setActivate();
+        }
+    }
+
+    handleClick() {
+        // 변수 값을 변경
+        this.active = false;
+        console.log(314213)
     }
 }
+
 
 class GrainUtilization extends BoardInterface {
     constructor() {
