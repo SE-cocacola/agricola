@@ -847,7 +847,6 @@ export class UIManager extends UIInterface {
         }
         // [board0, board1]
         let rooms = emptyRoom.map(value => ".farm_board" + playerName + " #board" + value);
-        console.log(rooms);
         return new Promise((resolve) => {
             const boards = document.querySelectorAll(rooms);
 
@@ -871,6 +870,29 @@ export class UIManager extends UIInterface {
               board.addEventListener("click", clickHandler);
             });
         }); 
+    }
+
+    changeChildToAdult(player1ChildPosition, player2ChildPosition){
+        for(let i=0; i<player1ChildPosition.length; i++){
+            player1ChildPosition = player1ChildPosition.map(value => value + 1);
+        }
+        for(let i=0; i<player2ChildPosition.length; i++){
+            player2ChildPosition = player2ChildPosition.map(value => value + 16);
+        }
+        let player1Rooms = player1ChildPosition.map(value => ".farm_board0" + " #board" + value);
+        let player2Rooms = player2ChildPosition.map(value => ".farm_board1" + " #board" + value);
+        const childPosition = player1Rooms.concat(player2Rooms);
+        if (childPosition.length > 0) {
+            const rooms = document.querySelectorAll(childPosition);
+        
+            rooms.forEach((room) => {
+                const farmerImg = room.querySelector('.farmer');
+                if (farmerImg) {
+                  farmerImg.classList.remove('farmer');
+                  farmerImg.classList.add('farmfarmer');
+                }
+            });
+        }
     }
 
 }
