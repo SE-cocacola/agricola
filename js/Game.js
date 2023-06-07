@@ -42,7 +42,7 @@ class Game {
             this.uiManager.changeActionRoundImage(round);
             await this.gameManager.actionRound(this.uiManager, round);
             
-            this.gameManager.actionRound(this.uiManager);
+            // this.gameManager.actionRound(this.uiManager);
             if (round===4 || round===7) {
                 this.gameManager.harvest();
             }
