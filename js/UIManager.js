@@ -752,9 +752,41 @@ export class UIManager extends UIInterface {
             boards.forEach((board) => {
               board.addEventListener("click", clickHandler);
             });
-        });
-        
+        });    
+    }
 
+    increaseFamily(playerName, emptyRoom){
+        if(playerName === "0"){
+            emptyRoom = emptyRoom.map(value => value + 1);
+        }else{
+            emptyRoom = emptyRoom.map(value => value + 16);
+        }
+        // [board0, board1]
+        let rooms = emptyRoom.map(value => ".farm_board" + playerName + " #board" + value);
+        console.log(rooms);
+        return new Promise((resolve) => {
+            const boards = document.querySelectorAll(rooms);
+
+            const clickHandler = (event) => {
+              const board = event.currentTarget;
+              const boardIdx = board.id;
+              const playerNameInteger = parseInt(playerName, 10) + 1;
+              const newFarmerImage = document.createElement("img");
+                newFarmerImage.src = `./image/resource/farmer${playerNameInteger}.png`;
+                newFarmerImage.classList.add('farmer');
+                board.appendChild(newFarmerImage);
+              resolve(parseInt(boardIdx.substring(5), 10) - 1);
+        
+              // 클릭 후 board의 이벤트 리스너 제거
+              boards.forEach((board) => {
+                board.removeEventListener("click", clickHandler);
+              });
+            };
+        
+            boards.forEach((board) => {
+              board.addEventListener("click", clickHandler);
+            });
+        }); 
     }
 
 }

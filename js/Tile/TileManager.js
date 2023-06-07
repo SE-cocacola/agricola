@@ -29,7 +29,7 @@ class TileManager {
     }
 
     addRoom(position){
-        this.playerBoard[position] = new Room(this.roomType, 1);
+        this.playerBoard[position] = new Room(this.roomType, 0);
     }
 
     setRoomType(){
@@ -47,9 +47,8 @@ class TileManager {
 
         for(let i=0; i<this.roomPosition.length; i++){
             // 아이가 있을 때 집 추가될 수도 있어서 addRoom 하면 안되긴함
-            this.addRoom(this.roomPosition[i]);
+            this.playerBoard[this.roomPosition[i]].roomType = this.roomType;
         }
-        console.log(this.playerBoard);
     }
 }
 
