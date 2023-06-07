@@ -68,6 +68,7 @@ class BuildFence extends BoardInterface {
             player.resourceManager.resources[0].amount -= 1;
 
         }
+        const row_col_bars = player.name === "0" ? document.querySelector('.farm_board0') : document.querySelector('.farm_board1');
         uiManager.removeAllEventListenersFromFarmBoard();
     }
 

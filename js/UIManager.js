@@ -155,9 +155,29 @@ export class UIManager extends UIInterface {
 
     removeAllEventListenersFromFarmBoard() {
         const farmBoard = document.querySelector('.farm_boards');
-        const clonedFarmBoard = farmBoard.cloneNode(true);
 
+
+        const fences = farmBoard.querySelectorAll('.row_bar, .col_bar, .farmboard');
+        Array.from(fences)
+            .forEach((fence) => {
+                if(fence.classList.contains('available-hover')) {
+                    fence.classList.remove('available-hover');
+                }
+            })
+
+        const clonedFarmBoard = farmBoard.cloneNode(true);
         farmBoard.parentNode.replaceChild(clonedFarmBoard, farmBoard);
+    }
+
+    removeAllEventListenersFromRowColbars() {
+        const farmBoard = document.querySelector('.farm_boards');
+        const fences = farmBoard.querySelectorAll('.row_bar, .col_bar');
+        Array.from(fences)
+            .forEach((fence) => {
+                if(fence.classList.contains('available-hover')) {
+                    fence.classList.remove('available-hover');
+                }
+            })
     }
 
 

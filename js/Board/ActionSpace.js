@@ -79,6 +79,7 @@ class FarmLand extends BoardInterface{
         idx %= 15;
         player.tileManager.addField(idx);
 
+
         uiManager.removeAllEventListenersFromFarmBoard();
         this.setActivate();
     }
