@@ -35,7 +35,6 @@ class ExpandFarm extends BoardInterface {
     
         player.tileManager.addRoom(idx);
         player.tileManager.roomPosition.push(idx);
-        console.log(player.tileManager.playerBoard);
         this.setActivate();
     }
 }
