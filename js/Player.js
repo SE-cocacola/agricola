@@ -183,6 +183,7 @@ class Player {
             case "r2":
                 console.log("r2");
                 let buildFence = roundSpace[1];
+                await buildFence.behave(this, uiManager);
 
                 break;
 

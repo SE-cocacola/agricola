@@ -25,13 +25,7 @@ export class UIManager extends UIInterface {
     addHoverEffectToDiv(divId) {
         const div = document.getElementById(divId);
 
-        // div.addEventListener("mouseover", function () {
-        //     div.classList.add("hover-red");
-        // });
-        // div.addEventListener("mouseout", function () {
-        //     div.classList.remove("hover-red");
-        // });
-        const farmBoard = document.querySelector('.farm_board');
+        const farmBoard = document.querySelector('.farm_boards');
         const farmTiles = farmBoard.querySelectorAll('.farmboard');
 
         switch (divId) {
@@ -152,14 +146,10 @@ export class UIManager extends UIInterface {
     }
 
     removeAllEventListenersFromFarmBoard() {
-        const farmBoard = document.querySelector('.farm_board');
-        const eventListeners = getEventListeners(farmBoard);
+        const farmBoard = document.querySelector('.farm_boards');
+        const clonedFarmBoard = farmBoard.cloneNode(true);
 
-        Object.keys(eventListeners).forEach((event) => {
-            eventListeners[event].forEach((listener) => {
-                farmBoard.removeEventListener(event, listener.listener);
-            });
-        });
+        farmBoard.parentNode.replaceChild(clonedFarmBoard, farmBoard);
     }
 
 
@@ -245,50 +235,12 @@ export class UIManager extends UIInterface {
     }
 
     // 울타리 치기
-    addFence() {
-        const rowfences = document.querySelectorAll(".row_bar");
-        const colfences = document.querySelectorAll(".col_bar");
-        const fenceType = document.querySelector("#fence-type").value;
-        rowfences.forEach(rowfence => {
-            if (this.handleFenceAddDelete) {
-                rowfence.removeEventListener("click", this.handleFenceAddDelete);
-            }
-            const handleClick = function () {
-                const fenceImage = rowfence.querySelector(".farmfence");
-                if (!fenceImage) {
-                    const newFenceImage = document.createElement("div");
-                    if (fenceType === "Red") {
-                        newFenceImage.style.backgroundColor = "red";
-                    } else {
-                        newFenceImage.style.backgroundColor = "blue";
-                    }
-                    newFenceImage.classList.add('farmfence');
-                    rowfence.appendChild(newFenceImage);
-                }
-            };
-            rowfence.addEventListener("click", handleClick);
-        });
+    addFence(player, target_id) {
 
-        colfences.forEach(colfence => {
-            if (this.handleFenceAddDelete) {
-                colfence.removeEventListener("click", this.handleFenceAddDelete);
-            }
+        const fence = document.getElementById(target_id);
+        let color = (player.name == 0) ? "red" : "blue";
+        fence.style.backgroundColor = color;
 
-            const handleClick = function () {
-                const fenceImage = colfence.querySelector(".farmfence");
-                if (!fenceImage) {
-                    const newFenceImage = document.createElement("div");
-                    if (fenceType === "Red") {
-                        newFenceImage.style.backgroundColor = "red";
-                    } else {
-                        newFenceImage.style.backgroundColor = "blue";
-                    }
-                    newFenceImage.classList.add('farmfence');
-                    colfence.appendChild(newFenceImage);
-                }
-            };
-            colfence.addEventListener("click", handleClick);
-        });
     }
 
     // 울타리 삭제

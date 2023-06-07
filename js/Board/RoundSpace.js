@@ -36,22 +36,56 @@ class BuildFence extends BoardInterface {
         this.active = true;
     }
 
-    behave(player, uiManager) {
+    async behave(player, uiManager) {
         // 울타리 치기
         // uiManager hover
         uiManager.addHoverEffectToDiv("r2");
 
-        while(player.resourceManager.resources[0].amount >= 1 && this.active){ // 어떤 버튼을 클릭했을 때 종료.
-            // 버튼 읽어오고 가능한지 체크.
-            if(/* 제약 조건 */){
-                // 클릭한 board_id 읽어오고
-                uiManager.addFence(player, "board_id");
-            }else{
-                break;
-            }
-            //삭제는 어떻게 처리하지? 삭제하고싶으면?
-            GamepadButton.active = false;
+        document.getElementById('confirm').addEventListener('click', function() {
+            // 변수 값을 변경
+            this.active = false;
+        });
+
+
+        // const rowBars = document.querySelectorAll('.row_bar');
+        // const colBars = document.querySelectorAll('.col_bar');
+        // // row_bar 클래스를 가진 요소에 클릭 이벤트 리스너 등록
+        // rowBars.forEach(function(element) {
+        //     element.addEventListener('click', function(event) {
+        //         target_id = event.target.id;
+        //     });
+        // });
+
+        // // col_bar 클래스를 가진 요소에 클릭 이벤트 리스너 등록
+        // colBars.forEach(function(element) {
+        //     element.addEventListener('click', function(event) {
+        //         target_id = event.target.id;
+        //     });
+        // });
+
+        let target_id;
+        
+        while(player.resourceManager.resources[0].amount >= 1 && this.active) {
+            const row_col_bars = player.name === 0 ? document.querySelector('.farm_board1') : document.querySelector('.farm_board0');
             
+            let fencePromise = new Promise((resolve) =>{
+                row_col_bars.addEventListener('click', function(event){
+                    if(event.target.matches('.row_bar') || event.target.matches('col_bar')){
+                        resolve(event.target.id);
+                    }
+                })
+            });
+            
+            target_id = await fencePromise;
+    
+            // 버튼 읽어오고 가능한지 체크.
+            await uiManager.addFence(player, target_id);
+            player.resourceManager.resources[0].amount -= 1;
+
+                
+                //삭제는 어떻게 처리하지? 삭제하고싶으면?
+                
+        
         }
         uiManager.removeAllEventListenersFromFarmBoard();
         this.setActivate();
@@ -88,15 +122,15 @@ class AccumulateSheep extends BoardInterface {
     }
 
     behave(player, uiManager) {
-        // uiManager에서 어디를 선택할 수 있는지.
-        uiManager.addHoverEffectToDiv("r4");
-        if(/* 제약조건 */){
-            player.resourceManager.addResource(RT.SHEEP, this.cnt);
-        }else{
-            return;
-        }
-        uiManager.removeAllEventListenersFromFarmBoard();
-        this.setActivate();
+        // // uiManager에서 어디를 선택할 수 있는지.
+        // uiManager.addHoverEffectToDiv("r4");
+        // if(/* 제약조건 */){
+        //     player.resourceManager.addResource(RT.SHEEP, this.cnt);
+        // }else{
+        //     return;
+        // }
+        // uiManager.removeAllEventListenersFromFarmBoard();
+        // this.setActivate();
     }
 
     increaseCnt() {
