@@ -34,7 +34,6 @@ class BuildFence extends BoardInterface {
     constructor() {
         super("BuildFence");
         this.active = true;
-        this.handleClick = this.handleClick.bind(this);
     }
 
     async behave(player, uiManager) {
@@ -42,12 +41,11 @@ class BuildFence extends BoardInterface {
         // uiManager hover
         uiManager.addHoverEffectToDiv("r2");
 
-        document.getElementById('confirm').addEventListener('click', this.handleClick);
-
         let target_id;
 
         while (player.resourceManager.resources[0].amount >= 1) {
             const row_col_bars = player.name === "0" ? document.querySelector('.farm_board0') : document.querySelector('.farm_board1');
+            const confirm = document.getElementById('confirm');
 
             let fencePromise = new Promise((resolve) => {
                 row_col_bars.addEventListener('click', function(event) {
@@ -55,17 +53,22 @@ class BuildFence extends BoardInterface {
                         resolve(event.target.id);
                     }
                 });
+                confirm.addEventListener('click', function(event) {
+                    resolve(false);
+                });
             });
 
             target_id = await fencePromise;
+            if(!target_id){
+                break;
+            }
 
             // 버튼 읽어오고 가능한지 체크.
             await uiManager.addFence(player, target_id);
             player.resourceManager.resources[0].amount -= 1;
 
-            // 삭제는 어떻게 처리하지? 삭제하고싶으면?
-
         }
+        uiManager.removeAllEventListenersFromFarmBoard();
     }
 
     handleClick() {
