@@ -453,12 +453,8 @@ h3 {
 
 
 /* mouse interaction */
-<<<<<<< HEAD
 
-.hover-red {
-=======
 .available-hover {
->>>>>>> 91a361dcf363cb642c757cb42b73faa1ff7fb4aa
     background-color: skyblue;
     opacity: 0.4;
     z-index: 1;

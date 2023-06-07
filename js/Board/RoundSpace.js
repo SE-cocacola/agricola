@@ -33,6 +33,7 @@ class BuildMajorFacility extends BoardInterface {
 class BuildFence extends BoardInterface {
     constructor() {
         super("BuildFence");
+        this.active = true;
     }
 
     behave(player, uiManager) {
@@ -40,7 +41,7 @@ class BuildFence extends BoardInterface {
         // uiManager hover
         uiManager.addHoverEffectToDiv("r2");
 
-        while(player.resourceManager.resources[0].amount >= 1 && ){ // 어떤 버튼을 클릭했을 때 종료.
+        while(player.resourceManager.resources[0].amount >= 1 && this.active){ // 어떤 버튼을 클릭했을 때 종료.
             // 버튼 읽어오고 가능한지 체크.
             if(/* 제약 조건 */){
                 // 클릭한 board_id 읽어오고
@@ -49,6 +50,7 @@ class BuildFence extends BoardInterface {
                 break;
             }
             //삭제는 어떻게 처리하지? 삭제하고싶으면?
+            GamepadButton.active = false;
             
         }
         uiManager.removeAllEventListenersFromFarmBoard();
