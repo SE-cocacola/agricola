@@ -297,6 +297,89 @@
             </div>
         </div>
     </div>
+    <!-- 점수 계산 -->
+    <div class = "popup_end" id = "popup_end">
+        <div class = "player1">
+            <div class = "title">player1</div>
+            <div>
+                <div class="popup_score-sheet">
+                    <div class="popup_score-img">
+                        <img src="./image/board/FarmBoard/field.png">
+                        <h4 class="popup_score-text">0-1</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/fence1.PNG" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/bread.PNG" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/carrot.PNG" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/sheep.PNG" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/boar.png" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/cattle.png" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                </div>
+            </div>
+            <div>
+                점수
+            </div>
+        </div>
+
+        <div class = "player2">
+            <div class = "title">player2</div>
+            <div>
+                <div class="popup_score-sheet">
+                    <div class="popup_score-img">
+                        <img src="./image/board/FarmBoard/field.png">
+                        <h4 class="popup_score-text">0-1</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/fence1.PNG" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/bread.PNG" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/carrot.PNG" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/sheep.PNG" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/boar.png" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                    <div class="popup_score-img">
+                        <img src="./image/resource/cattle.png" >
+                        <h4 class="popup_score-text">0</h4>
+                    </div>
+                </div>
+            </div>
+            <div>
+                점수
+            </div>
+        </div>
+
+        <button id="scorepopup-close-btn" class="btn d-block" style="position: absolute; bottom: 10px; left: 45%;">확인</button>
+
+    </div>
     <!--팝업 끝-->
     <div id="container">
         <div class="action_board_container">
@@ -854,6 +937,12 @@
     const scoreCloseBtn = document.getElementById("score-close-btn");
     scoreCloseBtn.addEventListener("click", function(){
         uiManager.closeScore();
+    })
+
+    // 점수 팝업 닫기
+    const scorePopupCloseBtn = document.getElementById("scorepopup-close-btn");
+    scorePopupCloseBtn.addEventListener("click", function(){
+        uiManager.closeScorePopup();
     })
 
     // 주요설비 팝업

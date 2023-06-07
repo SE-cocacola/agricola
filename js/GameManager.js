@@ -62,9 +62,9 @@ class GameManager {
     }
 
     // 플레이어 점수 가져와서 이긴 사람 보여주기
-    showWinner() {
+    showWinner(uiManager) {
         let winner = this.player1.score > this.player2.score ? this.player1 : this.player2;
-        UIManager.showWinner(winner);
+        uiManager.showWinner(winner, this.player1, this.player2);
         return winner;
     }
 

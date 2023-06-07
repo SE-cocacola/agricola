@@ -92,12 +92,12 @@ class Game {
         }
 
         // // 게임 종료
-        // this.end();   
+        this.end(this.uiManager);
     }
 
-    end() {
+    end(uiManager) {
         // 점수 이긴 사람 보여주기
-        this.gameManager.showWinner();
+        this.gameManager.showWinner(uiManager);
     }
 }
 

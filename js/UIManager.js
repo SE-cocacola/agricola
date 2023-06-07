@@ -530,6 +530,14 @@ export class UIManager extends UIInterface {
         document.getElementById("popup_score").style.display = "none";
     }
 
+    openScorePopup() {
+        document.getElementById("popup_end").style.display = "block";
+    }
+
+    closeScorePopup() {
+        document.getElementById("popup_end").style.display = "none";
+    }
+
     // 점수 계산 > 나중에 scoreManager.js 등으로 따로 구현
     calcurateScore() {
         document.getElementById("score").insertAdjacentHTML('beforeend', `<p>10점</p>`);
@@ -893,6 +901,39 @@ export class UIManager extends UIInterface {
                 }
             });
         }
+    }
+
+    // 게임 종료
+    showWinner(winner, player1, player2){
+        const player1ResourceManager = player1.resourceManager.resources;
+        const player2ResourceManager = player2.resourceManager.resources;
+        
+        // Player 1 Score Sheet
+        const player1ScoreSheet = document.querySelector(".player1 .popup_score-sheet");
+        const player1ResourceElements = player1ScoreSheet.querySelectorAll(".popup_score-img");
+
+        // Player 2 Score Sheet
+        const player2ScoreSheet = document.querySelector(".player2 .popup_score-sheet");
+        const player2ResourceElements = player2ScoreSheet.querySelectorAll(".popup_score-img");
+
+        // Update Player 1 Resource Values
+        player1ResourceElements.forEach((resourceElement, index) => {
+            const resourceType = Object.keys(player1ResourceManager)[index];
+            const resourceAmount = player1ResourceManager[resourceType];
+            const scoreTextElement = resourceElement.querySelector(".popup_score-text");
+            scoreTextElement.textContent = resourceAmount.toString();
+        });
+
+        // Update Player 2 Resource Values
+        player2ResourceElements.forEach((resourceElement, index) => {
+            const resourceType = Object.keys(player2ResourceManager)[index];
+            const resourceAmount = player2ResourceManager[resourceType];
+            const scoreTextElement = resourceElement.querySelector(".popup_score-text");
+            scoreTextElement.textContent = resourceAmount.toString();
+        });
+
+        this.openScorePopup();
+
     }
 
 }
