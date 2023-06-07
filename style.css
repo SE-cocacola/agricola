@@ -41,10 +41,7 @@ h3 {
 }
 
 .left_box {
-    /* margin: 16px 4px; */
-    margin: 8px 2px;
-    /* width: 95%;
-    height: 95%; */
+    margin: 16px auto;
     width: 93%;
     height: 95%;
     display: grid;
@@ -55,97 +52,136 @@ h3 {
 }
 
 .grid-item {
-    background-color: #ccc;
-    opacity: 0.5;
+    position: relative;
     width: 90%;
     height: 90%;
-
     display: grid;
-
+    background-size: 100% 100%;
 }
 
 .grid-item img {
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
 }
 
 .a {
     grid-area: a;
+    background-image: url('image/board/GameBoard/ExpandFarm.png');
 }
 
 .b {
     grid-area: b;
-    width: 100%;
-    height: 110%;
+    background-repeat: no-repeat;
+    background-size: 55%;
+    background-position: center center;
+    background-image: url('image/board/background_numbers/number1.png');
 }
 
 .c {
     grid-area: c;
+    background-image: url('image/board/GameBoard/AccumulateFood.png');
 }
 
 .d {
     grid-area: d;
+    background-image: url('image/board/GameBoard/Forest.png');
+    background-size: 70% 90%;
+    background-position: right center;
+    background-repeat: no-repeat;
 }
 
 .e {
     grid-area: e;
+    background-image: url('image/board/GameBoard/GrainSeed.png');
 }
 
 .f {
     grid-area: f;
+    background-image: url('image/board/GameBoard/FarmLand.png');
 }
 
 .g {
     grid-area: g;
+    background-image: url('image/board/GameBoard/ClayPit.png');
+    background-size: 60% 90%;
+    background-position: left center;
+    background-repeat: no-repeat;
 }
 
 .h {
     grid-area: h;
+    background-image: url('image/board/GameBoard/Lesson.png');
 }
 
 .i {
     grid-area: i;
+    background-image: url('image/board/GameBoard/ReedBank.png');
+    background-size: 60% 90%;
+    background-position: right center;
+    background-repeat: no-repeat;
 }
 
 .j {
     grid-area: j;
+    background-image: url('image/board/GameBoard/DayLaborer.png');
 }
 
 .k {
     grid-area: k;
+    background-image: url('image/board/GameBoard/Fishing.png');
+    background-size: 60% 90%;
+    background-position: left center;
+    background-repeat: no-repeat;
 }
 
-.remain{
-    width: 2vw; 
+.remain {
+    width: 2vw;
     height: 2vw;
-
-    background-color: red;
-    
-    justify-self: end;
-    align-self: end;
-
+    background-color: orange;
+    border-radius: 50%;
+    border: 2px solid black;
+    position: absolute;
+    font-size: 20px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
+    font-weight: bold;
 }
 
+.d > .remain {
+    left: 0px;
+    bottom: 20%;
+}
+
+.g > .remain {
+    right: 0px;
+    bottom: 20%;
+}
+
+.i > .remain {
+    left: 0px;
+    bottom: 20%;
+}
+
+.k > .remain {
+    right: 0px;
+    bottom: 20%;
+}
 
 /* Right Box */
 
 .right_box_container {
     width: 60%;
     height: 78%;
-    margin: auto;
+    margin: 0;
 }
 
 .right_box {
-    margin: 4px;
-    width: 95%;
+    width: 100%;
     height: 95%;
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 4px; 
 }
 
 .right_box div {
@@ -159,30 +195,35 @@ h3 {
     height: 50%;
 }
 
-.round{
-    
+.round {
     background-repeat: no-repeat;
-    /* background-size: contain; */
     background-size: 50%;
     background-position: center center;
+    transform: translate(-5px);
+    position: relative;
 }
 
-.r1{
+.r1 {
     background-image: url('image/board/background_numbers/number1.png');
 }
-.r2{
+
+.r2 {
     background-image: url('image/board/background_numbers/number2.png');
 }
-.r3{
+
+.r3 {
     background-image: url('image/board/background_numbers/number3.png');
 }
-.r4{
+
+.r4 {
     background-image: url('image/board/background_numbers/number4.png');
 }
-.r5{
+
+.r5 {
     background-image: url('image/board/background_numbers/number5.png');
 }
-.r6{
+
+.r6 {
     background-image: url('image/board/background_numbers/number6.png');
 }
 
@@ -236,7 +277,7 @@ h3 {
     width: 100%;
 }
 
-.farm_border{
+.farm_border {
     border: 7px dotted black;
     border-radius: 6%;
 }
@@ -264,8 +305,6 @@ h3 {
     width: 3.8%;
     background-color: inherit;
 }
-
-
 
 .square::before {
     content: '';
@@ -337,8 +376,6 @@ h3 {
     width: 20%;
     height: 50px;
     /* border: 1px solid black; */
-
-    
 }
 
 
@@ -348,7 +385,6 @@ h3 {
     display: flex;
     flex-direction: column;
     justify-content: stretch;
-
     border: 2px solid black;
 }
 
@@ -415,7 +451,9 @@ h3 {
     height: 40px;
 }
 
+
 /* mouse interaction */
+
 .hover-red {
     background-color: skyblue;
     opacity: 0.4;
@@ -427,26 +465,24 @@ h3 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     background-color: #ECECEC;
-
     z-index: 1;
 }
 
-.select_container{
+.select_container {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     width: 400px;
     text-align: center;
     background-color: #ECECEC;
-
-    z-index: 1;    
+    z-index: 1;
 }
 
+
 /* majors.css */
+
 .popup_box {
     padding: 30px 50px;
 }
@@ -466,7 +502,9 @@ img {
     object-fit: cover;
 }
 
+
 /* farmborad.css */
+
 .farmboard {
     position: relative;
 }
@@ -512,7 +550,9 @@ img {
     transform: translate(-50%, -50%);
 }
 
+
 /* selectorder.css */
+
 .card {
     height: 300px;
 }
@@ -570,47 +610,43 @@ img {
     transform: rotateY(180deg);
 }
 
-#popup_score{
+#popup_score {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     width: 400px;
     height: 600px;
     text-align: center;
     background-color: #ECECEC;
-
-    z-index: 1;    
+    z-index: 1;
 }
 
-#score-sheet{
+#score-sheet {
     position: fixed;
     top: 8%;
-
     width: 50px;
     height: 350px;
     text-align: center;
     background-color: #F3E2A9;
 }
 
-.score-img{
-    position: relative; 
+.score-img {
+    position: relative;
     top: 10px;
 }
 
-.score-img-row{
+.score-img-row {
     position: relative;
     bottom: 35px;
     left: 50px;
 }
 
-.score-text{
+.score-text {
     position: absolute;
     top: 0%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     text-align: center;
     text-shadow: -1px 0#F3E2A9, -1px 0#F3E2A9, 1px 0#F3E2A9, 1px 0#F3E2A9;
 }

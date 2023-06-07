@@ -168,6 +168,12 @@ export class UIManager extends UIInterface {
         var action_round = actionRound.toString();
         action_round = 'r' + action_round;
         const actionRoundDiv = document.getElementById(action_round);
+        actionRoundDiv.style = `
+        background-repeat: no-repeat;
+        background-size: 90% 85%;
+        background-position: left center;
+        transform: translate(-5px);
+        `
 
         switch (actionRound) {
             case 1:
@@ -196,9 +202,7 @@ export class UIManager extends UIInterface {
                 actionRoundDiv.style.backgroundImage = "none";
                 break;
         }
-        actionRoundDiv.style.backgroundSize = "contain";
-        actionRoundDiv.style.backgroundRepeat = "no-repeat";
-        actionRoundDiv.style.backgroundPosition = "center";
+        
     }
 
     // 가축 배치
@@ -447,8 +451,8 @@ export class UIManager extends UIInterface {
                 const roomImage = farmboard.querySelector(".farmroom");
                 if (!roomImage) {
                     const newRoomImage = document.createElement("img");
-                    if (roomType == "Wooden") newRoomImage.src = './image/board/FarmBoard/woodenroom.png';
-                    else if (roomType = "Stone") newRoomImage.src = './image/board/FarmBoard/stoneroom.jpeg';
+                    if (roomType == "wood") newRoomImage.src = './image/board/FarmBoard/clayroom.png';
+                    else if (roomType = "clay") newRoomImage.src = './image/board/FarmBoard/stoneroom.jpeg';
                     newRoomImage.classList.add('farmroom');
                     farmboard.replaceChild(newRoomImage);
                 }
@@ -486,37 +490,7 @@ export class UIManager extends UIInterface {
             document.getElementById("popup_layer").style.display = "block";
         
         });
-      }
-      
-
-    // // 주요 설비 팝업(MajorCardManager)
-    // majorCardPopUp(majorCardsName, isSelectable) {
-        
-    //     // major_cards_container에서 img태그가 있는 자식들 모두 제거
-    //     let majorCardsContainer = document.getElementById("major_cards_container");
-    //     let cards = majorCardsContainer.getElementsByTagName("img");
-    //     while (cards.length > 0) {
-    //         cards[0].parentNode.removeChild(cards[0]);
-    //     }
-
-    //     // 현재 남아있는 Major cards를 추가함
-    //     for (let cardName of majorCardsName) {
-    //         const majorCard = document.createElement('img');
-    //         majorCard.setAttribute("id", cardName);
-    //         majorCard.setAttribute("src", "image/utility/" + cardName + ".png");
-
-    //         if(isSelectable){
-    //             majorCard.addEventListener("click", function() {
-    //                 let selectedCardName = this.getAttribute("id");
-    //                 console.log("Selected Card ID: ", selectedCardName);
-    //             });
-    //         }
-            
-    //         majorCardsContainer.appendChild(majorCard);
-    //     }
-
-    //     document.getElementById("popup_layer").style.display = "block";
-    // }
+    }
 
     // 주요설비 팝업 닫기
     closePopUp() {
@@ -585,8 +559,7 @@ export class UIManager extends UIInterface {
 
     // 농부이동 
     // round에 따라서 갈수 없는 곳 체크
-    async move(farmerType, turn) {
-        // round 파라미터로 받고
+    async move(farmerType, turn, round) {
         const farmboards = document.querySelectorAll('.farm_border')[turn]
         let farmer = null
         let action_board_id = 0;
@@ -605,12 +578,33 @@ export class UIManager extends UIInterface {
         // 여기서 제약조건
         let actionboardPromise = new Promise((resolve) => {
             farmboards.removeEventListener("click", onClick)
-            const action_boards = document.querySelector('.action_board_container');
-            action_boards.addEventListener('click', function onTap(event) {
-                clickActionBoard(event, farmer, farmerType)
-                this.removeEventListener('click', onTap)
-                resolve(event.target.id);
+            
+            const leftBoxes = document.querySelectorAll('.left_box');
+            const rightBoxes = document.querySelectorAll('.right_box .round');
+            let action_boards = [];
+            let roundIds = [];
+            let selectedRounds;
+
+            leftBoxes.forEach((leftBox) => {
+                action_boards.push(leftBox);
+            });
+
+            if(round >= 2){
+                for(let i=2; i<=round; i++){
+                    roundIds.push('r' + i);
+                }
+                selectedRounds = Array.from(rightBoxes).filter(element => roundIds.includes(element.id));
+                action_boards.push(...selectedRounds);
+            }
+
+            action_boards.forEach((action_board) => {
+                action_board.addEventListener('click', function onTap(event) {
+                    clickActionBoard(event, farmer, farmerType)
+                    this.removeEventListener('click', onTap)
+                    resolve(event.target.id);
+                })
             })
+            
         })
 
         action_board_id = await actionboardPromise
@@ -633,6 +627,114 @@ export class UIManager extends UIInterface {
         }
     }
 
+    // 농장 확장
+    selectExpandFarm(playerName, roomType, tileManager) {
+        let roomImg;
+        switch (roomType) {
+          case "wood":
+            roomImg = "woodenroom.png";
+            break;
+          case "clay":
+            roomImg = "clayroom.png";
+            break;
+          case "stone":
+            roomImg = "stoneroom.jpeg";
+            break;
+          default:
+            break;
+        }
+
+        // 아래 리스트통해서 클릭 되게 할거랑 안 되게 할거 정하기?
+        let room = tileManager.roomPosition;
+        let field = tileManager.fieldPosition;
+        let pen = tileManager.penPosition;
+      
+        return new Promise((resolve) => {
+          const boards = document.querySelectorAll(".farm_board" + playerName + " [id^='board']");
+      
+          const clickHandler = (event) => {
+            // 다른 플레이어의 board 안 눌리게 하려면 boards에서 받아올 때 class 이름 다르게 해야함
+            const board = event.currentTarget;
+            const boardIdx = board.id;
+            const boardElement = document.getElementById(boardIdx).querySelector("img");
+            boardElement.src = "image/board/FarmBoard/" + roomImg;
+            resolve(parseInt(boardIdx.substring(5), 10) - 1);
+      
+            // 클릭 후 board의 이벤트 리스너 제거
+            boards.forEach((board) => {
+              board.removeEventListener("click", clickHandler);
+            });
+          };
+      
+          boards.forEach((board) => {
+            board.addEventListener("click", clickHandler);
+          });
+        });
+      }
+
+      // 밭 설치
+    selectFarmLand(playerName, tileManager) {
+        // 밭도 서로 붙여야하나? 잘 모르지만 두 개 이상 지을일 없을거같아서 필요없을듯
+        // 그치만 room, field, pen이 이미 존재하면 안 눌리게는 해야함
+        let room = tileManager.roomPosition;
+        let field = tileManager.fieldPosition;
+        let pen = tileManager.penPosition;
+
+        return new Promise((resolve) => {
+            const boards = document.querySelectorAll(".farm_board" + playerName + " [id^='board']");
+            
+            const clickHandler = (event) => {
+              // 다른 플레이어의 board 안 눌리게 하려면 boards에서 받아올 때 class 이름 다르게 해야함
+              const board = event.currentTarget;
+              const boardIdx = board.id;
+              const boardElement = document.getElementById(boardIdx).querySelector("img");
+              boardElement.src = "image/board/FarmBoard/field.png";
+              resolve(parseInt(boardIdx.substring(5), 10) - 1);
+        
+              // 클릭 후 board의 이벤트 리스너 제거
+              boards.forEach((board) => {
+                board.removeEventListener("click", clickHandler);
+              });
+            };
+        
+            boards.forEach((board) => {
+              board.addEventListener("click", clickHandler);
+            });
+        });
+    }  
+
+    // 집 업그레이드
+    upgradeHouse(playerName, roomType, roomPosition){
+        let rooms;
+        let roomImg;
+        switch (roomType) {
+          case "wood":
+            roomImg = "clayroom.png";
+            break;
+          case "clay":
+            roomImg = "stoneroom.jpeg";
+            break;
+          default:
+            break;
+        }
+        console.log("playerName " + playerName);
+        console.log("before roomPosition " + roomPosition);
+        if(playerName === "0"){
+            roomPosition = roomPosition.map(value => value + 1);
+        }else{
+            roomPosition = roomPosition.map(value => value + 16);
+        }
+        console.log("after roomPosition " + roomPosition);
+
+        rooms = roomPosition.map(value => "board" + value);
+        console.log("rooms " + rooms);
+        rooms.forEach((room) =>{
+            const boardElement = document.getElementById(room).querySelector("img");
+            boardElement.src = "image/board/FarmBoard/" + roomImg;
+        });
+        
+    }
+
 }
 
 function clickFarmer(event) {
@@ -651,7 +753,7 @@ function clickActionBoard(event, farmer, farmerType) {
     // 농부 style 입히기
     new_farmer.src = farmerType === 'Red' ? './image/resource/farmer1.png' : './image/resource/farmer2.png';
     new_farmer.style = `
-        position: relative; 
+        position: absolute; 
         top: 50%; 
         left: 50%;
         transform: translate(-50%, -50%); 

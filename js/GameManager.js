@@ -26,7 +26,7 @@ class GameManager {
         this.firstPlayer = firstPlayer;
     }
 
-    async actionRound(uiManager) {
+    async actionRound(uiManager, round) {
         let turns = [];
         const player1Farmers = this.player1.getAdultFarmer();
         const player2Farmers = this.player2.getAdultFarmer();
@@ -46,7 +46,8 @@ class GameManager {
 
         // turn을 돌아가면서 player가 행동을 함.
         for (const player of turns) {
-            await player.moveFarmer(uiManager, this.majorCardManager, this.actionSpace, this.roundSpace);
+            // moveFarmer 리턴값 받아서 제대로 실행 안 됐으면 무한반복문 돌게 할까... 행동칸마다 조건 다 붙이기엔 너무 번거로울거같은데
+            await player.moveFarmer(uiManager, this.majorCardManager, this.actionSpace, this.roundSpace, round);
             uiManager.switchTurns();
             uiManager.showResource(this);
         }

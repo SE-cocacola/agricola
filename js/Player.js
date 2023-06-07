@@ -162,15 +162,16 @@ class Player {
     }
 
 
-    async moveFarmer(uiManager, majorCardManager, actionSpace, roundSpace) {
+    async moveFarmer(uiManager, majorCardManager, actionSpace, roundSpace, round) {
         // TODO: Implement move player logic
         // 타일 클릭 하면 함수 실행
         // useMajorCard
+
         let action_round_id;
         if (this.name === "0") {
-            action_round_id = await uiManager.move("Red", 0)
+            action_round_id = await uiManager.move("Red", 0, round)
         } else {
-            action_round_id = await uiManager.move("Blue", 1)
+            action_round_id = await uiManager.move("Blue", 1, round)
         }
 
         switch (action_round_id) {
@@ -206,7 +207,7 @@ class Player {
             case "r6":
                 console.log("r6");
                 let upgradeHouse = roundSpace[5];
-
+                await upgradeHouse.behave(this, uiManager);
                 break;
 
             case "r7":
@@ -219,7 +220,7 @@ class Player {
                 console.log("a1");
                 // 농장 확장
                 let expandFarm = actionSpace[0];
-
+                await expandFarm.behave(this, uiManager);
                 break;
 
             case "a2":
@@ -247,7 +248,7 @@ class Player {
                 console.log("a5");
                 // 밭 한개 일구기
                 let farmLand = actionSpace[3];
-
+                await farmLand.behave(this, uiManager);
                 break;
 
             case "a6":

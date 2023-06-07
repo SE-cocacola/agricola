@@ -12,3 +12,8 @@ image
 
 # vscode
 .vscode
+
+node_modules
+package-lock.json
+package.json
+babel.config.js

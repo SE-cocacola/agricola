@@ -3,36 +3,39 @@ import ResourceManager from '../Resource/ResourceManager.js'
 import RoomType from '../Tile/RoomType.js'
 import UIManager from '../UIManager.js';
 import { RT } from '../Resource/ResourceType.js';
+import Field from "../Tile/Field.js";
+import Pen from "../Tile/Pen.js";
+import Room from "../Tile/Room.js";
 
 class ExpandFarm extends BoardInterface {
     constructor(){
         super("ExpandFarm");
     }
     
-    behave(player, idx, uiManager){
+    async behave(player, uiManager){
         const roomType = player.tileManager.roomType;
-        
-        uiManager.addHoverEffectToDiv("a1");
-
+        let idx = await uiManager.selectExpandFarm(player.name, roomType, player.tileManager);
+        idx %= 15;
         switch (roomType) {
             case RoomType.WOOD:
-                player.resourceManager.removeResource(ResourceType.STONE, 5);
-                player.resourceManager.removeResource(ResourceType.REED, 2);
+                player.resourceManager.removeResource(RT.WOOD, 5);
+                player.resourceManager.removeResource(RT.REED, 2);
                 break;
             case RoomType.CLAY:
-                player.resourceManager.removeResource(ResourceType.WOOD, 5);
-                player.resourceManager.removeResource(ResourceType.REED, 2);
+                player.resourceManager.removeResource(RT.CLAY, 5);
+                player.resourceManager.removeResource(RT.REED, 2);
                 break;
             case RoomType.STONE:
-                player.resourceManager.removeResource(ResourceType.CLAY, 5);
-                player.resourceManager.removeResource(ResourceType.REED, 2);
+                player.resourceManager.removeResource(RT.STONE, 5);
+                player.resourceManager.removeResource(RT.REED, 2);
                 break;
             default:
                 break;
         }
-
-        player.tileManager.playerBoard[idx] = roomType;
-        uiManager.removeAllEventListenersFromFarmBoard();
+    
+        player.tileManager.addRoom(idx);
+        player.tileManager.roomPosition.push(idx);
+        console.log(player.tileManager.playerBoard);
         this.setActivate();
     }
 }
@@ -70,9 +73,10 @@ class FarmLand extends BoardInterface{
     constructor(){
         super("FarmLand");
     }
-    behave(player, idx, uiManager){
-        uiManager.addHoverEffectToDiv("a5");
 
+    async behave(player, uiManager){
+        let idx = await uiManager.selectFarmLand(player.name, player.tileManager);
+        idx %= 15;
         player.tileManager.addField(idx);
 
         uiManager.removeAllEventListenersFromFarmBoard();

@@ -10,17 +10,22 @@ class BuildMajorFacility extends BoardInterface {
         super("BuildMajorFacility");
     }
 
-    // player의 자원 감소시키고, 자원 부족하면 획득 못하게 설정해야됨
+    // 자원 부족하면 획득 못하게 설정해야됨
     async behave(player, uiManager, majorCardManager) {
         // uiManager를 통해 클릭하면 그 majorCard의 name 받아와서 변수에 저장
         let majorCardsName = Object.keys(majorCardManager.cards);
 
         // majorCard를 클릭하면 그 클릭한 id 값을 cardName 변수에 저장
         let cardName = await uiManager.majorCardPopUp(majorCardsName, true);
-        
+        let card = majorCardManager.cards[cardName];
+        const needResources = card.needResource;
+        needResources.forEach((needResource) => {
+            player.resourceManager.removeResource(needResource.resourceType, needResource.amount);
+        });
+
         player.resourceManager.addMajorCard(cardName);
         majorCardManager.removeMajorCard(cardName);
-
+        
         this.setActivate();
     }
 }
@@ -119,8 +124,24 @@ class UpgradeHouse extends BoardInterface {
         super("UpgradeHouse");
     }
 
-    behave(player, uiManager) {
-        uiManager.addHoverEffectToDiv("r6");
+    async behave(player, uiManager) {
+        const roomType = player.tileManager.roomType;
+        const roomPosition = player.tileManager.roomPosition;
+        switch (roomType) {
+            case RoomType.WOOD:
+                player.resourceManager.removeResource(RT.CLAY, roomPosition.length);
+                player.resourceManager.removeResource(RT.REED, roomPosition.length);
+                break;
+            case RoomType.CLAY:
+                player.resourceManager.removeResource(RT.STONE, roomPosition.length);
+                player.resourceManager.removeResource(RT.REED, roomPosition.length);
+                break;
+            default:
+                break;
+        }
+
+        await uiManager.upgradeHouse(player.name, roomType, roomPosition);
+        player.tileManager.setRoomType();
 
         player.tileManager.setRoomType();
         
