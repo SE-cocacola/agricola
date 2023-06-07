@@ -190,7 +190,7 @@ class Player {
             case "r3":
                 console.log("r3");
                 let grainUtilization = roundSpace[2];
-
+                await grainUtilization.behave(this, uiManager);
                 break;
 
             case "r4":

@@ -23,8 +23,8 @@ export class UIManager extends UIInterface {
 
     // 마우스 오버 효과 추가
     addHoverEffectToDiv(divId) {
-        const div = document.getElementById(divId);
-
+        // const div = document.getElementById(divId);
+    
         // div.addEventListener("mouseover", function () {
         //     div.classList.add("hover-red");
         // });
@@ -122,6 +122,7 @@ export class UIManager extends UIInterface {
                             .match(/field.png$/);
                     })
                     .map(farmTile => Number(farmTile.getAttribute('id').slice(1)));
+                console.log(farmLands);
 
                 // 밭은 상하좌우 모든곳을 고려해야 함
                 Array.from(farmTiles)
@@ -707,22 +708,53 @@ export class UIManager extends UIInterface {
           default:
             break;
         }
-        console.log("playerName " + playerName);
-        console.log("before roomPosition " + roomPosition);
         if(playerName === "0"){
             roomPosition = roomPosition.map(value => value + 1);
         }else{
             roomPosition = roomPosition.map(value => value + 16);
         }
-        console.log("after roomPosition " + roomPosition);
 
         rooms = roomPosition.map(value => "board" + value);
-        console.log("rooms " + rooms);
         rooms.forEach((room) =>{
             const boardElement = document.getElementById(room).querySelector("img");
             boardElement.src = "image/board/FarmBoard/" + roomImg;
         });
         
+    }
+
+    grainUtilization(playerName, emptyField){
+        if(playerName === "0"){
+            emptyField = emptyField.map(value => value + 1);
+        }else{
+            emptyField = emptyField.map(value => value + 16);
+        }
+        // [board0, board1]
+        let fields = emptyField.map(value => ".farm_board" + playerName + " #board" + value);
+        
+        return new Promise((resolve) => {
+            const boards = document.querySelectorAll(fields);
+
+            const clickHandler = (event) => {
+              const board = event.currentTarget;
+              const boardIdx = board.id;
+              const newCropImage = document.createElement("img");
+                newCropImage.src = `./image/resource/bread.PNG`;
+                newCropImage.classList.add('grain');
+                board.appendChild(newCropImage);
+              resolve(parseInt(boardIdx.substring(5), 10) - 1);
+        
+              // 클릭 후 board의 이벤트 리스너 제거
+              boards.forEach((board) => {
+                board.removeEventListener("click", clickHandler);
+              });
+            };
+        
+            boards.forEach((board) => {
+              board.addEventListener("click", clickHandler);
+            });
+        });
+        
+
     }
 
 }

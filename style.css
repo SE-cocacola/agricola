@@ -650,3 +650,12 @@ img {
     text-align: center;
     text-shadow: -1px 0#F3E2A9, -1px 0#F3E2A9, 1px 0#F3E2A9, 1px 0#F3E2A9;
 }
+
+.grain {
+    position: absolute;
+    width: 40px !important;
+    height: 40px !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
