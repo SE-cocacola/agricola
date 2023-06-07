@@ -114,20 +114,23 @@ export class UIManager extends UIInterface {
                 // 밭 일구기
                 // 밭은 원래 있던 밭에 맞닿아있는 곳에만 설치 가능
 
-                // 원래 있던 집 확인
+                // 원래 있던 밭 확인
                 const farmLands = Array.from(farmTiles)
                     .filter(farmTile => {
                         return farmTile.querySelector('img')
                             .getAttribute('src')
                             .match(/field.png$/);
                     })
-                    .map(farmTile => Number(farmTile.getAttribute('id').slice(1)));
-                console.log(farmLands);
+                    .map(farmTile => Number(farmTile.getAttribute('id').slice(5)));
 
                 // 밭은 상하좌우 모든곳을 고려해야 함
                 Array.from(farmTiles)
                     .filter(farmTile => {
-                        const tileNumber = Number(farmTile.getAttribute('id').slice(1));
+                        const tileNumber = Number(farmTile.getAttribute('id').slice(5));
+                        // 먼저, 아무것도 없는 field인지 확인
+                        if(!farmTile.querySelector('img').getAttribute('src').match(/farmboard\d+\.png$/)) return false;
+                        // 밭이 존재하지 않으면 어디든 적용 가능
+                        if(farmLands.length === 0) return true;
                         // 맨 왼쪽이 아니라면, 왼쪽 확인
                         if(tileNumber !== 1 && tileNumber !== 6 && tileNumber !== 11 && farmLands.includes(tileNumber - 1)) return true;
                         // 맨 오른쪽이 아니라면, 오른쪽 확인
