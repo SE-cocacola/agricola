@@ -31,7 +31,7 @@ export class UIManager extends UIInterface {
         // div.addEventListener("mouseout", function () {
         //     div.classList.remove("hover-red");
         // });
-        const farmBoard = document.querySelector('.farm_board');
+        const farmBoard = document.querySelector('.farm_boards');
         const farmTiles = farmBoard.querySelectorAll('.farmboard');
 
         switch (divId) {
@@ -152,14 +152,10 @@ export class UIManager extends UIInterface {
     }
 
     removeAllEventListenersFromFarmBoard() {
-        const farmBoard = document.querySelector('.farm_board');
-        const eventListeners = getEventListeners(farmBoard);
+        const farmBoard = document.querySelector('.farm_boards');
+        const clonedFarmBoard = farmBoard.cloneNode(true);
 
-        Object.keys(eventListeners).forEach((event) => {
-            eventListeners[event].forEach((listener) => {
-                farmBoard.removeEventListener(event, listener.listener);
-            });
-        });
+        farmBoard.parentNode.replaceChild(clonedFarmBoard, farmBoard);
     }
 
 
