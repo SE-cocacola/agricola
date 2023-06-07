@@ -64,13 +64,21 @@ class GrainUtilization extends BoardInterface {
     }
 
     // 씨뿌리기
-    behave(player, idx, crop) {
+    async behave(player, uiManager) {
         //player.tileManager.fieldPostion을 돌면서 비어있는 필드 확인해야 되고
-        // 클릭한 필드에 ......
-        if (idx == Field && Field.isPlant === false) {
-            Field.plantCrop(crop);
-        };
+        const playerBoard = player.tileManager.playerBoard;
+        const fieldPosition = player.tileManager.fieldPosition; // []
+        let emptyField = [];
+        for(let i=0; i<fieldPosition.length; i++){
+            if(!playerBoard[i].isPlant){
+                emptyField.push(fieldPosition[i]);
+            }
+        }
 
+        let idx = await uiManager.grainUtilization(player.name, emptyField);
+        idx %= 15;
+        player.resourceManager.removeResource(RT.GRAIN, 1);
+        playerBoard[idx].plantCrop(RT.GRAIN);
         this.setActivate();
     }
 

@@ -74,6 +74,7 @@ class FarmLand extends BoardInterface{
     }
 
     async behave(player, uiManager){
+        uiManager.addHoverEffectToDiv("a5");
         let idx = await uiManager.selectFarmLand(player.name, player.tileManager);
         idx %= 15;
         player.tileManager.addField(idx);
