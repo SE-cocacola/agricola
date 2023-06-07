@@ -72,15 +72,15 @@ class UIInterface {
 }
 
 // 턴 바꾸기
-switchTurns() {
-    if (this.isPlayer1Turn) {
+switchTurns(player) {
+  const curPlayer = player.name
+    if (curPlayer === "0") {
         this.scoreboard1.style.borderColor = 'black';
         this.scoreboard2.style.borderColor = 'red';
     } else {
         this.scoreboard1.style.borderColor = 'red';
         this.scoreboard2.style.borderColor = 'black';
     }
-    this.isPlayer1Turn = !this.isPlayer1Turn;
 }
 
 // 선 바꾸기

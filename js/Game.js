@@ -34,6 +34,7 @@ class Game {
         this.gameManager.setFirstPlayer(firstPlayer);
 
         // Util판 resource 업데이트
+        this.uiManager.showPlayerResource(this.gameManager);
         this.uiManager.showResource(this.gameManager);
 
         // 반복문 돌면서 라운드 진행
@@ -41,7 +42,7 @@ class Game {
             // round card open
             this.uiManager.changeActionRoundImage(round);
             await this.gameManager.actionRound(this.uiManager, round);
-            
+
             if (round===4 || round===7) {
                 this.gameManager.harvest(this.uiManager);
             }
@@ -87,6 +88,7 @@ class Game {
             console.log(this.gameManager.player2.resourceManager);
             console.log(this.gameManager.player1.tileManager.playerBoard);
             console.log(this.gameManager.player2.tileManager.playerBoard);
+            this.uiManager.showResource(this.gameManager);
         }
 
         // // 게임 종료
