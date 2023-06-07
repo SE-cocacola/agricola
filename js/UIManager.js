@@ -475,36 +475,6 @@ export class UIManager extends UIInterface {
         });
     }
 
-
-    // // 주요 설비 팝업(MajorCardManager)
-    // majorCardPopUp(majorCardsName, isSelectable) {
-
-    //     // major_cards_container에서 img태그가 있는 자식들 모두 제거
-    //     let majorCardsContainer = document.getElementById("major_cards_container");
-    //     let cards = majorCardsContainer.getElementsByTagName("img");
-    //     while (cards.length > 0) {
-    //         cards[0].parentNode.removeChild(cards[0]);
-    //     }
-
-    //     // 현재 남아있는 Major cards를 추가함
-    //     for (let cardName of majorCardsName) {
-    //         const majorCard = document.createElement('img');
-    //         majorCard.setAttribute("id", cardName);
-    //         majorCard.setAttribute("src", "image/utility/" + cardName + ".png");
-
-    //         if(isSelectable){
-    //             majorCard.addEventListener("click", function() {
-    //                 let selectedCardName = this.getAttribute("id");
-    //                 console.log("Selected Card ID: ", selectedCardName);
-    //             });
-    //         }
-
-    //         majorCardsContainer.appendChild(majorCard);
-    //     }
-
-    //     document.getElementById("popup_layer").style.display = "block";
-    // }
-
     // 주요설비 팝업 닫기
     closePopUp() {
         document.getElementById("popup_layer").style.display = "none";
