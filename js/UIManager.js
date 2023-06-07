@@ -536,7 +536,7 @@ export class UIManager extends UIInterface {
     }
 
 
-    showResource(gameManager) {
+    showPlayerResource(gameManager) {
         const player1 = gameManager.player1.resourceManager.resources;
         const player2 = gameManager.player2.resourceManager.resources;
 
@@ -566,6 +566,67 @@ export class UIManager extends UIInterface {
                     farmercnt += element.amount;
                     element2.innerHTML = farmercnt;
                 }
+            }
+        });
+    }
+
+    showResource(gameManager, round){
+        const actionSpace = gameManager.actionSpace;
+        const roundSpace = gameManager.roundSpace;
+
+        actionSpace.forEach((element, index) => {
+            if ([6, 7, 8, 9].includes(index)) {
+                let targetId;
+
+                if(index == 6){
+                    targetId = "a3";
+                }else if(index == 7){
+                    targetId = "a6";
+                }else if(index == 8){
+                    targetId = "a8";
+                }else{
+                    targetId = "a10";
+                }
+                 
+                const targetElement = document.getElementById(targetId);
+                if (targetElement !== null) {
+                    const remainElement = document.createElement("div");
+                    remainElement.classList.add("remain");
+                    remainElement.innerHTML = element.cnt;
+                    targetElement.appendChild(remainElement);
+                }
+            }
+        });
+
+        if(round == 4){
+            const r4Element = document.getElementById("r4");
+            const remainElement = r4Element.querySelector(".remain");
+            remainElement.style.display = "block";
+        }else if(round == 7){
+            const r4Element = document.getElementById("r7");
+            const remainElement = r4Element.querySelector(".remain");
+            remainElement.style.display = "block";
+        }
+
+        
+        roundSpace.forEach((element, index) => {
+            
+            if (index < round) {
+                let targetId;
+                if([3, 6].includes(index)){
+                    if(index == 3){
+                        targetId = "r4";
+                    }else if(index == 6){
+                        targetId = "r7";
+                    }
+                     
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement !== null) {
+                        const remainElement = targetElement.querySelector(".remain");
+                        remainElement.innerHTML = element.cnt;
+                    }
+                }
+                
             }
         });
     }

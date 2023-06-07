@@ -142,6 +142,7 @@ h3 {
     border: 2px solid black;
     position: absolute;
     font-size: 20px; 
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;

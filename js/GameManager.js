@@ -46,10 +46,11 @@ class GameManager {
 
         // turn을 돌아가면서 player가 행동을 함.
         for (const player of turns) {
-            
+            uiManager.showResource(this, round);
             await player.moveFarmer(uiManager, this.majorCardManager, this.actionSpace, this.roundSpace, round);
-            uiManager.switchTurns();
-            uiManager.showResource(this);
+            uiManager.switchTurns(player);
+            uiManager.showPlayerResource(this);
+            
         }
     }
 
