@@ -871,18 +871,46 @@
 
     // 플레이어 1 주요 설비 보여주기
     const showPlayer1MajorCards = document.getElementById("major_popup_player_1");
-    showPlayer1MajorCards.addEventListener("click", function(){
+    showPlayer1MajorCards.addEventListener("click", async function(){
         const player1ResourceManager = game.gameManager.player1.resourceManager;
         let player1MajorCardsName = player1ResourceManager.resources[10] ? Object.keys(player1ResourceManager.resources[10]) : [];
-        uiManager.majorCardPopUp(player1MajorCardsName, true);
+        
+        const cardNamePromise = new Promise((resolve, reject) => {
+        const closeBtn = document.getElementById("majorBtn");
+        closeBtn.addEventListener("click", () => {
+                resolve();
+            });
+        });
+    
+        let cardName = await Promise.race([uiManager.majorCardPopUp(player1MajorCardsName, true), cardNamePromise]);
+
+        if (cardName) {
+            let card = game.gameManager.player1.resourceManager.resources[10][cardName];
+            card.wheneverAction(game.gameManager.player1);
+            uiManager.showPlayerResource(game.gameManager);
+        }
     })
 
     // 플레이어 2 주요 설비 보여주기
     const showPlayer2MajorCards = document.getElementById("major_popup_player_2");
-    showPlayer2MajorCards.addEventListener("click", function(){
+    showPlayer2MajorCards.addEventListener("click", async function(){
         const player2ResourceManager = game.gameManager.player2.resourceManager;
         let player2MajorCardsName = player2ResourceManager.resources[10] ? Object.keys(player2ResourceManager.resources[10]) : [];
-        uiManager.majorCardPopUp(player2MajorCardsName, true);
+
+        const cardNamePromise = new Promise((resolve, reject) => {
+        const closeBtn = document.getElementById("majorBtn");
+        closeBtn.addEventListener("click", () => {
+                resolve();
+            });
+        });
+    
+        let cardName = await Promise.race([uiManager.majorCardPopUp(player2MajorCardsName, true), cardNamePromise]);
+
+        if (cardName) {
+            let card = game.gameManager.player2.resourceManager.resources[10][cardName];
+            card.wheneverAction(game.gameManager.player2);
+            uiManager.showPlayerResource(game.gameManager);
+        }
     })
 
 </script>

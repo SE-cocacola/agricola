@@ -22,26 +22,28 @@ class Brazier1 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType, amount){
-        switch (resourceType) {
-            // 음식 교환 로직
-            case RT.VEGETABLE:
-                {RT.FOOD, 2 * amount};
+    wheneverAction(player){
+        player.resourceManager.removeResource(RT.SHEEP, 1);
+        player.resourceManager.addResource(RT.FOOD, 2);
+        // switch (resourceType) {
+        //     // 음식 교환 로직
+        //     case RT.VEGETABLE:
+        //         {RT.FOOD, 2 * amount};
 
-            case RT.SHEEP:
-                {RT.FOOD, 2 * amount};
+        //     case RT.SHEEP:
+        //         {RT.FOOD, 2 * amount};
 
-            case RT.BOAR:
-                {RT.FOOD, 2 * amount};
-                break;
+        //     case RT.BOAR:
+        //         {RT.FOOD, 2 * amount};
+        //         break;
 
-            case RT.CATTLE:
-                {RT.FOOD, 3 * amount};
-                break;
+        //     case RT.CATTLE:
+        //         {RT.FOOD, 3 * amount};
+        //         break;
 
-            default:
-                break;
-        }
+        //     default:
+        //         break;
+        // }
     }
 
     specificAction(player, actionType) {
@@ -69,25 +71,9 @@ class Brazier2 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType, amount){
-        switch (resourceType) {
-            case RT.VEGETABLE:
-                {RT.FOOD, 2 * amount};
-
-            case RT.SHEEP:
-                {RT.FOOD, 2 * amount};
-
-            case RT.BOAR:
-                {RT.FOOD, 2 * amount};
-                break;
-
-            case RT.CATTLE:
-                {RT.FOOD, 3 * amount};
-                break;
-
-            default:
-                break;
-        }
+    wheneverAction(player){
+        player.resourceManager.removeResource(RT.SHEEP, 1);
+        player.resourceManager.addResource(RT.FOOD, 2);
     }
 
     specificAction(player, actionType) {
@@ -116,24 +102,9 @@ class FirePot1 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType, amount){
-        switch (resourceType) {
-            // 음식 교환 로직
-            case RT.VEGETABLE:
-                {RT.FOOD, 3 * amount};
-
-            case RT.BOAR:
-                {RT.FOOD, 3 * amount};
-                
-            case RT.SHEEP:
-                {RT.FOOD, 2 * amount};
-            
-            case RT.CATTLE:
-                {RT.FOOD, 4 * amount};
-                
-            default:
-                break;
-        }
+    wheneverAction(player){
+        player.resourceManager.removeResource(RT.SHEEP, 1);
+        player.resourceManager.addResource(RT.FOOD, 2);
     }
 
     specificAction(player, actionType) {
@@ -162,24 +133,9 @@ class FirePot2 extends MajorCardInterface{
         this.score = 1;
     }
 
-    wheneverAction(resourceType, amount){
-        switch (resourceType) {
-            // 음식 교환 로직
-            case RT.VEGETABLE:
-                {RT.FOOD, 3 * amount};
-
-            case RT.BOAR:
-                {RT.FOOD, 3 * amount};
-                
-            case RT.SHEEP:
-                {RT.FOOD, 2 * amount};
-            
-            case RT.CATTLE:
-                {RT.FOOD, 4 * amount};
-                
-            default:
-                break;
-        }
+    wheneverAction(player){
+        player.resourceManager.removeResource(RT.SHEEP, 1);
+        player.resourceManager.addResource(RT.FOOD, 2);
     }
 
     specificAction(player, actionType) {
