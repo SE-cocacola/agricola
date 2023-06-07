@@ -42,10 +42,10 @@ class Game {
             this.uiManager.changeActionRoundImage(round);
             await this.gameManager.actionRound(this.uiManager, round);
             
-            //this.gameManager.actionRound(this.uiManager);
-            // if (round===4 || round===7) {
-            //     this.gameManager.harvest();
-            // }
+            this.gameManager.actionRound(this.uiManager);
+            if (round===4 || round===7) {
+                this.gameManager.harvest();
+            }
             this.uiManager.removeImages("action_board", './image/resource/farmer');
 
             // 돌아갈 때 농부의 집 파악해서 그 집에 아래 코드 실행 해야함
