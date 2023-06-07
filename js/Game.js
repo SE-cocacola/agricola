@@ -42,9 +42,8 @@ class Game {
             this.uiManager.changeActionRoundImage(round);
             await this.gameManager.actionRound(this.uiManager, round);
             
-            // this.gameManager.actionRound(this.uiManager);
             if (round===4 || round===7) {
-                this.gameManager.harvest();
+                this.gameManager.harvest(this.uiManager);
             }
             this.uiManager.removeImages("action_board", './image/resource/farmer');
 

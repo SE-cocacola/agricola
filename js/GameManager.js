@@ -10,8 +10,6 @@ class GameManager {
         this.player1 = new Player("0");
         this.player2 = new Player("1");
         this.majorCardManager = new MajorCardManager();
-
-        // 이거 아래 필요없을듯 - Player에서 다룸
         // 10개 기본 행동칸 순서대로
         this.actionSpace = [new ExpandFarm(), new AccumulateFood(), new GrainSeed(), new FarmLand(), new Lesson(),
             new DayLaborer(), new Forest(), new ClayPit(), new ReedBank(), new Fishing()
@@ -53,11 +51,13 @@ class GameManager {
         }
     }
 
-    harvest() {
+    harvest(uiManager) {
         // 이게 맞는지 모르겠음
         const harvestManager = new HarvestManager();
-        harvestManager.doHarvest(this.player1);
-        harvestManager.doHarvest(this.player2);
+        const player1ChildPosition = harvestManager.doHarvest(this.player1);
+        const player2ChildPosition = harvestManager.doHarvest(this.player2);
+        uiManager.showResource(this);
+        uiManager.changeChildToAdult(player1ChildPosition, player2ChildPosition);
     }
 
     // 플레이어 점수 가져와서 이긴 사람 보여주기

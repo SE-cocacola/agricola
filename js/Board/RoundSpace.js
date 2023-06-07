@@ -92,10 +92,11 @@ class GrainUtilization extends BoardInterface {
         const fieldPosition = player.tileManager.fieldPosition; // []
         let emptyField = [];
         for(let i=0; i<fieldPosition.length; i++){
-            if(!playerBoard[i].isPlant){
+            if(!playerBoard[fieldPosition[i]].isPlant){
                 emptyField.push(fieldPosition[i]);
             }
         }
+        console.log(emptyField);
 
         let idx = await uiManager.grainUtilization(player.name, emptyField);
         idx %= 15;

@@ -4,12 +4,14 @@ class Field extends Tile {
     constructor() {
       super("field");
       this.isPlant = false;
+      this.plantType = "";
       this.crop = [];
     }
 
     // 씨 뿌리기
     plantCrop(crop) {
       this.isPlant = true;
+      this.plantType = crop;
       this.crop = [crop, crop, crop];
     } 
 
