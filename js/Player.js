@@ -202,7 +202,7 @@ class Player {
             case "r5":
                 console.log("r5");
                 let increaseFamily = roundSpace[4];
-
+                await increaseFamily.behave(this, uiManager);
                 break;
 
             case "r6":

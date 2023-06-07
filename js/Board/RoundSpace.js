@@ -151,13 +151,23 @@ class IncreaseFamily extends BoardInterface {
     }
 
     // instanceOf: 객체 비교
-    behave(player, idx) {
-        if (type(player.tileManager.playerBoard[idx]) instanceof Room) {
-            if (player.tileManager.playerBoard[idx].isEmpty) {
-                player.tileManager.playerBoard[idx].isChild = true;
+    async behave(player, uiManager) {
+        const playerBoard = player.tileManager.playerBoard;
+        const roomPosition = player.tileManager.roomPosition; // []
+        let emptyRoom = [];
+        for(let i=0; i<roomPosition.length; i++){
+            if(playerBoard[roomPosition[i]].adult === 0 && !playerBoard[roomPosition[i]].isChild){
+                emptyRoom.push(roomPosition[i]);
             }
         }
+        console.log('emptyRoom: ' + emptyRoom);
 
+        let idx = await uiManager.increaseFamily(player.name, emptyRoom);
+        idx %= 15;
+
+        playerBoard[idx].addChild();
+        player.resourceManager.resources[15].amount++;
+        
         this.setActivate();
     }
 }
