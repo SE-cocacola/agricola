@@ -75,7 +75,6 @@ class BuildFence extends BoardInterface {
     handleClick() {
         // 변수 값을 변경
         this.active = false;
-        console.log(314213)
     }
 }
 

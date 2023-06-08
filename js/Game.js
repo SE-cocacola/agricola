@@ -84,20 +84,21 @@ class Game {
             }
 
             // 라운드 끝날때마다 플레이어의 자원 확인(누적값 확인)
-            console.log(this.gameManager.player1.resourceManager);
-            console.log(this.gameManager.player2.resourceManager);
-            console.log(this.gameManager.player1.tileManager.playerBoard);
-            console.log(this.gameManager.player2.tileManager.playerBoard);
+            // console.log(this.gameManager.player1.resourceManager);
+            // console.log(this.gameManager.player2.resourceManager);
+            // console.log(this.gameManager.player1.tileManager.playerBoard);
+            // console.log(this.gameManager.player2.tileManager.playerBoard);
             this.uiManager.showResource(this.gameManager);
+            this.uiManager.showPlayerResource(this.gameManager);
         }
 
         // // 게임 종료
-        // this.end();   
+        this.end(this.uiManager);
     }
 
-    end() {
+    end(uiManager) {
         // 점수 이긴 사람 보여주기
-        this.gameManager.showWinner();
+        this.gameManager.showWinner(uiManager);
     }
 }
 

@@ -541,6 +541,14 @@ export class UIManager extends UIInterface {
         document.getElementById("popup_score").style.display = "none";
     }
 
+    openScorePopup() {
+        document.getElementById("popup_end").style.display = "flex";
+    }
+
+    closeScorePopup() {
+        document.getElementById("popup_end").style.display = "none";
+    }
+
     // 점수 계산 > 나중에 scoreManager.js 등으로 따로 구현
     calcurateScore() {
         document.getElementById("score").insertAdjacentHTML('beforeend', `<p>10점</p>`);
@@ -904,6 +912,59 @@ export class UIManager extends UIInterface {
                 }
             });
         }
+    }
+
+    // 게임 종료
+    showWinner(winner, player1, player2){
+        const player1ResourceManager = player1.resourceManager.resources;
+        const player2ResourceManager = player2.resourceManager.resources;
+
+        const player1fields = player1.tileManager.fieldPosition.length;
+        const player2fields = player2.tileManager.fieldPosition.length;
+        
+        // Player 1 Score Sheet
+        const player1ScoreSheet = document.querySelector(".player1 .popup_score-sheet");
+        const player1ResourceElements = player1ScoreSheet.querySelectorAll(".popup_score-img");
+
+        // Player 2 Score Sheet
+        const player2ScoreSheet = document.querySelector(".player2 .popup_score-sheet");
+        const player2ResourceElements = player2ScoreSheet.querySelectorAll(".popup_score-img");
+
+        const resource_idx = [11, 4, 5, 7, 8, 9];
+
+        // Update Player 1 Resource Values
+        player1ResourceElements.forEach((resourceElement, index) => {
+            let resourceAmount = 0;
+            if(index === 0) {
+                resourceAmount = player1fields;
+            } else {
+                resourceAmount = player1ResourceManager[resource_idx[index-1]].amount;
+            }
+            const scoreTextElement = resourceElement.querySelector(".popup_score-text");
+            scoreTextElement.textContent = resourceAmount.toString();
+        });
+
+        const player1Score = document.querySelector(".player1 #player1_final_score");
+        player1Score.innerHTML = player1.calculateScore();
+        
+
+        // Update Player 2 Resource Values
+        player2ResourceElements.forEach((resourceElement, index) => {
+            let resourceAmount = 0;
+            if(index === 0) {
+                resourceAmount = player2fields;
+            } else {
+                resourceAmount = player2ResourceManager[resource_idx[index-1]].amount;
+            }
+            const scoreTextElement = resourceElement.querySelector(".popup_score-text");
+            scoreTextElement.textContent = resourceAmount.toString();
+        });
+
+        const player2Score = document.querySelector(".player2 #player2_final_score");
+        player2Score.innerHTML = player2.calculateScore();
+
+        this.openScorePopup();
+
     }
 
 }
