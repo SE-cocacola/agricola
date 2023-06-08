@@ -669,3 +669,34 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.popup_end{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 550px;
+    text-align: center;
+    background-color: #ECECEC;
+    z-index: 1;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.popup_score-img{
+    display: flex;
+}
+
+.popup_score-img img{
+    width: 40px;
+    height: 40px;
+
+    margin-right: 20px;
+}
