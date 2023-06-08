@@ -192,7 +192,7 @@ class Player {
 
             case "r4":
                 let accumalteSheep = roundSpace[3];
-                await accumalteSheep.behave(this);
+                await accumalteSheep.behave(this, uiManager);
                 break;
 
             case "r5":

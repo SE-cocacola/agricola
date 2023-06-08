@@ -53,7 +53,38 @@ export class UIManager extends UIInterface {
                 break;
             case "r4":
                 // sheep
-                // 울타리 고려해야되고, 외양간 고려해야되고
+                // Best Senario만 고려 (1*1)
+                // 울타리 고려
+                Array.from(farmTiles)
+                    .filter(farmTile => {
+                        // 주변 울타리 확인
+                        let tileId = Number(farmTile.id.slice(5));
+                        let start = 0;
+                        let fenceId = [];
+                        if(1 <= tileId && tileId <= 5) {
+                            start = tileId;
+                        } else if(6 <= tileId && tileId <= 10) {
+                            start = tileId + 6;
+                        } else {
+                            start = tileId + 12;
+                        }
+                        fenceId.push(start, start + 5, start + 6, start + 11);
+                        let check = true;
+                        fenceId.forEach(id => {
+                                if(!document.getElementById(`f${id}`).style.backgroundColor) {
+                                    check = false;
+                                }
+                            });
+                        return check;
+                    })
+                    .forEach(farmTile => {
+                        farmTile.addEventListener('mouseover', function () {
+                            farmTile.classList.add('available-hover');
+                        });
+                        farmTile.addEventListener('mouseout', function () {
+                            farmTile.classList.remove('available-hover');
+                        });
+                    });
                 // 우리(울타리로 싸인 공간) 1칸당 가축 두마리. 같은 가축만 가능.
                 // 외양간은 * 2 마리 가능
                 // 우리 없이 가축을 키울 시에는 외양간이 있어야함. 1마리만 가능.
@@ -88,7 +119,7 @@ export class UIManager extends UIInterface {
                             .getAttribute('src')
                             .match(/^image\/board\/FarmBoard\/farmboard\d+\.png$/);
                     })
-                    .map(farmTile => Number(farmTile.getAttribute('id').slice(1)));
+                    .map(farmTile => Number(farmTile.getAttribute('id').slice(5)));
 
                 // 맨 처음 집이 왼쪽 아래에 설치되어 있으므로, 빈 타일을 기준으로 아래, 왼쪽만 확인하면 됨.
                 Array.from(farmTiles)
@@ -226,6 +257,16 @@ export class UIManager extends UIInterface {
         
     }
 
+
+    // 양 배치
+    addSheep(target_id) {
+        const area = document.getElementById(target_id);
+        const newAnimalImage = document.createElement("img");
+        newAnimalImage.src = `./image/resource/sheep.png`;
+        newAnimalImage.classList.add('farmanimal');
+        area.appendChild(newAnimalImage);
+    }
+
     // 가축 배치
     addAnimal() {
         const farmboards = document.querySelectorAll(".farmboard");
@@ -267,12 +308,12 @@ export class UIManager extends UIInterface {
 
     // 울타리 치기
     addFence(player, target_id) {
-
         const fence = document.getElementById(target_id);
         let color = (player.name == 0) ? "red" : "blue";
         fence.style.backgroundColor = color;
-
     }
+
+
 
     // 울타리 삭제
     removeFence() {

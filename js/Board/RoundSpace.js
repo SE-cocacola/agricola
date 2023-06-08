@@ -118,27 +118,25 @@ class AccumulateSheep extends BoardInterface {
         this.cnt = 1;
     }
 
-    behave(player, uiManager) {
-        // // uiManager에서 어디를 선택할 수 있는지.
-        // uiManager.addHoverEffectToDiv("r4");
-        // if(/* 제약조건 */){
-        //     player.resourceManager.addResource(RT.SHEEP, this.cnt);
-        // }else{
-        //     return;
-        // }
-        // uiManager.removeAllEventListenersFromFarmBoard();
-        // this.setActivate();
-
-        // uiManager에서 어디를 선택할 수 있는지.
+    async behave(player, uiManager) {
+        // uiManager hover
         uiManager.addHoverEffectToDiv("r4");
-        // if(/* 제약조건 */){
-            player.resourceManager.addResource(RT.SHEEP, this.cnt);
-        // }else{
-        //     return;
-        // }
+
+        // 양 배치
+        const boards = player.name === "0" ? document.querySelector('.farm_board0') : document.querySelector('.farm_board1');
+        let sheepPromise = new Promise((resolve) => {
+            boards.addEventListener('click', function(event) {
+                if (event.target.nodeName === 'IMG' && event.target.parentElement.matches('.farmboard')) {
+                    resolve(event.target.parentElement.id);
+                }
+            });
+        });
+
+        let target_id = await sheepPromise;
+        await uiManager.addSheep(target_id)
+        player.resourceManager.addResource(RT.SHEEP, this.cnt);
         uiManager.removeAllEventListenersFromFarmBoard();
         this.setActivate();
-
     }
 
     increaseCnt() {
