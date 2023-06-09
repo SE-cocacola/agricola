@@ -754,7 +754,7 @@
                 <div class="score_board_top">
                     <img src="/image/board/Cards/hand_icon.png" alt="" class="avatar" />
                     <div>
-                        <h3 class="score_board_title">Name</h3>
+                        <h3 class="score_board_title">Player1</h3>
                         <div id="player1score">
                             <span>-14</span>
                         </div>
@@ -822,7 +822,7 @@
                 <div class="score_board_top">
                     <img src="/image/board/Cards/hand_icon.png" alt="" class="avatar" />
                     <div>
-                        <h3 class="score_board_title">Name</h3>
+                        <h3 class="score_board_title">Player2</h3>
                         <div id="player2score">
                             <span>-14</span>
                         </div>
@@ -901,11 +901,6 @@
     const uiManager = new UIManager();
     const game = new Game();
 
-    // hover
-    // const div = document.getElementById('board1');
-    // uiManager.addHoverEffectToDiv(div);
-
-
     // 선 정하기
     const gameStartBtn = document.getElementById("select-order-button");
     gameStartBtn.addEventListener("click", function() {
@@ -922,7 +917,6 @@
     // 선 정하기 시작
     const startBtn = document.getElementById("start-order-btn");
     startBtn.addEventListener("click", function() {
-        // uiManager.selectOrder();
         game.start();
         startBtn.disabled = true;
     });

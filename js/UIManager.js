@@ -23,14 +23,6 @@ export class UIManager extends UIInterface {
 
     // 마우스 오버 효과 추가
     addHoverEffectToDiv(divId) {
-        // const div = document.getElementById(divId);
-    
-        // div.addEventListener("mouseover", function () {
-        //     div.classList.add("hover-red");
-        // });
-        // div.addEventListener("mouseout", function () {
-        //     div.classList.remove("hover-red");
-        // });
 
         const farmBoard = document.querySelector('.farm_boards');
         const farmTiles = farmBoard.querySelectorAll('.farmboard');
@@ -318,7 +310,7 @@ export class UIManager extends UIInterface {
     // 울타리 삭제
     removeFence(target_id) {
         const fence = document.getElementById(target_id);
-        fence.style.backgroundColor = "#f0f0f0";
+        fence.style.backgroundColor = "";
     }
 
     // 외양간 설치
@@ -966,28 +958,6 @@ function clickActionBoard(event, farmer, farmerType) {
         transform: translate(-50%, -50%); 
         max-width: 100%;
     `
-    // if(action_board.id.startsWith('r')){
-    //     const actionBoardId = parseInt(action_board.id.substr(1));
-    //     if (actionBoardId <= round) {
-    //         console.log(123);
-    //         new_farmer.classList.add('farmfarmer')
-    //         // action 칸에 농부 추가
-    //         action_board.appendChild(new_farmer)
-
-    //         // farmboard에 있는 농부 제거
-    //         farmer.remove();
-    //       }else{
-    //         console.log(341);
-    //           return 0;
-    //       }
-    // }else{
-    //     new_farmer.classList.add('farmfarmer')
-    //     // action 칸에 농부 추가
-    //     action_board.appendChild(new_farmer)
-
-    //     // farmboard에 있는 농부 제거
-    //     farmer.remove();
-    // }
     new_farmer.classList.add('farmfarmer')
 
     // action 칸에 농부 추가

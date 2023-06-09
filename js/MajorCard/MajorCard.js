@@ -25,25 +25,6 @@ class Brazier1 extends MajorCardInterface{
     wheneverAction(player){
         player.resourceManager.removeResource(RT.SHEEP, 1);
         player.resourceManager.addResource(RT.FOOD, 2);
-        // switch (resourceType) {
-        //     // 음식 교환 로직
-        //     case RT.VEGETABLE:
-        //         {RT.FOOD, 2 * amount};
-
-        //     case RT.SHEEP:
-        //         {RT.FOOD, 2 * amount};
-
-        //     case RT.BOAR:
-        //         {RT.FOOD, 2 * amount};
-        //         break;
-
-        //     case RT.CATTLE:
-        //         {RT.FOOD, 3 * amount};
-        //         break;
-
-        //     default:
-        //         break;
-        // }
     }
 
     specificAction(player, actionType) {

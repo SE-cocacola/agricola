@@ -317,7 +317,7 @@ h3 {
 .row_bar {
     position: relative;
     width: 15.2%;
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
 }
 
 .farmboard {
@@ -338,7 +338,7 @@ h3 {
 .col_bar {
     position: relative;
     width: 3.8%;
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
 }
 
 
