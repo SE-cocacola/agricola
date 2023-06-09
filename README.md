@@ -18,12 +18,8 @@
   Agricola is an online, 2D game using JavaScript and HTML5.<br><br>
   노트북 하나로 Agricola 보드게임을 가족들과 친구들과 즐겨보세요!</strong>
 
-  <img width="1280" alt="아그리콜라 메인화면" src="https://github.com/SE-cocacola/agricola/assets/43169705/a40835a6-e598-488b-9a1c-513df9732b94">
-
 </p>
 
-## 디렉터리 구조
-<img width="407" alt="tree" src="https://github.com/SE-cocacola/agricola/assets/41979078/3360ffdb-bce2-403d-b105-fdbc5ae6ba1e">
 
 
 ## How to start
@@ -70,9 +66,14 @@ For a better time, make sure to join the [Discord channel](https://discord.gg/nk
 ### 점수 계산
 <img width="1680" alt="playing7" src="https://github.com/SE-cocacola/agricola/assets/41979078/b6e3a02a-e4d9-47e9-8cd0-4633e3c45fa9">
 
+## 디렉터리 구조
+<img width="407" alt="tree" src="https://github.com/SE-cocacola/agricola/assets/41979078/3360ffdb-bce2-403d-b105-fdbc5ae6ba1e">
+
 ## Class Diagram
 ![Agricola class diagram](https://github.com/SE-cocacola/agricola/assets/43169705/5db21902-6f37-4661-9ae5-59902e64eb7c)
 
+
+## 핵심 파일 정리
 - [Game](https://github.com/SE-cocacola/agricola/blob/main/js/Game.js)
   - [ ] 게임 시작
   - [ ] 게임 끝
