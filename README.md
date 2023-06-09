@@ -101,7 +101,7 @@ For a better time, make sure to join the [Discord channel](https://discord.gg/nk
 - 게임은 7라운드까지 구현하였습니다.
 
 ## Reference URL
-<a href="https://www.notion.so/93b48649139f41ab808a2bdff9a46a15?v=5129384b2ce24768857a6c944cc8ea09"><img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=Notion&logoColor=white" alt="html"></a><br>
+<a href="https://www.notion.so/93b48649139f41ab808a2bdff9a46a15?v=80578836430c4970be40259b57ed05da"><img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=Notion&logoColor=white" alt="html"></a><br>
 
 <a href="https://github.com/SE-cocacola/agricola"><img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white" alt="html"></a><br>
 
