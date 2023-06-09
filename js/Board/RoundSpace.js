@@ -63,10 +63,18 @@ class BuildFence extends BoardInterface {
                 break;
             }
 
-            // 버튼 읽어오고 가능한지 체크.
-            await uiManager.addFence(player, target_id);
-            player.resourceManager.resources[0].amount -= 1;
-            player.resourceManager.resources[11].amount += 1;
+            const boardId = document.getElementById(target_id);
+            if(boardId.style.backgroundColor === "red" || boardId.style.backgroundColor === "blue"){
+                uiManager.removeFence(target_id);
+                player.resourceManager.resources[0].amount += 1;
+                player.resourceManager.resources[11].amount -= 1;
+            }
+            else{
+                await uiManager.addFence(player, target_id);
+                player.resourceManager.resources[0].amount -= 1;
+                player.resourceManager.resources[11].amount += 1;
+            }
+            
 
         }
         const row_col_bars = player.name === "0" ? document.querySelector('.farm_board0') : document.querySelector('.farm_board1');

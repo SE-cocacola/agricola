@@ -316,34 +316,9 @@ export class UIManager extends UIInterface {
 
 
     // 울타리 삭제
-    removeFence() {
-        const rowfences = document.querySelectorAll(".row_bar");
-        const colfences = document.querySelectorAll(".col_bar");
-        rowfences.forEach(rowfence => {
-            if (this.handleFenceAddDelete) {
-                rowfence.removeEventListener("click", this.handleFenceAddDelete);
-            }
-            this.handleFenceAddDelete = function () {
-                const fenceImage = rowfence.querySelector(".farmfence");
-                if (fenceImage) {
-                    rowfence.removeChild(fenceImage);
-                }
-            };
-            rowfence.addEventListener("click", this.handleFenceAddDelete);
-        });
-
-        colfences.forEach(colfence => {
-            if (this.handleFenceAddDelete) {
-                colfence.removeEventListener("click", this.handleFenceAddDelete);
-            }
-            this.handleFenceAddDelete = function () {
-                const fenceImage = colfence.querySelector(".farmfence");
-                if (fenceImage) {
-                    colfence.removeChild(fenceImage);
-                }
-            };
-            colfence.addEventListener("click", this.handleFenceAddDelete);
-        });
+    removeFence(target_id) {
+        const fence = document.getElementById(target_id);
+        fence.style.backgroundColor = "#f0f0f0";
     }
 
     // 외양간 설치
