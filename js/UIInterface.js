@@ -1,3 +1,4 @@
+
 class UIInterface {
     constructor() {
       if (new.target === UIInterface) {
@@ -10,6 +11,7 @@ class UIInterface {
         this.isPlayer1First = true;
         this.imgPlayer1 = document.getElementById("player1_first");
         this.imgPlayer2 = document.getElementById("player2_first");
+        this.path = require('path');
     }
     
     initUI() {
@@ -100,8 +102,8 @@ switchFirst(){
 showFarmer(id, farmerType){
   const farmboard = document.getElementById(id);
   const newFarmerImage = document.createElement("img");
-  if (farmerType=="Red") newFarmerImage.src = `./image/resource/farmer1.png`;
-  else newFarmerImage.src = `./image/resource/farmer2.png`;
+  if (farmerType=="Red") newFarmerImage.src = this.path.resolve(__dirname, './image/resource/farmer1.PNG');
+  else newFarmerImage.src = this.path.resolve(__dirname, './image/resource/farmer2.PNG');
   newFarmerImage.classList.add('farmfarmer');
   farmboard.appendChild(newFarmerImage);        
 }
