@@ -105,7 +105,7 @@ For a better time, make sure to join the [Discord channel](https://discord.gg/nk
 ## Reference URL
 
 <p align="center">
-    <a href="https://www.notion.so/93b48649139f41ab808a2bdff9a46a15?v=5129384b2ce24768857a6c944cc8ea09"><img src="https://img.shields.io/badge/notion-000000?style=flat-square&logo=Notion&logoColor=white" alt="html"></a>
+    <a href="https://www.notion.so/93b48649139f41ab808a2bdff9a46a15?v=80578836430c4970be40259b57ed05da"><img src="https://img.shields.io/badge/notion-000000?style=flat-square&logo=Notion&logoColor=white" alt="html"></a>
     <a href="https://github.com/SE-cocacola/agricola"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white" alt="html"></a>
     <a href="https://cocacola3.atlassian.net/projects/SE?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:eu.softwareplant.biggantt__biggantt-extcatalog-app-entry#!box/AGILE-5/g"><img src="https://img.shields.io/badge/Jira-0052CC?style=flat-square&logo=JiraSoftware&logoColor=white" alt="html"></a>
 </p>
