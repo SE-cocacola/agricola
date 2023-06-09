@@ -147,6 +147,7 @@ h3 {
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    pointer-events: none;
 }
 
 .d > .remain {
