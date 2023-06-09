@@ -466,7 +466,8 @@ h3 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ECECEC;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
     z-index: 1;
 }
 
@@ -486,6 +487,7 @@ h3 {
 
 .popup_box {
     padding: 30px 50px;
+    border-radius: 12px;
 }
 
 .image-container {
@@ -699,4 +701,23 @@ img {
     height: 40px;
 
     margin-right: 20px;
+}
+
+#confirm,
+#select-order-button{
+    margin: 12px auto;
+    border: 2px solid black;
+    box-shadow: #ccc;
+    border-radius: 12px;
+    width: 80%;
+
+    background-color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    padding: 4px 16px;
+}
+
+#majorBtn{
+    border-radius: 12px;
+    border: 2px solid black;
+    background-color: rgba(255, 255, 255, 0.5);;
 }
