@@ -75,37 +75,34 @@ For a better time, make sure to join the [Discord channel](https://discord.gg/nk
 
 ## 핵심 파일 정리
 - [Game](https://github.com/SE-cocacola/agricola/blob/main/js/Game.js)
-  - [ ] 게임 시작
-  - [ ] 게임 끝
+  - [X] 게임 시작
+  - [X] 게임 끝
 - [GameManager](https://github.com/SE-cocacola/agricola/blob/main/js/GameManager.js)
-  - [ ] 라운드 실행
-  - [ ] 수확 실행
-  - [ ] 이긴 사람 보여주기
+  - [X] 라운드 실행
+  - [X] 수확 실행
+  - [X] 이긴 사람 보여주기
 - [Player](https://github.com/SE-cocacola/agricola/blob/main/js/Player.js)
-  - [ ] 점수 계산
-  - [ ] 농부 이동
+  - [X] 점수 계산
+  - [X] 농부 이동
 - [MajorCardManager](https://github.com/SE-cocacola/agricola/blob/main/js/MajorCard/MajorCardManager.js)
-  - [ ] 전체 주요 설비 카드 관리
+  - [X] 전체 주요 설비 카드 관리
 - [ResourceManager](https://github.com/SE-cocacola/agricola/blob/main/js/Resource/ResourceManager.js)
-  - [ ] 자원 추가
-  - [ ] 자원 소비
-  - [ ] 주요 설비 설치
-  - [ ] 설치한 주요 설비 조회
+  - [X] 자원 추가
+  - [X] 자원 소비
+  - [X] 주요 설비 설치
+  - [X] 설치한 주요 설비 조회
 
 
 
 
 ## Notice
-2인용 게임
-보조 설비X, 직업 카드X
-회합장소 -> 음식 1개 누적칸
-
-게임의 구현은 7라운드까지만 되어있습니다.
+- 본 게임은 2인용 게임으로 게임의 진행을 위해 보조 설비, 직업 카드 없이 하는 규칙으로 설정했습니다.
+- 규칙에 따라 회합장소 -> 음식 1개 누적칸으로 변경되었습니다.
+- 게임은 7라운드까지 구현하였습니다.
 
 ## Reference URL
+<a href="https://www.notion.so/93b48649139f41ab808a2bdff9a46a15?v=5129384b2ce24768857a6c944cc8ea09"><img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=Notion&logoColor=white" alt="html"></a><br>
 
-<p align="center">
-    <a href="https://www.notion.so/93b48649139f41ab808a2bdff9a46a15?v=80578836430c4970be40259b57ed05da"><img src="https://img.shields.io/badge/notion-000000?style=flat-square&logo=Notion&logoColor=white" alt="html"></a>
-    <a href="https://github.com/SE-cocacola/agricola"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white" alt="html"></a>
-    <a href="https://cocacola3.atlassian.net/projects/SE?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:eu.softwareplant.biggantt__biggantt-extcatalog-app-entry#!box/AGILE-5/g"><img src="https://img.shields.io/badge/Jira-0052CC?style=flat-square&logo=JiraSoftware&logoColor=white" alt="html"></a>
-</p>
+<a href="https://github.com/SE-cocacola/agricola"><img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white" alt="html"></a><br>
+
+<a href="https://cocacola3.atlassian.net/projects/SE?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:eu.softwareplant.biggantt__biggantt-extcatalog-app-entry#!box/AGILE-5/g"><img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=JiraSoftware&logoColor=white" alt="html"></a>
