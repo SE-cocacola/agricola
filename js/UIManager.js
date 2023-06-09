@@ -214,8 +214,8 @@ export class UIManager extends UIInterface {
         const actionRoundDiv = document.getElementById(action_round);
         actionRoundDiv.style = `
         background-repeat: no-repeat;
-        background-size: 90% 85%;
-        background-position: left center;
+        background-size: cover;
+        background-position: left top;
         transform: translate(-5px);
         `
 
@@ -587,11 +587,30 @@ export class UIManager extends UIInterface {
         if(round == 4){
             const r4Element = document.getElementById("r4");
             const remainElement = r4Element.querySelector(".remain");
-            remainElement.style.display = "block";
+            
+            remainElement.style = 
+            `
+
+            display: flex;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            justify-content: center;
+            align-items: center;
+        `
         }else if(round == 7){
             const r4Element = document.getElementById("r7");
             const remainElement = r4Element.querySelector(".remain");
-            remainElement.style.display = "block";
+            remainElement.style = 
+            `
+
+            display: flex;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            justify-content: center;
+            align-items: center;
+        `
         }
 
         
