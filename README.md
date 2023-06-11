@@ -24,6 +24,7 @@
 
 ## How to start
 
+#### 1. Web Environment
 First, fork the repository. Then, go into your favorite terminal.
 
     git clone git@github.com:YOUR_USERNAME/game.git
@@ -38,6 +39,40 @@ Now, while still inside the `game` folder, open another terminal session in that
 > If you want to debug, type `npm run ndb`. `ndb` is Google Chrome's Node Debugging tool which allows Node.js programs to be easily debugged and see all its context and variables. Highly recommended for a much easier time.
 
 Now you may visit `http://localhost:8080` to login and start developing!
+
+#### 2. Local Install (with electron)
+
+Alternatively, you can create an installation file through electron and install it directly on your pc to play.
+
+First, fork the repository. Then, go into your favorite terminal.
+
+    git clone git@github.com:YOUR_USERNAME/game.git
+    cd game
+    npm install
+    npm init -y
+    npm install --save-dev electron
+    npm install --save-dev electron-builder
+
+Then, you need to modify package.json
+
+```javascript
+"main": "main.js",
+"scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+},
+"build": {
+    "appId": "agicola",
+    "win": {
+    "target": "nsis"
+    }
+    "mac": {
+    "target": "dmg"
+    }
+},
+```
+
+If you are on Windows, type and run `npm run dist`. This will create an installation file in the `dist` folder. You can install it and play!
 
 For a better time, make sure to join the [Discord channel](https://discord.gg/nkZnHvD) to talk to other developers for help and exclusive dicussions!
 
