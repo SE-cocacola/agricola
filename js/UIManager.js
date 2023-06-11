@@ -10,7 +10,6 @@ export class UIManager extends UIInterface {
         this.handleBarnAddDelete = null;
         this.handleFarmerAddDelete = null;
         this.handleRoomAddDelete = null;
-
     }
 
     initUI() {
@@ -254,7 +253,7 @@ export class UIManager extends UIInterface {
     addSheep(target_id) {
         const area = document.getElementById(target_id);
         const newAnimalImage = document.createElement("img");
-        newAnimalImage.src = `./image/resource/sheep.png`;
+        newAnimalImage.src = this.path.resolve(__dirname, `./image/resource/sheep.PNG`);
         newAnimalImage.classList.add('farmanimal');
         area.appendChild(newAnimalImage);
     }
@@ -695,12 +694,15 @@ export class UIManager extends UIInterface {
     // 라운드 끝나고 농부 이미지 지우기
     removeImages(className, srcPrefix) {
         const elements = document.getElementsByClassName(className);
-
         for (let i = elements.length - 1; i >= 0; i--) {
             const imageElements = elements[i].getElementsByTagName('img');
             for (let j = imageElements.length - 1; j >= 0; j--) {
+                // const imageSrc = imageElements[j].getAttribute('src');
+                // if (imageSrc.startsWith(srcPrefix)) {
+                //     imageElements[j].remove();
+                // }
                 const imageSrc = imageElements[j].getAttribute('src');
-                if (imageSrc.startsWith(srcPrefix)) {
+                if (imageSrc == this.path.resolve(__dirname, `./image/resource/farmer1.PNG`) || imageSrc == this.path.resolve(__dirname, `./image/resource/farmer2.PNG`)) {
                     imageElements[j].remove();
                 }
             }
@@ -967,9 +969,11 @@ function clickActionBoard(event, farmer, farmerType) {
 
     const action_board = event.target
     const new_farmer = document.createElement('img')
+    const path = require('path');
+
 
     // 농부 style 입히기
-    new_farmer.src = farmerType === 'Red' ? './image/resource/farmer1.png' : './image/resource/farmer2.png';
+    new_farmer.src = farmerType === 'Red' ? path.resolve(__dirname, './image/resource/farmer1.PNG') : path.resolve(__dirname, './image/resource/farmer2.PNG');
     new_farmer.style = `
         position: absolute; 
         top: 50%; 
