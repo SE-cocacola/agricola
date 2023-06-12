@@ -116,10 +116,15 @@ If you are on Windows, type and run `npm run dist`. This will create an installa
 - 게임은 7라운드까지 구현하였습니다.
 
 ## Reference URL
-<a href="https://www.notion.so/93b48649139f41ab808a2bdff9a46a15?v=80578836430c4970be40259b57ed05da"><img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=Notion&logoColor=white" alt="html"></a>요구사항 명세서, 회의록, 활동 보고서<br>
+<a href="https://www.notion.so/93b48649139f41ab808a2bdff9a46a15?v=80578836430c4970be40259b57ed05da"><img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=Notion&logoColor=white" alt="html"></a><br>
+- 요구사항 명세서 (전체/문서/엔지니어링)
+- 회의록 (전체/회의)
+- 활동 보고서 (전체/문서/..)
 
 <a href="https://github.com/SE-cocacola/agricola"><img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white" alt="html"></a><br>
 
-<a href="https://cocacola3.atlassian.net/projects/SE?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:eu.softwareplant.biggantt__biggantt-extcatalog-app-entry#!box/AGILE-5/g"><img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=JiraSoftware&logoColor=white" alt="html"></a>jira project management<br>
+<a href="https://cocacola3.atlassian.net/projects/SE?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:eu.softwareplant.biggantt__biggantt-extcatalog-app-entry#!box/AGILE-5/g"><img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=JiraSoftware&logoColor=white" alt="html"></a><br>
+jira project management<br>
 
-<a href = "https://cocacola-mar7799.slack.com"> <img src ="https://img.shields.io/badge/Slack-4A154B.svg?&style=for-the-badge&logo=Slack&logoColor=white" alt="html"></a> 
+<a href = "https://cocacola-mar7799.slack.com"> <img src ="https://img.shields.io/badge/Slack-4A154B.svg?&style=for-the-badge&logo=Slack&logoColor=white" alt="html"></a><br>
+커뮤니케이션
