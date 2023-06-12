@@ -122,9 +122,10 @@ If you are on Windows, type and run `npm run dist`. This will create an installa
 - 활동 보고서 (전체/문서/..)
 
 <a href="https://github.com/SE-cocacola/agricola"><img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white" alt="html"></a><br>
+- 코드 저장소 <br>
 
 <a href="https://cocacola3.atlassian.net/projects/SE?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:eu.softwareplant.biggantt__biggantt-extcatalog-app-entry#!box/AGILE-5/g"><img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=JiraSoftware&logoColor=white" alt="html"></a><br>
-jira project management<br>
+- jira project management<br>
 
 <a href = "https://cocacola-mar7799.slack.com"> <img src ="https://img.shields.io/badge/Slack-4A154B.svg?&style=for-the-badge&logo=Slack&logoColor=white" alt="html"></a><br>
-커뮤니케이션
+- 커뮤니케이션
