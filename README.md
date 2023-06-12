@@ -24,23 +24,7 @@
 
 ## How to start
 
-#### 1. Web Environment
-First, fork the repository. Then, go into your favorite terminal.
-
-    git clone git@github.com:YOUR_USERNAME/game.git
-    cd game
-    npm install
-    npm run serve
-
-> `npm run serve` will start the development server and watch for changes on the client-side code inside the `src` folder and otherwise elsewhere applicable.
-
-Now, while still inside the `game` folder, open another terminal session in that same location. Type and run `npm run dev:node`. This will start the Node.js game server.
-
-> If you want to debug, type `npm run ndb`. `ndb` is Google Chrome's Node Debugging tool which allows Node.js programs to be easily debugged and see all its context and variables. Highly recommended for a much easier time.
-
-Now you may visit `http://localhost:8080` to login and start developing!
-
-#### 2. Local Install (with electron)
+#### 1. Local Install (with electron)
 
 Alternatively, you can create an installation file through electron and install it directly on your pc to play.
 
