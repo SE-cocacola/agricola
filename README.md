@@ -26,7 +26,7 @@
 
 #### 1. Local Install (with electron)
 
-Alternatively, you can create an installation file through electron and install it directly on your pc to play.
+You can create an installation file through electron and install it directly on your pc to play.
 
 First, fork the repository. Then, go into your favorite terminal.
 
@@ -57,10 +57,6 @@ Then, you need to modify package.json
 ```
 
 If you are on Windows, type and run `npm run dist`. This will create an installation file in the `dist` folder. You can install it and play!
-
-For a better time, make sure to join the [Discord channel](https://discord.gg/nkZnHvD) to talk to other developers for help and exclusive dicussions!
-
-> Please be aware of a [possible scam in regards to Delaford](https://github.com/delaford/game#possible-scam-notice) that promises money for testing or similar action.
 
 ## 게임 플레이 화면
 
